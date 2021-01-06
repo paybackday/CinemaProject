@@ -10,7 +10,7 @@ namespace Project.ENTITIES.Models
     {
        public DateTime Time { get; set; }
 
-       public decimal Price { get; set; }
+       public decimal Price { get; set; }//todo: Bakılacak indirim muhabbetine
        
         
 
