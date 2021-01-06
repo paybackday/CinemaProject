@@ -52,7 +52,12 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieActor.cs" />
+    <Compile Include="Models\MovieSessionSaloon.cs" />
     <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\Saloon.cs" />
+    <Compile Include="Models\SaloonSeat.cs" />
+    <Compile Include="Models\Seat.cs" />
+    <Compile Include="Models\Session.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

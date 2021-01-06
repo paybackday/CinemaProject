@@ -13,11 +13,14 @@ namespace Project.ENTITIES.Models
         public string Director { get; set; }
         public string MovieYear { get; set; }
         public int? GenreID { get; set; }
+        public string MovieLength { get; set; }
+        
 
         // Relational Properties
 
         public virtual Genre Genre { get; set; }
         public virtual List<MovieActor> MovieActors { get; set; }
+        public virtual List<MovieSessionSaloon> MovieSessionSaloons { get; set; }
 
 
     }
