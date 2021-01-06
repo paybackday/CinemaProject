@@ -55,7 +55,6 @@
     <Compile Include="Models\MovieSessionSaloon.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\Saloon.cs" />
-    <Compile Include="Models\SaloonSeat.cs" />
     <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\UserProfile.cs" />

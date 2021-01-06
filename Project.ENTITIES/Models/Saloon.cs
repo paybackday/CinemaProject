@@ -8,16 +8,15 @@ namespace Project.ENTITIES.Models
 {
     public class Saloon:BaseEntity
     {
-        public Seat Seat { get; set; }
-
-        public Saloon()
-        {
-            Seat=new Seat();
-        }
+        public ushort SaloonNo { get; set; }
+        public ushort Capacity { get; set; }
+       
 
         // Relational Properties
 
         public virtual List<MovieSessionSaloon> MovieSessionSaloons { get; set; }
+        public virtual List<Seat> Seats { get; set; }
+
 
     }
     

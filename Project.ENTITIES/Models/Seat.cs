@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class Seat:BaseEntity
+    public class Seat : BaseEntity
     {
-        public string SeatName { get; set; }
         public bool Active { get; set; }
-        public ushort SeatAmount { get; set; }
+        public int SaloonID { get; set; }
+
+        public ushort Number { get; set; }
+        public char Character { get; set; }
+
+        // Relational Properties
+        public virtual Saloon Saloon { get; set; }
 
     }
 }
