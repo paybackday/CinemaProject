@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Models
 {
-    public class MovieActor
+    public class MovieActor:BaseEntity
     {
         public int MovieID { get; set; }
         public int ActorID { get; set; }

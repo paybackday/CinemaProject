@@ -51,12 +51,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Options\ActorMap.cs" />
+    <Compile Include="Options\AppUserMap.cs" />
+    <Compile Include="Options\BaseMap.cs" />
+    <Compile Include="Options\EmployeeMap.cs" />
+    <Compile Include="Options\GenreMap.cs" />
+    <Compile Include="Options\MovieActorMap.cs" />
+    <Compile Include="Options\MovieMap.cs" />
+    <Compile Include="Options\MovieSessionSaloonMap.cs" />
+    <Compile Include="Options\SaleMap.cs" />
+    <Compile Include="Options\SaleSeatMap.cs" />
+    <Compile Include="Options\SaloonMap.cs" />
+    <Compile Include="Options\SeatMap.cs" />
+    <Compile Include="Options\SessionMap.cs" />
+    <Compile Include="Options\UserProfileMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
+      <Project>{eda663b1-cf6a-4879-94d1-b927336516f2}</Project>
+      <Name>Project.ENTITIES</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
