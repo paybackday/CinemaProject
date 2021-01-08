@@ -8,7 +8,7 @@ using Project.ENTITIES.Enums;
 
 namespace Project.ENTITIES.Models
 {
-    public class AppUser:BaseEntity
+    public class AppUser : BaseEntity
     {
         public UserRole Role { get; set; }
         public Guid ActivationCode { get; set; }
@@ -22,10 +22,11 @@ namespace Project.ENTITIES.Models
         public AppUser()
         {
             Role = UserRole.Member;
-            ActivationCode=Guid.NewGuid();
+            ActivationCode = Guid.NewGuid();
         }
 
         // Relational Properties 
         public virtual UserProfile UserProfile { get; set; }
+        public virtual List<Sale> Sales { get; set; }
     }
 }

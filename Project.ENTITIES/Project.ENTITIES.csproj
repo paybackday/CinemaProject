@@ -54,6 +54,7 @@
     <Compile Include="Models\MovieActor.cs" />
     <Compile Include="Models\MovieSessionSaloon.cs" />
     <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\SaleSeat.cs" />
     <Compile Include="Models\Saloon.cs" />
     <Compile Include="Models\Seat.cs" />
     <Compile Include="Models\Session.cs" />
