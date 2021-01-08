@@ -10,7 +10,7 @@ namespace Project.ENTITIES.Models
     public class Sale : BaseEntity
     {
 
-        public int AppUserID { get; set; }
+        public int? AppUserID { get; set; }
         public int MovieID { get; set; }
         public int SessionID { get; set; }
         public int GenreID { get; set; }
