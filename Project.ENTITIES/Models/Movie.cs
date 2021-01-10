@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace Project.ENTITIES.Models
 {
     public class Movie : BaseEntity
     {
+        //todo:ModelState.Valid kullanılacak.
+        [Required(ErrorMessage = "Film isim alanı boş geçilemez.")]
         public string MovieName { get; set; }
         public string Description { get; set; }
         public string Director { get; set; }

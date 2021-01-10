@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -15,7 +16,13 @@ namespace Project.ENTITIES.Models
         public bool Active { get; set; }
         public string ImagePath { get; set; }
         public string Email { get; set; }
+
+        [Required(ErrorMessage ="Şifre alanı boş geçilemez.")]
         public string Password { get; set; }
+
+        [Compare("Password",ErrorMessage ="Girilen şifreler eşleşmiyor.")]
+        [Required(ErrorMessage = "Şifre tekrar alanı boş geçilemez.")]
+        public string ConfirmPassword { get; set; }
         public short Credit { get; set; } // Film Başına gelen Kredi Properties
         public decimal Balance { get; set; } // Havale ile gelen Bakiye
 

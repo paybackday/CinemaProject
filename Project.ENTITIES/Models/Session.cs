@@ -9,7 +9,7 @@ namespace Project.ENTITIES.Models
 {
     public class Session : BaseEntity
     {
-        public DateTime? Time { get; set; }
+        public DateTime Time { get; set; }
         public bool SessionActive { get; set; }
 
         public decimal Price { get; set; }
