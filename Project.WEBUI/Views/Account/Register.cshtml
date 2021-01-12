@@ -1,0 +1,45 @@
+﻿@model AppUserVM
+@{
+    ViewBag.Title = "Register";
+}
+<style>
+    .field-validation-error {
+    color:red;
+    }
+</style>
+<!-- Main content -->
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "login" }))
+{
+    <p style="margin-top:25px" class="login__title">Kayıt Ol <br><span class="login-edition"></span></p>
+
+    <div class="field-wrap">
+        @Html.TextBoxFor(x => x.UserProfile.FirstName, new { @class = "login__input", placeholder = "Ad" })
+        @Html.ValidationMessageFor(x => x.UserProfile.FirstName)
+
+        @Html.TextBoxFor(x => x.UserProfile.LastName, new { @class = "login__input", placeholder = "Soyad" })
+        @Html.ValidationMessageFor(x => x.UserProfile.LastName)
+
+        @Html.TextBoxFor(x => x.AppUser.Email, new { @class = "login__input", placeholder = "Email", @type = "email" })
+        @Html.ValidationMessageFor(x => x.AppUser.Email)
+
+        @Html.TextBoxFor(x => x.UserProfile.MobilePhone, new { @class = "login__input", placeholder = "Telefon", @maxlength = "10", @type = "tel" })
+        @Html.ValidationMessageFor(x => x.UserProfile.MobilePhone)
+
+
+        @Html.DropDownListFor(x => x.UserProfile.Gender, new List<SelectListItem> { new SelectListItem { Text = "Erkek", Value = "Erkek" }, new SelectListItem { Text = "Kadın", Value = "Kadın" } }, new { @style = "border:2px solid gray; margin-top:5px", @class = "btn btn-secondary dropdown-toggle col-sm-12" })
+
+
+
+        @Html.PasswordFor(x => x.AppUser.Password, new { @class = "login__input", placeholder = "Şifre" })
+        @Html.ValidationMessageFor(x => x.AppUser.Password)
+
+        @Html.PasswordFor(x => x.AppUser.ConfirmPassword, new { @class = "login__input", placeholder = "Şifre Tekrar" })
+        @Html.ValidationMessageFor(x => x.AppUser.ConfirmPassword)
+
+    </div>
+
+    <div style="text-align:center">
+        <button style="margin-top:25px" type='submit' class="btn btn-md btn--warning btn--wider">Kayıt Ol</button>
+        
+    </div>
+}
