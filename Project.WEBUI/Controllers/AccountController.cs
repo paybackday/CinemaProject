@@ -66,7 +66,7 @@ namespace Project.WEBUI.Controllers
                 toBeActivated.ActivationCode = Guid.NewGuid();
                 apRep.Update(toBeActivated);
                 TempData["accountActive"] = "Hesabınız aktifleştirilmiştir.";
-                RedirectToAction("Login");
+              return  RedirectToAction("Login");
             }
 
             TempData["accountActive"] = "Aktif edilecek hesap bulunamadı";
