@@ -8,6 +8,10 @@
     }
 </style>
 <!-- Main content -->
+@if (TempData["accountActive"]!=null)
+{
+    <div class="alert alert-warning">@TempData["accountActive"]</div>
+}
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "login" }))
 {
     <p style="margin-top:25px" class="login__title">Kayıt Ol <br><span class="login-edition"></span></p>
@@ -25,16 +29,20 @@
         @Html.TextBoxFor(x => x.UserProfile.MobilePhone, new { @class = "login__input", placeholder = "Telefon", @maxlength = "10", @type = "tel" })
         @Html.ValidationMessageFor(x => x.UserProfile.MobilePhone)
 
+        
+        @Html.EnumDropDownListFor(x=>x.UserProfile.Gender,"Cinsiyet",new { @style = "border:2px solid gray; margin-top:5px", @class = "btn btn-secondary dropdown-toggle col-sm-12" })
+        @Html.ValidationMessageFor(x=>x.UserProfile.Gender)
 
-        @Html.DropDownListFor(x => x.UserProfile.Gender, new List<SelectListItem> { new SelectListItem { Text = "Erkek", Value = "Erkek" }, new SelectListItem { Text = "Kadın", Value = "Kadın" } }, new { @style = "border:2px solid gray; margin-top:5px", @class = "btn btn-secondary dropdown-toggle col-sm-12" })
+        
 
 
+        @Html.PasswordFor(x=>x.AppUser.Password, new { @class = "login__input" })
+        @Html.ValidationMessageFor(x=>x.AppUser.Password)
 
-        @Html.PasswordFor(x => x.AppUser.Password, new { @class = "login__input", placeholder = "Şifre" })
-        @Html.ValidationMessageFor(x => x.AppUser.Password)
+        @Html.PasswordFor(x=>x.AppUser.ConfirmPassword, new { @class = "login__input" })
+        @Html.ValidationMessageFor(x=>x.AppUser.ConfirmPassword)
 
-        @Html.PasswordFor(x => x.AppUser.ConfirmPassword, new { @class = "login__input", placeholder = "Şifre Tekrar" })
-        @Html.ValidationMessageFor(x => x.AppUser.ConfirmPassword)
+        
 
     </div>
 

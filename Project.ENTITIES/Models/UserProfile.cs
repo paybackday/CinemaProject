@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.ENTITIES.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,10 +23,11 @@ namespace Project.ENTITIES.Models
 
         //[Required(ErrorMessage = "Gelir alanı boş geçilemez.")]
         public decimal? Sallary { get; set; }
-        public string Gender { get; set; }
+        [Required(ErrorMessage ="Cinsiyet seçimi yapınız")]
+        public Gender Gender { get; set; }
         public string City { get; set; }
 
-        [Required(ErrorMessage = "Meslek alanı boş geçilemez.")]
+        //[Required(ErrorMessage = "Meslek alanı boş geçilemez.")]
         public string Job { get; set; }
 
 

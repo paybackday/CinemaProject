@@ -613,6 +613,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\RegisterOk.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -627,6 +628,10 @@
     <ProjectReference Include="..\Project.BLL\Project.BLL.csproj">
       <Project>{E8A67C12-F99A-4FB4-A5B1-3CC44E3C27D1}</Project>
       <Name>Project.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.COMMON\Project.COMMON.csproj">
+      <Project>{3E53B4FB-ECFF-4E11-B63B-533BFDE1ABFC}</Project>
+      <Name>Project.COMMON</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project.ENTITIES\Project.ENTITIES.csproj">
       <Project>{EDA663B1-CF6A-4879-94D1-B927336516F2}</Project>

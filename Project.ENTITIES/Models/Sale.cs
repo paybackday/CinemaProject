@@ -18,7 +18,7 @@ namespace Project.ENTITIES.Models
         public PaymentType Type { get; set; }
         public string SaleNo { get; set; }
 
-
+        //todo:Quantity
         
         public Sale()
         {

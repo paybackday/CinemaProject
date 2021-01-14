@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Enums\DataStatus.cs" />
     <Compile Include="Enums\EmployeeType.cs" />
+    <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\PaymentType.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Models\Actor.cs" />
