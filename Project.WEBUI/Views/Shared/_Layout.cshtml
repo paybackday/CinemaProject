@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@{ AppUser user = (AppUser)HttpContext.Current.Session["member"];}
+<!doctype html>
 <html>
 <head>
     <!-- jQuery 3.1.1-->
@@ -51,10 +52,7 @@
 
 <body>
     <div class="wrapper">
-        <!-- Banner -->
-        <div class="banner-top">
-            <img alt='top banner' src="~/OuterTools/images/banners/bra.jpg">
-        </div>
+
 
         <!-- Header section -->
         <header class="header-wrapper header-wrapper--home">
@@ -199,23 +197,24 @@
                                                 </span>
                                             </div>
                                             <a href="#" class="btn btn--sign btn--singin">
-                                                me
+                                                HESABIM
                                             </a>
                                             <ul class="auth__function">
                                                 <li><a href="#" class="auth__function-item">Watchlist</a></li>
                                                 <li><a href="#" class="auth__function-item">Booked tickets</a></li>
                                                 <li><a href="#" class="auth__function-item">Discussion</a></li>
-                                                <li><a href="#" class="auth__function-item">Settings</a></li>
+                                                <li><a href="@Url.Action("Logout", "Account")" class="auth__function-item">Güvenli Çıkış</a></li>
                                             </ul>
 
                                         </div>
-                                        <a href="#" class="btn btn-md btn--warning btn--book btn-control--home login-window">Book a ticket</a>
-                                    </div>}
-                <div class="control-panel">
-                    <a href="@Url.Action("Login","Account")" class="btn btn--sign login-window">Sign in</a>
+                                    </div> }
+                                                else
+                                                {
+                                    <div class="control-panel">
+                                        <a href="@Url.Action("Login", "Account")" class="btn btn-warning">GİRİŞ YAP</a>
 
-                </div>
-
+                                    </div>
+                                                }
 
             </div>
         </header>
@@ -335,7 +334,6 @@
 
     <!-- Form validation -->
     <!--<script src="~/OuterTools/js/form.js"></script>-->
-
     <!-- Twitter feed -->
     <script src="~/OuterTools/js/external/twitterfeed.js"></script>
 

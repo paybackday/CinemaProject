@@ -19,7 +19,67 @@ namespace Project.WEBUI.Controllers
             apRep = new AppUserRepository();
             apdRep = new UserProfileRepository();
         }
-        // GET: Account
+        /*[HttpPost]
+        public ActionResult GetName(int id) {
+            AppUserVM apvm = new AppUserVM
+            {
+                UserProfile = apdRep.FirstOrDefault(x => x.ID == id)
+            };
+            return PartialView("GetName",apvm);
+        }*/
+        private ActionResult AktifKontrol() {
+            ViewBag.Hata = "Hesabınız aktif değildir. Lütfen hesabınızı email adresinize gönderdiğimiz bağlantı ile aktif hale getirin";
+            return View("Login");
+        
+        }
+
+        public ActionResult Login() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login([Bind(Prefix ="AppUser")] AppUser item) 
+        {
+            AppUser loginUser = apRep.FirstOrDefault(x => x.Email == item.Email);
+            if (loginUser==null) //Eğer sorgudan kullanıcı gelmiyorsa
+            {
+                ViewBag.Hata = "Bu email adresine kayıtlı kullanıcı bulunamadı";
+                return View();
+            }
+
+            string decrypted = DantexCrypt.DeCrypt(loginUser.Password);
+
+            if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Admin)
+            {
+                if (!loginUser.Active)
+                {
+                    return AktifKontrol();
+                }
+                Session["admin"] = loginUser;
+                return RedirectToAction("Register", "Account");
+            }//If catched user is a admin
+
+            else if (loginUser != null && item.Password==decrypted && loginUser.Role==ENTITIES.Enums.UserRole.Member)
+            {
+                if (!loginUser.Active)
+                {
+                    return AktifKontrol();
+                }
+                Session["member"] = loginUser;
+                return RedirectToAction("Index", "Home");
+            }//If catched user is a member
+
+            else
+            {
+                ViewBag.Hata = "Email adresi veya şifrenizi hatalı girdiniz.";
+                return View();
+            }
+        }
+
+
+
+        // GET: Register
         public ActionResult Register() //Kayit olma islemleri
         {
             return View();
@@ -76,6 +136,12 @@ namespace Project.WEBUI.Controllers
         public ActionResult RegisterOk() {
 
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("member");
+            return RedirectToAction("Index", "Home");
         }
 
     }
