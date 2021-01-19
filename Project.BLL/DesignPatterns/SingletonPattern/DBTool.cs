@@ -16,7 +16,8 @@ namespace Project.BLL.DesignPatterns.SingletonPattern
 
         static MyContext _dbInstance;
 
-        public static MyContext DbInstance { get {
+        public static MyContext DbInstance { get 
+            {
                 if (_dbInstance==null)
                 {
                     _dbInstance = new MyContext();

@@ -10,7 +10,11 @@
 <!-- Main content -->
 @if (TempData["accountActive"]!=null)
 {
-    <div class="alert alert-warning">@TempData["accountActive"]</div>
+    <div style="margin-top:60px;text-align:center" class="alert alert-warning">@TempData["accountActive"]</div>
+}
+else if(ViewBag.Mevcut != null)
+{
+<div style="margin-top:60px;text-align:center"  class="alert alert-warning">@ViewBag.Mevcut</div>
 }
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "login" }))
 {

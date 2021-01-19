@@ -2,12 +2,17 @@
 @{
     ViewBag.Title = "Login";
 }
-@if (ViewBag.Hata!=null)
+@if (ViewBag.Hata != null)
 {
     <div style="margin-top:60px;text-align:center" class="alert alert-warning">@ViewBag.Hata</div>
 }
+else if (TempData["accountActive"] != null)
+{
+    <div style="margin-top:60px;text-align:center" class="alert alert-warning">@TempData["accountActive"]</div>
+}
 <!-- Main content -->
-@using (Html.BeginForm("Login", "Account", FormMethod.Post,new { @class="login"})) {
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login" }))
+{
     <br />
     <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" class="login__title">Giriş Yap <br><span class="login-edition">Sinflex Sinemasına Hoşgeldiniz</span></p>
 
@@ -15,16 +20,16 @@
     <div class="field-wrap">
         @Html.TextBoxFor(x => x.AppUser.Email, new { @class = "login__input", placeholder = "Email" })
 
-        @Html.PasswordFor(x => x.AppUser.Password, new { @class = "login__input",placeholder="Şifre" })
+        @Html.PasswordFor(x => x.AppUser.Password, new { @class = "login__input", placeholder = "Şifre" })
 
-        
+
         <!--<input type='checkbox' id='#informed' class='login__check styled'>
         <label for='#informed' class='login__check-info'>remember me</label>-->
     </div>
     <br />
     <div class="login__control">
         <button type='submit' class="btn btn-md btn--warning btn--wider">Giriş Yap</button>
-        @Html.ActionLink("Kayıt Ol","Register","Account",null,new {@style="margin-left:10px;", @class= "btn btn-md btn--warning btn--wider" })
+        @Html.ActionLink("Kayıt Ol", "Register", "Account", null, new { @style = "margin-left:10px;", @class = "btn btn-md btn--warning btn--wider" })
         <a href="@Url.Action("ForgotPassword","Account")" class="login__tracker form__tracker">Şifremi Unuttum</a>
     </div>
 }

@@ -98,7 +98,7 @@ namespace Project.WEBUI.Controllers
 
             
 
-            if (apRep.Any(x=>x.Email==apvm.AppUser.Email))
+            if (apRep.Any(x=>x.Email==apvm.AppUser.Email)) 
             {
                 ViewBag.Mevcut = "Bu Email adresine kayıtlı hesap bulunmaktadır.";
                 return View();
