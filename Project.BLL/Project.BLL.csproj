@@ -54,6 +54,7 @@
     <Compile Include="DesignPatterns\GenericRepository\BaseRep\BaseRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\ActorRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\AppUserRepository.cs" />
+    <Compile Include="DesignPatterns\GenericRepository\ConcRep\DirectorRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\EmployeeRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\GenreRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\MovieActorRepository.cs" />

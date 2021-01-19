@@ -17,9 +17,10 @@ namespace Project.ENTITIES.Models
         public int? EmployeeID { get; set; }
         public PaymentType Type { get; set; }
         public string SaleNo { get; set; }
+        
 
         //todo:Quantity
-        
+
         public Sale()
         {
              SaleNo = Guid.NewGuid().ToString().Substring(0, Guid.NewGuid().ToString().IndexOf("-")); // 8 Haneli benzersiz Alfa Şifresi Oluşturulacak.

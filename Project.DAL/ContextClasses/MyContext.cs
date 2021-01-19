@@ -1,4 +1,5 @@
-﻿using Project.ENTITIES.Models;
+﻿using Project.DAL.StrategyPattern;
+using Project.ENTITIES.Models;
 using Project.MAP.Options;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Project.DAL.ContextClasses
     {
         public MyContext() : base("MyConnection")
         {
-
+            Database.SetInitializer(new MyInit());
         }
 
 
@@ -49,6 +50,7 @@ namespace Project.DAL.ContextClasses
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<Director> Directors { get; set; }
 
     }
 }

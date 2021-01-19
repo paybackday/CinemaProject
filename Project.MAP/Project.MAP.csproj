@@ -54,6 +54,7 @@
     <Compile Include="Options\ActorMap.cs" />
     <Compile Include="Options\AppUserMap.cs" />
     <Compile Include="Options\BaseMap.cs" />
+    <Compile Include="Options\DirectorMap.cs" />
     <Compile Include="Options\EmployeeMap.cs" />
     <Compile Include="Options\GenreMap.cs" />
     <Compile Include="Options\MovieActorMap.cs" />
