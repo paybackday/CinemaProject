@@ -8,8 +8,8 @@ namespace Project.ENTITIES.Models
 {
     public class Saloon:BaseEntity
     {
-        public ushort SaloonNo { get; set; }
-        public ushort Capacity { get; set; }
+        public int SaloonNo { get; set; }
+        public int Capacity { get; set; }
        
 
         // Relational Properties

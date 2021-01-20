@@ -23,6 +23,7 @@ namespace Project.DAL.StrategyPattern
             au.Password = DantexCrypt.Crypt("123456");
             au.ConfirmPassword = DantexCrypt.Crypt("123456");
             context.AppUsers.Add(au);
+            
 
             UserProfile up = new UserProfile();//Boss Profil Tanımlama
             up.ID = au.ID;
@@ -33,9 +34,45 @@ namespace Project.DAL.StrategyPattern
             context.UserProfiles.Add(up);
             context.SaveChanges();
 
-            string[] genres = new string[] {"Korku","Bilim Kurgu","Aksiyon","Belgesel","Macera" };
-           
-            for (int i = 1; i <=5; i++)
+            //todo : employee ile appuser arasındaki 1 e 1 ilişkilerini dusuncez.
+            Employee emp = new Employee();
+            emp.EmployeeType = ENTITIES.Enums.EmployeeType.BookingClerk;
+            emp.FirstName = "Ercan";
+            emp.LastName = "Karahan";
+            emp.TCNO = "21111111111";
+            emp.Sallary = 1300;
+            emp.MobilePhone = "5316622582";
+            context.Employees.Add(emp);
+            context.SaveChanges();
+
+            Employee emp2 = new Employee();
+
+            emp2.EmployeeType = ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor;
+            emp2.FirstName = "Yusuf Emre";
+            emp2.LastName = "Ozdemir";
+            emp2.TCNO = "11111111111";
+            emp2.Sallary = 1301;
+            emp2.MobilePhone = "5312622582";
+            context.Employees.Add(emp2);
+            context.SaveChanges();
+
+            Employee emp3 = new Employee();
+            emp3.EmployeeType = ENTITIES.Enums.EmployeeType.Management;
+            emp3.FirstName = "Serkan";
+            emp3.LastName = "Akçay";
+            emp3.TCNO = "11111111113";
+            emp3.Sallary = 4500; 
+            emp3.MobilePhone = "5312625582";
+            context.Employees.Add(emp3);
+            context.SaveChanges();
+
+
+
+
+
+            string[] genres = new string[] { "Korku", "Bilim Kurgu", "Aksiyon", "Belgesel", "Macera" };
+
+            for (int i = 1; i <= 5; i++)
             {
 
                 Genre genre = new Genre();
@@ -48,19 +85,19 @@ namespace Project.DAL.StrategyPattern
             }
             context.SaveChanges();
 
-            
-            for (int i = 1; i <=10; i++)
+
+            for (int i = 1; i <= 10; i++)
             {
                 Actor actor = new Actor();
                 actor.FirstName = new Name("en").FirstName();
                 actor.LastName = new Name("en").LastName();
-                actor.Age = new Random().Next(30,50).ToString();
+                actor.Age = new Random().Next(30, 50).ToString();
                 actor.Country = new Address("en").Country();
                 context.Actors.Add(actor);
             }
             context.SaveChanges();
 
-            for (int i = 1; i <=5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 Director director = new Director();
                 director.FirstName = new Name("en").FirstName();
@@ -79,17 +116,69 @@ namespace Project.DAL.StrategyPattern
                 movie.DirectorID = new Random().Next(1, 6);
                 movie.MovieYear = new Random().Next(2005, 2020).ToString();
                 movie.GenreID = new Random().Next(1, 6);
+                movie.MovieImagePath = new Images().Technics();
 
                 context.Movies.Add(movie);
             }
             context.SaveChanges();
 
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i <=20; i++)
             {
-
+                for (int j = 1; j <=10; j++)
+                {
+                    MovieActor mv = new MovieActor();
+                    mv.MovieID = i;
+                    mv.ActorID = j;
+                    context.MovieActors.Add(mv);
+                }
             }
 
+            context.SaveChanges();
+
+
+            DateTime[] sessions = new DateTime[] { Convert.ToDateTime("11:00"), Convert.ToDateTime("12:45"), Convert.ToDateTime("15:00"), Convert.ToDateTime("18:30"), Convert.ToDateTime("21:00") };
+
+            for (int i = 0; i < 5; i++)
+            {
+                Session session = new Session();
+                session.Time = sessions[i];
+                session.SessionActive = true;
+                session.Price = Convert.ToDecimal(new Commerce("tr").Price());
+                context.Sessions.Add(session);
+
+            }
+            context.SaveChanges();
+
+
+            for (int i = 1; i <= 5; i++)
+            {
+                Saloon saloon = new Saloon();
+                saloon.SaloonNo = i;
+                saloon.Capacity = 160;
+                context.Saloons.Add(saloon);
+            }
+            context.SaveChanges();
+
+            for (int i = 1; i <= 5; i++)
+            {
+
+                for (char j = 'A'; j < 'I'; j++)
+                {
+                    for (int k = 1; k <= 14; k++)
+                    {
+                        Seat seat = new Seat();
+                        seat.SeatActive = false;
+                        seat.SaloonID = i;
+                        seat.Character = Convert.ToString(j);
+                        seat.Number = k;
+                        context.Seats.Add(seat);
+                    }
+                }
+            }
+            context.SaveChanges();
         }
+
+
 
     }
 }

@@ -36,5 +36,6 @@ namespace Project.ENTITIES.Models
         // Relational Properties 
         public virtual UserProfile UserProfile { get; set; }
         public virtual List<Sale> Sales { get; set; }
+        public virtual List<Reservation> Reservations { get; set; }
     }
 }
