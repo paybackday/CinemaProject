@@ -1,4 +1,4 @@
-﻿
+﻿@model MovieVM
 @{
     ViewBag.Title = "Index";
 }
@@ -385,104 +385,36 @@
 
 <section class="container">
     <div class="movie-best">
-        <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Today Best choice</div>
+        <div class="col-sm-10 col-sm-offset-1 movie-best__rating">Vizyondakiler</div>
         <div class="col-sm-12 change--col">
-            <div class="movie-beta__item ">
-                <img alt='' src="~/OuterTools/images/movie/movie-sample1.jpg">
-                <span class="best-rate">5.0</span>
+            @{int sayac = 1; }
+            @foreach (Movie item in Model.Movies)
+            {
+                if (sayac==7)
+                {
+                    break;
+                }
 
-                <ul class="movie-beta__info">
-                    <li><span class="best-voted">71 people voted today</span></li>
-                    <li>
-                        <p class="movie__time">169 min</p>
-                        <p>Adventure | Drama | Fantasy </p>
-                        <p>38 comments</p>
-                    </li>
-                    <li class="last-block">
-                        <a href="movie-page-left.html" class="slide__link">more</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="movie-beta__item second--item">
-                <img alt='' src="~/OuterTools/images/movie/movie-sample2.jpg">
-                <span class="best-rate">5.0</span>
+                <div class="movie-beta__item ">
+                    <img alt='' src="~/OuterTools/images/movie/deneme.jpeg">
+                    <span class="best-rate">5.0</span>
+                    
+                    <ul class="movie-beta__info">
+                        <li><span class="best-voted">@item.MovieName</span></li>
+                        <li>
+                            <p>Vizyon Tarihi: @item.MovieYear</p>
+                            <p>Tür: @item.Genre.GenreName</p>
+                            <p class="movie__time">@item.MovieLength dakika</p>
+                        </li>
+                        <li class="last-block">
+                            <a href="@Url.Action("Single","Movie",new { id=item.ID})" class="slide__link">Daha Fazla</a>
+                        </li>
+                    </ul>
+                </div>
+                sayac++;
+            }
 
-                <ul class="movie-beta__info">
-                    <li><span class="best-voted">71 people voted today</span></li>
-                    <li>
-                        <p class="movie__time">169 min</p>
-                        <p>Adventure | Drama | Fantasy </p>
-                        <p>38 comments</p>
-                    </li>
-                    <li class="last-block">
-                        <a href="movie-page-left.html" class="slide__link">more</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="movie-beta__item third--item">
-                <img alt='' src="~/OuterTools/images/movie/movie-sample3.jpg">
-                <span class="best-rate">5.0</span>
 
-                <ul class="movie-beta__info">
-                    <li><span class="best-voted">71 people voted today</span></li>
-                    <li>
-                        <p class="movie__time">169 min</p>
-                        <p>Adventure | Drama | Fantasy </p>
-                        <p>38 comments</p>
-                    </li>
-                    <li class="last-block">
-                        <a href="movie-page-left.html" class="slide__link">more</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="movie-beta__item hidden-xs">
-                <img alt='' src="~/OuterTools/images/movie/movie-sample4.jpg">
-                <span class="best-rate">5.0</span>
-
-                <ul class="movie-beta__info">
-                    <li><span class="best-voted">71 people voted today</span></li>
-                    <li>
-                        <p class="movie__time">169 min</p>
-                        <p>Adventure | Drama | Fantasy </p>
-                        <p>38 comments</p>
-                    </li>
-                    <li class="last-block">
-                        <a href="movie-page-left.html" class="slide__link">more</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="movie-beta__item hidden-xs hidden-sm">
-                <img alt='' src="~/OuterTools/images/movie/movie-sample5.jpg">
-                <span class="best-rate">5.0</span>
-
-                <ul class="movie-beta__info">
-                    <li><span class="best-voted">71 people voted today</span></li>
-                    <li>
-                        <p class="movie__time">169 min</p>
-                        <p>Adventure | Drama | Fantasy </p>
-                        <p>38 comments</p>
-                    </li>
-                    <li class="last-block">
-                        <a href="movie-page-left.html" class="slide__link">more</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="movie-beta__item hidden-xs hidden-sm">
-                <img alt='' src="~/OuterTools/images/movie/movie-sample6.jpg">
-                <span class="best-rate">5.0</span>
-
-                <ul class="movie-beta__info">
-                    <li><span class="best-voted">71 people voted today</span></li>
-                    <li>
-                        <p class="movie__time">169 min</p>
-                        <p>Adventure | Drama | Fantasy </p>
-                        <p>38 comments</p>
-                    </li>
-                    <li class="last-block">
-                        <a href="movie-page-left.html" class="slide__link">more</a>
-                    </li>
-                </ul>
-            </div>
         </div>
         <div class="col-sm-10 col-sm-offset-1 movie-best__check">check all movies now playing</div>
     </div>

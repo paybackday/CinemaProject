@@ -42,10 +42,10 @@ else if(ViewBag.Mevcut != null)
         
 
 
-        @Html.PasswordFor(x=>x.AppUser.Password, new { @class = "login__input" })
+        @Html.PasswordFor(x=>x.AppUser.Password, new { @class = "login__input",placeholder="Şifre giriniz" })
         @Html.ValidationMessageFor(x=>x.AppUser.Password)
 
-        @Html.PasswordFor(x=>x.AppUser.ConfirmPassword, new { @class = "login__input" })
+        @Html.PasswordFor(x=>x.AppUser.ConfirmPassword, new { @class = "login__input", placeholder = "Şifrenizi tekrar giriniz" })
         @Html.ValidationMessageFor(x=>x.AppUser.ConfirmPassword)
 
         

@@ -8,24 +8,27 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Controllers
 {
-    public class HomeController : Controller
+    public class MovieController : Controller
     {
         MovieRepository _mvRep;
-
-        public HomeController()
+        MovieActorRepository _mvaRep;
+        ActorRepository _actRep;
+        public MovieController()
         {
             _mvRep = new MovieRepository();
+            _mvaRep = new MovieActorRepository();
+            _actRep = new ActorRepository();
         }
-        // GET: Home
-        public ActionResult Index()
+        // GET: Movie
+        public ActionResult Single(int id)
         {
             MovieVM mvm = new MovieVM
             {
-                Movies = _mvRep.GetActives()
-
+                Movie = _mvRep.FirstOrDefault(x => x.ID == id),
+                /*MovieActor*/
+                MovieActors = _mvaRep.Where(x=>x.MovieID==id) 
             };
             return View(mvm);
         }
-
     }
 }

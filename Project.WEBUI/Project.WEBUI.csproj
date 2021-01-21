@@ -277,6 +277,7 @@
     <Content Include="OuterTools\images\logo-dark.png" />
     <Content Include="OuterTools\images\logo-lg.png" />
     <Content Include="OuterTools\images\logo.png" />
+    <Content Include="OuterTools\images\movie\deneme.jpeg" />
     <Content Include="OuterTools\images\movie\movie-img1-lg.jpg" />
     <Content Include="OuterTools\images\movie\movie-img1.jpg" />
     <Content Include="OuterTools\images\movie\movie-img2-lg.jpg" />
@@ -590,10 +591,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
+    <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -616,6 +619,7 @@
     <Content Include="Views\Account\RegisterOk.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\GetName.cshtml" />
+    <None Include="Views\Movie\Single.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
