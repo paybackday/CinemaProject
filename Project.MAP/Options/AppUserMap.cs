@@ -12,6 +12,7 @@ namespace Project.MAP.Options
         public AppUserMap()
         {
             HasOptional(x => x.UserProfile).WithRequired(x => x.AppUser); // Birebir ilişkinin tanımlanması
+           
 
         }
     }

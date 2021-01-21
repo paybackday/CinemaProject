@@ -36,6 +36,9 @@ namespace Project.DAL.StrategyPattern
 
             //todo : employee ile appuser arasındaki 1 e 1 ilişkilerini dusuncez.
             Employee emp = new Employee();
+            emp.Email = "ercankarahan@hotmail.de";
+            emp.Password =DantexCrypt.Crypt( "123");
+            emp.ConfirmPassword = DantexCrypt.Crypt("123");
             emp.EmployeeType = ENTITIES.Enums.EmployeeType.BookingClerk;
             emp.FirstName = "Ercan";
             emp.LastName = "Karahan";
@@ -48,6 +51,9 @@ namespace Project.DAL.StrategyPattern
             Employee emp2 = new Employee();
 
             emp2.EmployeeType = ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor;
+            emp2.Email = "emredeneme@gmail.com";
+            emp2.Password = DantexCrypt.Crypt("1234");
+            emp2.ConfirmPassword = DantexCrypt.Crypt("1234");
             emp2.FirstName = "Yusuf Emre";
             emp2.LastName = "Ozdemir";
             emp2.TCNO = "11111111111";
@@ -58,10 +64,13 @@ namespace Project.DAL.StrategyPattern
 
             Employee emp3 = new Employee();
             emp3.EmployeeType = ENTITIES.Enums.EmployeeType.Management;
+            emp3.Email = "Sakcay415@gmail.com";
+            emp3.Password = DantexCrypt.Crypt("serkan1903");
+            emp3.ConfirmPassword = DantexCrypt.Crypt("serkan1903");
             emp3.FirstName = "Serkan";
             emp3.LastName = "Akçay";
             emp3.TCNO = "11111111113";
-            emp3.Sallary = 4500; 
+            emp3.Sallary = 4500;
             emp3.MobilePhone = "5312625582";
             context.Employees.Add(emp3);
             context.SaveChanges();
