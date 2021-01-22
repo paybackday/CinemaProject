@@ -13,11 +13,15 @@ namespace Project.WEBUI.Controllers
         MovieRepository _mvRep;
         MovieActorRepository _mvaRep;
         ActorRepository _actRep;
+        MovieSessionSaloonRepository _mssRep;
+        SaloonRepository _salRep;
         public MovieController()
         {
             _mvRep = new MovieRepository();
             _mvaRep = new MovieActorRepository();
             _actRep = new ActorRepository();
+            _mssRep = new MovieSessionSaloonRepository();
+            _salRep = new SaloonRepository();
         }
         // GET: Movie
         public ActionResult Single(int id)
@@ -26,7 +30,9 @@ namespace Project.WEBUI.Controllers
             {
                 Movie = _mvRep.FirstOrDefault(x => x.ID == id),
                 /*MovieActor*/
-                MovieActors = _mvaRep.Where(x=>x.MovieID==id) 
+                MovieActors = _mvaRep.Where(x => x.MovieID == id),
+                MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id),
+                Saloons = _salRep.GetActives()
             };
             return View(mvm);
         }
