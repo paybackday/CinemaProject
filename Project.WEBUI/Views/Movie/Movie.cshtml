@@ -1,0 +1,108 @@
+﻿@model MovieVM
+@{
+    ViewBag.Title = "Movie";
+}
+<section class="container">
+    <div class="col-sm-12">
+        <h2 class="page-heading">Movies</h2>
+
+        <div>
+
+            <form style="text-align:center" class="select select--film-category" method='get'>
+                <h4>Tür Seçimi</h4>
+                @foreach (Genre genreItem in Model.Genres)
+                {
+                    <a style="margin-left:50px; text-align:center; font-size:12pt" href="@Url.Action("Movie","Movie",new { genreID=genreItem.ID})"><b>@genreItem.GenreName</b></a>
+                }
+                <a style="margin-left:50px; text-align:center; font-size:12pt" href="@Url.Action("Movie","Movie")"><b>Tumu</b></a>
+
+
+            </form>
+
+        </div>
+        @if (TempData["nullControl"] != null)
+        {
+            <div style="text-align:center" class="alert alert-warning">@TempData["nullControl"]</div>
+        }
+        else
+        {
+            int sayac = 0; 
+            foreach (Movie item in Model.PagedMovies)
+            {
+                <!-- Movie preview item -->
+                <div class="movie movie--preview movie--full release">
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <div class="movie__images">
+                            <img alt='' src="~/OuterTools/images/movie/deneme2.jpg">
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                        <a href='@Url.Action("Single", "Movie", new { id = item.ID })' class="movie__title link--huge">@item.MovieName</a>
+
+                        <p class="movie__time">@item.MovieLength dakika</p>
+
+
+                        <p class="movie__option"><strong>Tür: </strong>@item.Genre.GenreName</p>
+                        <p class="movie__option"><strong>Vizyon Tarihi: </strong>@item.MovieYear</p>
+                        <p class="movie__option"><strong>Yönetmen: </strong>@item.Director.FirstName @item.Director.LastName</p>
+                        <p class="movie__option">
+                            <strong>Oyuncular: </strong>
+
+                            @foreach (MovieActor element in Model.MovieActors.Where(x => x.MovieID == item.ID).ToList())
+                            {
+                                if (sayac == 5)
+                                {
+                                    <a>...</a>
+                                    sayac = 0;
+                                    break;
+                                }
+                                else
+                                {
+                                    <a>@element.Actor.FirstName @element.Actor.LastName ,</a>
+                                    sayac++;
+                                }
+
+                            }
+
+                        </p>
+
+
+                        <div class="movie__btns">
+                            <a href="@Url.Action("Single", "Movie", new { id = item.ID })" class="btn btn-md btn--warning">Bilet Al <span class="hidden-sm"></span></a>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+
+                    <!-- end time table-->
+
+                </div>
+                <!-- end movie preview item -->
+            }
+        }
+
+        <div class="coloum-wrapper">
+            <ul class="pagination paginatioon--full">
+                @if (TempData["genreID"] != null)
+                {
+                    <li>@Html.PagedListPager(Model.PagedMovies, page => Url.Action("Movie", new { page, genreID = TempData["genreID"] }), PagedListRenderOptions.Minimal)</li>
+                }
+                else
+                {
+                    <li>@Html.PagedListPager(Model.PagedMovies, page => Url.Action("Movie", new { page }), PagedListRenderOptions.Minimal)</li>
+                }
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<div class="clearfix"></div>
+

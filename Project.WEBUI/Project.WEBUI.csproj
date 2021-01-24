@@ -51,6 +51,12 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -99,6 +105,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -278,6 +285,7 @@
     <Content Include="OuterTools\images\logo-lg.png" />
     <Content Include="OuterTools\images\logo.png" />
     <Content Include="OuterTools\images\movie\deneme.jpeg" />
+    <Content Include="OuterTools\images\movie\deneme2.jpg" />
     <Content Include="OuterTools\images\movie\movie-img1-lg.jpg" />
     <Content Include="OuterTools\images\movie\movie-img1.jpg" />
     <Content Include="OuterTools\images\movie\movie-img2-lg.jpg" />
@@ -619,6 +627,7 @@
     <Content Include="Views\Account\RegisterOk.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\GetName.cshtml" />
+    <Content Include="Views\Movie\Movie.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

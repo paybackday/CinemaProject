@@ -1,4 +1,5 @@
-﻿using Project.ENTITIES.Models;
+﻿using PagedList;
+using Project.ENTITIES.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,8 @@ namespace Project.WEBUI.Models.VMClasses
         public List<Saloon> Saloons { get; set; }
         public List<MovieActor> MovieActors { get; set; }
         public List<Movie> Movies { get; set; }
+        public List<Genre> Genres { get; set; }
+
+        public IPagedList<Movie> PagedMovies { get; set; }
     }
 }
