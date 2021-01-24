@@ -20,7 +20,8 @@ namespace Project.WEBUI.Controllers
             apdRep = new UserProfileRepository();
         }
         /*[HttpPost]
-        public ActionResult GetName(int id) {
+        public ActionResult GetName(int id) 
+        {
             AppUserVM apvm = new AppUserVM
             {
                 UserProfile = apdRep.FirstOrDefault(x => x.ID == id)
