@@ -628,6 +628,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\GetName.cshtml" />
     <Content Include="Views\Movie\Movie.cshtml" />
+    <Content Include="Views\Account\LostPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

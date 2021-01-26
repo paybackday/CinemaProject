@@ -88,7 +88,7 @@
         }
 
         <div class="coloum-wrapper">
-            <ul class="pagination paginatioon--full">
+            <ul style="text-align:center" class="pagination paginatioon--full">
                 @if (TempData["genreID"] != null)
                 {
                     <li>@Html.PagedListPager(Model.PagedMovies, page => Url.Action("Movie", new { page, genreID = TempData["genreID"] }), PagedListRenderOptions.Minimal)</li>

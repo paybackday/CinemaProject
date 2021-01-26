@@ -2,13 +2,23 @@
 @{
     ViewBag.Title = "Login";
 }
+<style>
+    .top60 {
+        margin-top: 60px;
+        text-align:center;
+    }
+</style>
 @if (ViewBag.Hata != null)
 {
-    <div style="margin-top:60px;text-align:center" class="alert alert-warning">@ViewBag.Hata</div>
+    <div class="alert alert-warning top60">@ViewBag.Hata</div>
 }
 else if (TempData["accountActive"] != null)
 {
-    <div style="margin-top:60px;text-align:center" class="alert alert-warning">@TempData["accountActive"]</div>
+    <div class="alert alert-warning top60">@TempData["accountActive"]</div>
+}
+@if (TempData["ResetInfo"] != null)
+{
+    <div class="alert alert-success text-center top60">@TempData["ResetInfo"]</div> //ResetPassword'dan geliyor...
 }
 <!-- Main content -->
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "login" }))
@@ -30,7 +40,7 @@ else if (TempData["accountActive"] != null)
     <div class="login__control">
         <button type='submit' class="btn btn-md btn--warning btn--wider">Giriş Yap</button>
         @Html.ActionLink("Kayıt Ol", "Register", "Account", null, new { @style = "margin-left:10px;", @class = "btn btn-md btn--warning btn--wider" })
-        <a href="@Url.Action("ForgotPassword","Account")" class="login__tracker form__tracker">Şifremi Unuttum</a>
+        <a href="@Url.Action("LostPassword","Account")" class="login__tracker form__tracker">Şifremi Unuttum</a>
     </div>
 }
 

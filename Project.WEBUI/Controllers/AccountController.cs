@@ -51,7 +51,7 @@ namespace Project.WEBUI.Controllers
 
             string decrypted = DantexCrypt.DeCrypt(loginUser.Password);
 
-            if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Admin)
+            if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Boss)
             {
                 if (!loginUser.Active)
                 {
@@ -145,5 +145,48 @@ namespace Project.WEBUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult LostPassword() {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LostPassword(AppUserVM apvm) {
+            AppUser resetPassUser = apRep.FirstOrDefault(x => x.Email == apvm.AppUser.Email);
+            if (resetPassUser!=null)
+            {
+                string gonderilecekMail = "Şifrenizi yanda bulunan bağlantıya tıklayarak sıfırlayabilirsiniz. https://localhost:44390/Account/ResetPassword/" + resetPassUser.ActivationCode;
+                MailSender.Send(receiver: resetPassUser.Email, body: gonderilecekMail, subject: "Şifre Sıfırlama İsteği");
+                ViewBag.Bilgi = "Şifre sıfırlama bağlantınız email adresinize başarılı bir şekilde gönderilmiştir.";
+            }
+            else
+            {
+                ViewBag.Bilgi = "Kayıtlı kullanıcı bilgisi bulunamadı";
+            }
+            return View();
+        }
+
+        public ActionResult ResetPassword(Guid id) {
+            AppUserVM apvm = new AppUserVM();
+            apvm.AppUser = apRep.FirstOrDefault(x => x.ActivationCode == id);
+
+            return View(apvm);
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword([Bind(Prefix ="AppUser")] AppUser item) {
+            if (!ModelState.IsValid) //Server Side Validation
+            {
+                return View();
+            }
+            AppUser toBeUpdated = apRep.FirstOrDefault(x => x.ActivationCode == item.ActivationCode);
+            toBeUpdated.Password = DantexCrypt.Crypt(item.Password);
+            toBeUpdated.ConfirmPassword = DantexCrypt.Crypt(item.ConfirmPassword);
+            apRep.Update(toBeUpdated);
+            
+            TempData["ResetInfo"] = "Şifreniz başarılı bir şekilde güncellenmiştir.";
+
+            return RedirectToAction("Login");
+        }
     }
 }
