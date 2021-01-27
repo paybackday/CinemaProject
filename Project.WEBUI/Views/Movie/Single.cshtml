@@ -10,31 +10,31 @@
             <div class="movie__info">
                 <div class="col-sm-4 col-md-3 movie-mobile">
                     <div class="movie__images">
-                        
+
                         <img alt='' src="~/OuterTools/images/movie/deneme.jpeg">
                     </div>
-                    
+
                 </div>
 
                 <div class="col-sm-8 col-md-9">
                     <p class="movie__time">@Model.Movie.MovieLength dakika</p>
 
-                    
+
                     <p class="movie__option"><strong>Yıl: </strong>@Model.Movie.MovieYear</p>
                     <p class="movie__option"><strong>Tür: </strong>@Model.Movie.Genre.GenreName</p>
-                    
+
                     <p class="movie__option"><strong>Yönetmen: </strong>@Model.Movie.Director.FirstName @Model.Movie.Director.LastName</p>
                     <p class="movie__option"><strong>Oyuncular: </strong></p>@foreach (MovieActor item in Model.MovieActors)
                     {
-                <div>@item.Actor.FirstName&nbsp;@item.Actor.LastName</div>
+                        <div>@item.Actor.FirstName&nbsp;@item.Actor.LastName</div>
                     }
-                    
 
-                    
 
-                    
 
-                    
+
+
+
+
                 </div>
             </div>
 
@@ -44,24 +44,24 @@
 
             <p class="movie__describe">@Model.Movie.Description</p>
 
-            
 
-            
+
+
 
         </div>
 
         <h2 class="page-heading">Seans Saatleri</h2>
         <div class="choose-container">
             <form id='select' class="select" method='get'>
-                
             </form>
 
             <div class="datepicker">
                 <span class="datepicker__marker"><i class="fa fa-calendar"></i>Tarih</span>
-                <input type="text" id="datepicker" value='03/10/2014' class="datepicker__input">
+                @Html.TextBoxFor(x=>x.DateControl, new { @class = "datepicker" } )
+                @*<input style="width:125px" type="datetime-local" id="datepicker" value='03/10/2014' class="datepicker__input">*@
             </div>
 
-            
+
 
             <div class="clearfix"></div>
 
@@ -105,13 +105,32 @@
                 <div id='cimenas-map'></div>
             </div>-->
 
-            
 
-            
+
+
         </div>
     </div>
 
 </section>
 
 <div class="clearfix"></div>
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
 
+<script type="text/javascript">
+   
+
+        //tarih nesnesinin oluşturulması
+        $(".datepicker").datepicker({
+            dateFormat: "dd-mm-yy",
+            changemonth: true,
+            changeyear: true,
+            minDate: new Date()
+            
+        });
+
+
+    
+        
+    
+</script>
