@@ -2,6 +2,11 @@
 @{
     ViewBag.Title = "Single";
 }
+<style>
+    #ui-datepicker-div {
+    margin-left:0px;
+    }
+</style>
 <section class="container">
     <div class="col-sm-12">
         <div class="movie">
@@ -55,9 +60,9 @@
             <form id='select' class="select" method='get'>
             </form>
 
-            <div class="datepicker">
-                <span class="datepicker__marker"><i class="fa fa-calendar"></i>Tarih</span>
-                @Html.TextBoxFor(x=>x.DateControl, new { @class = "datepicker" } )
+            <div>
+                <span class="datepicker__marker"><i class="fa fa-calendar"></i>Tarih:</span>
+                @Html.TextBoxFor(x=>x.DateControl, new { @id = "tarih", @Value=DateTime.Now.ToShortDateString() } )
                 @*<input style="width:125px" type="datetime-local" id="datepicker" value='03/10/2014' class="datepicker__input">*@
             </div>
 
@@ -119,15 +124,23 @@
 
 <script type="text/javascript">
    
+    $(function () {
 
-        //tarih nesnesinin oluşturulması
-        $(".datepicker").datepicker({
-            dateFormat: "dd-mm-yy",
-            changemonth: true,
-            changeyear: true,
-            minDate: new Date()
-            
+        $("#tarih").datepicker({
+
+            dateFormat: "dd/mm/yy",
+            altFormat: "yy-mm-dd",
+            altField: "#tarih-db",
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+            firstDay: 1,
+            minDate: new Date(),
+            changeMonth: true,
+            monthNamesShort: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
         });
+
+    });
+       
 
 
     

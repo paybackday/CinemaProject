@@ -11,7 +11,7 @@ namespace Project.WEBUI.Models.VMClasses
     public class MovieVM
     {
         
-        public DateTime DateControl { get; set; }
+        public string DateControl { get; set; }
         public Movie Movie { get; set; }
         public List<MovieSessionSaloon> MovieSessionSaloons { get; set; }
         public List<Saloon> Saloons { get; set; }
