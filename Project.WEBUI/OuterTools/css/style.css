@@ -6019,6 +6019,7 @@ ul#navigation li.mega-menu__nav-item:hover:before {
 .time-select .time-select__item.active:after {
   background-image: url(../images/components/bg-time-hover.png);
 }
+
 .time-select .items-wrap {
   padding-top: 15px;
   margin-bottom: 5px;

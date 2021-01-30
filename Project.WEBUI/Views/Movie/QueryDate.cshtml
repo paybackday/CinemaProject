@@ -1,0 +1,35 @@
+﻿@model MovieVM
+@foreach (Saloon item in Model.Saloons)
+{
+    <div class="time-select__group group--first">
+        <div class="col-sm-4">
+            <p class="time-select__place">@item.SaloonNo . Salon</p>
+        </div>
+        <ul class="col-sm-8 items-wrap">
+            @foreach (MovieSessionSaloon element in Model.MovieSessionSaloons)
+            {
+                if (element.SaloonID == item.ID)
+                {
+                    string sessionTime = element.Session.Time.ToShortTimeString();
+                    string now = DateTime.Now.ToShortTimeString();
+                    string sessionDate = element.Session.Time.ToShortDateString();
+                    if (Model.DateControl == sessionDate && element.Session.IsSpecial == true)
+                    {
+                        <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                    }
+                    else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                    {
+                        <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                    }
+                    else if(Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                    {
+                        <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                    }
+
+                }
+
+            }
+
+        </ul>
+    </div>
+}

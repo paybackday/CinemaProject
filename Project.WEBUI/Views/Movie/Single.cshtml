@@ -4,7 +4,7 @@
 }
 <style>
     #ui-datepicker-div {
-    margin-left:0px;
+        margin-left: 0px;
     }
 </style>
 <section class="container">
@@ -62,7 +62,7 @@
 
             <div>
                 <span class="datepicker__marker"><i class="fa fa-calendar"></i>Tarih:</span>
-                @Html.TextBoxFor(x=>x.DateControl, new { @id = "tarih", @Value=DateTime.Now.ToShortDateString() } )
+                @Html.TextBoxFor(x => x.DateControl, new { @id = "tarih", @Value = DateTime.Now.ToShortDateString() })
                 @*<input style="width:125px" type="datetime-local" id="datepicker" value='03/10/2014' class="datepicker__input">*@
             </div>
 
@@ -70,7 +70,7 @@
 
             <div class="clearfix"></div>
 
-            <div class="time-select">
+            <div id="selectTime" class="time-select">
                 @foreach (Saloon item in Model.Saloons)
                 {
                     <div class="time-select__group group--first">
@@ -82,13 +82,18 @@
                             {
                                 if (element.SaloonID == item.ID)
                                 {
-                                    string sessionTime = element.Session.Time.ToShortTimeString(); ;
+                                    string sessionTime = element.Session.Time.ToShortTimeString();
                                     string now = DateTime.Now.ToShortTimeString();
-                                    if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime))
+                                    string sessionDate = element.Session.Time.ToShortDateString();
+                                    if (Model.DateControl == sessionDate && element.Session.IsSpecial == true)
+                                    {
+                                        <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                                    }
+                                    else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
                                     {
                                         <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                                     }
-                                    else
+                                    else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
                                     {
                                         <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                                     }
@@ -123,7 +128,7 @@
 <script src="~/Scripts/jquery-ui.js"></script>
 
 <script type="text/javascript">
-   
+
     $(function () {
 
         $("#tarih").datepicker({
@@ -136,14 +141,40 @@
             firstDay: 1,
             minDate: new Date(),
             changeMonth: true,
-            monthNamesShort: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"]
+            monthNamesShort: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            //Tarih secimi degistiginde...
+            onSelect: function (dateText, inst) {
+
+                $.ajax({
+                    url: '@Url.Action("QueryDate", "Movie")',
+                    data: { id: @Model.Movie.ID, date: dateText },
+                    type: "POST",
+                    cache: false,
+                    success: function (data) {
+                        $('#selectTime').empty();
+                        $('#selectTime').append(data);
+                        $(document).ajaxComplete(function (event, request, settings) {
+                            //$('#productsDiv').height(800);
+                            $('#selectTime').load();
+
+
+                        });
+
+
+                    },
+
+                });
+
+
+
+            }
         });
 
     });
-       
 
 
-    
-        
-    
+
+
+
+
 </script>

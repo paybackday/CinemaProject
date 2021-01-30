@@ -152,6 +152,7 @@ namespace Project.DAL.StrategyPattern
                 Session session = new Session();
                 session.Time = sessions[i];
                 session.SessionActive = true;
+                session.IsSpecial = false;
                 session.Price = Convert.ToDecimal(new Commerce("tr").Price());
                 context.Sessions.Add(session);
 

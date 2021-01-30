@@ -194,6 +194,8 @@
     <Content Include="OuterTools\images\components\bg-movie.png" />
     <Content Include="OuterTools\images\components\bg-time-hover.png" />
     <Content Include="OuterTools\images\components\bg-time.png" />
+    <Content Include="OuterTools\images\components\bg-time__special-hover.png" />
+    <Content Include="OuterTools\images\components\bg-time__special.png" />
     <Content Include="OuterTools\images\components\bg-tooltip.png" />
     <Content Include="OuterTools\images\components\checked.png" />
     <Content Include="OuterTools\images\components\close.png" />
@@ -640,6 +642,7 @@
     <Content Include="Views\Movie\Movie.cshtml" />
     <Content Include="Views\Account\LostPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Movie\QueryDate.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

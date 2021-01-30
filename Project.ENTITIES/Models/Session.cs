@@ -14,6 +14,8 @@ namespace Project.ENTITIES.Models
 
         public decimal Price { get; set; }
 
+        public bool IsSpecial { get; set; }
+
 
 
         // Relational Properties

@@ -58,5 +58,23 @@ namespace Project.WEBUI.Controllers
 
             return View(mvm);
         }
+
+        [HttpPost]
+        public ActionResult QueryDate(int id,string date) {
+            //string[] gunAyYil;
+            //string sqlGunAyYil;
+            //gunAyYil = date.Split('/');
+            //sqlGunAyYil = $"{gunAyYil[2]}-{gunAyYil[1]}-{gunAyYil[0]}";
+            
+            MovieVM mvm = new MovieVM
+            {
+                Movie = _mvRep.FirstOrDefault(x => x.ID == id),
+                Saloons = _salRep.GetActives(),
+                MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id),
+                DateControl=date
+            };
+
+            return PartialView(mvm);
+        }
     }
 }
