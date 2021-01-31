@@ -612,11 +612,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
+    <Compile Include="Models\VMClasses\SeatVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -644,6 +646,7 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Movie\QueryDate.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
+    <Content Include="Views\Reservation\Seat.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

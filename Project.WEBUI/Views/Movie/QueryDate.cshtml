@@ -13,17 +13,27 @@
                     string sessionTime = element.Session.Time.ToShortTimeString();
                     string now = DateTime.Now.ToShortTimeString();
                     string sessionDate = element.Session.Time.ToShortDateString();
-                    if (Model.DateControl == sessionDate && element.Session.IsSpecial == true)
+                    if (Model.DateControl == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime))
                     {
                         <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
                     }
-                    else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                    else if (Model.DateControl == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime))
+                    {
+                        <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                    }
+                    else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false &&
+                      Model.DateControl == DateTime.Now.ToShortDateString())
                     {
                         <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                     }
-                    else if(Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                    else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false && Model.DateControl == DateTime.Now.ToShortDateString())
                     {
                         <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                    }
+                    else if (Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                    {
+                        <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+
                     }
 
                 }
