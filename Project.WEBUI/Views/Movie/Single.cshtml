@@ -88,7 +88,7 @@
                                     string sessionDate = element.Session.Time.ToShortDateString();
                                     if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime))
                                     {
-                                        <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                                        <li onclick="location.href='@Url.Action("Seat", "Reservation", new { MovieID = Model.Movie.ID,SaloonID=element.SaloonID,SessionID=element.SessionID })'" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
                                     }
                                     else if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime))
                                     {
@@ -97,11 +97,11 @@
                                     }
                                     else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
                                     {
-                                        <li class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                                        <li onclick="location.href='@Url.Action("Seat", "Reservation", new { MovieID = Model.Movie.ID,SaloonID=element.SaloonID,SessionID=element.SessionID })'" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                                     }
                                     else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
                                     {
-                                        <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                                        <li onclick="reservation(@Model.Movie.ID,@element.SaloonID,@element.Session.ID)" class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                                         }
 
                                     }
@@ -178,6 +178,8 @@
         });
 
     });
+
+    
 
 
 

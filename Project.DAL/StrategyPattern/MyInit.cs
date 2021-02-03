@@ -34,7 +34,7 @@ namespace Project.DAL.StrategyPattern
             context.UserProfiles.Add(up);
             context.SaveChanges();
 
-            //todo : employee ile appuser arasındaki 1 e 1 ilişkilerini dusuncez.
+            
             Employee emp = new Employee();
             emp.Email = "ercankarahan@hotmail.de";
             emp.Password =DantexCrypt.Crypt( "123");

@@ -52,22 +52,36 @@
                         <span class="sits__indecator">H</span>
                     </aside>
 
-                    @{Seat lastSeat = Model.Seats.OrderByDescending(X => X.ID).FirstOrDefault();
-                        char startSeat = 'A';
-                    }
-                    @foreach (Seat item in Model.Seats)
+                    @for (int i = 0; i < Model.SeatLists.Count; i++)
                     {
                         <div class="sits__row">
-                            @if (startSeat != Convert.ToChar(lastSeat.Character))
+                            @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
                             {
+                                {
+                                    Seat seat = Model.SeatLists[i].Seats[j];
 
-                            <span class="sits__place sits-price--cheap" data-place='@item.Character @item.Number' data-price='10'>@item.Character @item.Number</span>
-
+                                    <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='10'>@seat.Character @seat.Number</span>
+                                }
                             }
                         </div>
-
-                        startSeat++;
                     }
+
+                    @*@{Seat lastSeat = Model.Seats.OrderByDescending(X => X.ID).FirstOrDefault();
+                            char startSeat = 'A';
+                        }
+                        @foreach (Seat item in Model.Seats)
+                        {
+                            <div class="sits__row">
+                                @if (startSeat != Convert.ToChar(lastSeat.Character))
+                                {
+
+                                    <span class="sits__place sits-price--cheap" data-place='@item.Character @item.Number' data-price='10'>@item.Character @item.Number</span>
+
+                                }
+                            </div>
+
+                            startSeat++;
+                        }*@
 
 
 
@@ -180,16 +194,20 @@
 
 
     <div class="booking-pagination booking-pagination--margin">
-        <a href="book1.html" class="booking-pagination__prev">
-            <span class="arrow__text arrow--prev">prev step</span>
-            <span class="arrow__info">what&amp;where&amp;when</span>
+        <a href="javascript:history.back()" class="booking-pagination__prev">
+            <span class="arrow__text arrow--prev">Geri</span>
+            <span class="arrow__info">Seans Seçimi</span>
         </a>
-        <a href="book3-buy.html" class="booking-pagination__next">
-            <span class="arrow__text arrow--next">next step</span>
-            <span class="arrow__info">checkout</span>
+        <a href="javascript:viewCheckOutPage()" class="booking-pagination__next">
+            <span class="arrow__text arrow--next">Ödeme</span>
+            <span class="arrow__info">Yerinizi Ayırın</span>
         </a>
     </div>
 </form>
+
+@*<a onclick="viewCheckOutPage()">
+    Click Me!
+</a>*@
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -197,3 +215,19 @@
     });
 </script>
 
+<script>
+    function viewCheckOutPage() {
+        var buyedSeats = $(".sits-state--your");
+
+        var seats = "";
+        for (var i = 1; i < buyedSeats.length; i++) {
+            seats += $(buyedSeats[i]).data("place") + ":";
+        }
+
+        $.post("/Reservation/CheckOutView",
+            {
+                buyedSeats:seats
+            }
+        );
+    }
+</script>

@@ -618,6 +618,7 @@
     </Compile>
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
+    <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
