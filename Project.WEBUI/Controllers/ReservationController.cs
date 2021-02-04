@@ -50,6 +50,7 @@ namespace Project.WEBUI.Controllers
 
         public ActionResult CheckOutView(string buyedSeats) //toDO: koltuklari incele. Algoritmayi kur.
         {
+            
             string[] seats = buyedSeats.Trim().Split(':');
             //for (int i = 0; i < seats.Length; i++)
             //{

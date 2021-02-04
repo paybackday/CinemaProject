@@ -2,7 +2,10 @@
 @{
     ViewBag.Title = "Seat";
 }
-
+@if (TempData["selectedSeat"]!=null)
+{
+    <div class="alert alert-warning">@TempData["selectedSeat"]</div>
+}
 <div class="place-form-area">
 
     <div class="order-container">
@@ -23,9 +26,9 @@
         <div class="choose-sits__info choose-sits__info--first">
             <ul>
                 <li class="sits-price marker--none"><strong>Price</strong></li>
-                <li class="sits-price sits-price--cheap">$10</li>
-                <li class="sits-price sits-price--middle">$20</li>
-                <li class="sits-price sits-price--expensive">$30</li>
+                <li class="sits-price sits-price--cheap">10₺</li>
+                <li class="sits-price sits-price--middle">20₺</li>
+                <li class="sits-price sits-price--expensive">30₺</li>
             </ul>
         </div>
 
@@ -91,7 +94,7 @@
 
                         </div>
                         <div class="checked-result">
-                            $0
+                            0 ₺
                         </div>
                     </aside>
                     <footer class="sits__number">
@@ -166,7 +169,7 @@
                         <span class="choosen-place"></span>
                     </div>
                     <div class="checked-result">
-                        $0
+                        0₺
                     </div>
                 </aside>
 
@@ -224,10 +227,23 @@
             seats += $(buyedSeats[i]).data("place") + ":";
         }
 
-        $.post("/Reservation/CheckOutView",
-            {
-                buyedSeats:seats
-            }
-        );
+        if (seats == "") {
+            swal({
+                title: "Koltuk Seçimi!",
+                text: "Koltuk seçiminizi yapmadınız",
+                icon: "warning",
+                button: "Tamam",
+                dangerMode:true
+            });
+        }
+        else {
+            $.post("/Reservation/CheckOutView",
+                {
+                    buyedSeats: seats
+                }
+            );
+        }
+
+        
     }
 </script>

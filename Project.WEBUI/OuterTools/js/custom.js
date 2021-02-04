@@ -1,4 +1,4 @@
-    "use strict";
+﻿    "use strict";
 
     //General function for all pages
 
@@ -597,7 +597,7 @@ function init_BookingTwo () {
                                   break;
                             }
 
-                            $('.checked-result').text('$'+sum);
+                            $('.checked-result').text(sum+'₺');
                         }
                     }
 
@@ -622,7 +622,7 @@ function init_BookingTwo () {
                                   break;
                             }
 
-                        $('.checked-result').text('$'+sum)
+                        $('.checked-result').text(sum+'₺')
                     }
 
                     //data element init
@@ -744,7 +744,7 @@ function init_BookingTwo () {
                             break;
                 }
 
-                $('.checked-result').text('$'+sum);
+            $('.checked-result').text(sum+'₺');
 
                 
 
@@ -787,7 +787,7 @@ function init_BookingTwo () {
                                     break;
                         }
 
-                        $('.checked-result').text('$'+sum);
+                        $('.checked-result').text(sum+'₺');
                     }
 
                     
