@@ -2,10 +2,6 @@
 @{
     ViewBag.Title = "Seat";
 }
-@if (TempData["selectedSeat"]!=null)
-{
-    <div class="alert alert-warning">@TempData["selectedSeat"]</div>
-}
 <div class="place-form-area">
 
     <div class="order-container">
@@ -25,17 +21,21 @@
     <div class="choose-sits">
         <div class="choose-sits__info choose-sits__info--first">
             <ul>
-                <li class="sits-price marker--none"><strong>Price</strong></li>
-                <li class="sits-price sits-price--cheap">10₺</li>
-                <li class="sits-price sits-price--middle">20₺</li>
-                <li class="sits-price sits-price--expensive">30₺</li>
+                <li class="sits-price marker--none"><strong>Seans Fiyatı</strong></li><hr />
+                <li>Tam: @Model.Price ₺</li>
+                @{
+                    decimal studentPrice = 0;
+                    studentPrice = Decimal.Round(Model.Price - (Model.Price * 0.4m),2);
+                }
+                <li>Öğrenci: @studentPrice ₺</li>
+                
             </ul>
         </div>
 
         <div class="choose-sits__info">
             <ul>
-                <li class="sits-state sits-state--not">Not available</li>
-                <li class="sits-state sits-state--your">Your choice</li>
+                <li class="sits-state sits-state--not">Uygun değil</li>
+                <li class="sits-state sits-state--your">Seçiminiz</li>
             </ul>
         </div>
 
@@ -63,7 +63,7 @@
                                 {
                                     Seat seat = Model.SeatLists[i].Seats[j];
 
-                                    <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='10'>@seat.Character @seat.Number</span>
+                                    <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
                                 }
                             }
                         </div>
@@ -209,8 +209,8 @@
 </form>
 
 @*<a onclick="viewCheckOutPage()">
-    Click Me!
-</a>*@
+        Click Me!
+    </a>*@
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -233,7 +233,7 @@
                 text: "Koltuk seçiminizi yapmadınız",
                 icon: "warning",
                 button: "Tamam",
-                dangerMode:true
+                dangerMode: true
             });
         }
         else {
@@ -244,6 +244,6 @@
             );
         }
 
-        
+
     }
 </script>
