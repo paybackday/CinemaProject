@@ -181,11 +181,11 @@
 
     function gonder(movieID, saloonID, sessionID) {
 
-        $.post("/Reservation/Seat",
+        $.post("Reservation/Seat",
             {
-                MovieID: movieID,
-                SaloonID: saloonID,
-                SessionID: sessionID
+                MovieID: parseInt(movieID),
+                SaloonID: parseInt(saloonID),
+                SessionID: parseInt(sessionID),
 
             }
         );

@@ -20,6 +20,7 @@ namespace Project.WEBUI.Controllers
         }
         // GET: Reservation
        
+        
         public ActionResult Seat(int MovieID,int SaloonID,int SessionID)
         {
             Session selectedSession = _sesRep.Find(SessionID);
