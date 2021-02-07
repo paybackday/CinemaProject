@@ -5,41 +5,49 @@
         <div class="col-sm-4">
             <p class="time-select__place">@item.SaloonNo . Salon</p>
         </div>
-        <ul class="col-sm-8 items-wrap">
-            @foreach (MovieSessionSaloon element in Model.MovieSessionSaloons)
-            {
-                if (element.SaloonID == item.ID)
+        @using (Html.BeginForm("Seat", "Reservation", FormMethod.Post, new { id = "seansForm" }))
+        {
+            @Html.Hidden("movieID", null, new { id = "movie" })
+            @Html.Hidden("saloonID", null, new { id = "saloon" })
+            @Html.Hidden("sessionID", null, new { id = "session" })
+            <ul class="col-sm-8 items-wrap">
+
+
+                @foreach (MovieSessionSaloon element in Model.MovieSessionSaloons)
                 {
-                    string sessionTime = element.Session.Time.ToShortTimeString();
-                    string now = DateTime.Now.ToShortTimeString();
-                    string sessionDate = element.Session.Time.ToShortDateString();
-                    if (Model.DateControl == sessionDate && element.Session.IsSpecial == true && DateTime.Now <= element.Session.Time)
+                    if (element.SaloonID == item.ID)
                     {
-                        <li onclick="location.href='@Url.Action("Seat", "Reservation", new { MovieID = Model.Movie.ID,SaloonID=element.SaloonID,SessionID=element.SessionID })'" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
-                    }
-                    else if (Model.DateControl == sessionDate && element.Session.IsSpecial == true && DateTime.Now >= element.Session.Time)
-                    {
-                        <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
-                    }
-                    else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false &&
-                      Model.DateControl == DateTime.Now.ToShortDateString())
-                    {
-                        <li onclick="location.href='@Url.Action("Seat", "Reservation", new { MovieID = Model.Movie.ID,SaloonID=element.SaloonID,SessionID=element.SessionID })'" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
-                    }
-                    else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false && Model.DateControl == DateTime.Now.ToShortDateString())
-                    {
-                        <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
-                    }
-                    else if (Model.DateControl != sessionDate && element.Session.IsSpecial == false)
-                    {
-                        <li onclick="location.href='@Url.Action("Seat", "Reservation", new { MovieID = Model.Movie.ID,SaloonID=element.SaloonID,SessionID=element.SessionID })'" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                        string sessionTime = element.Session.Time.ToShortTimeString();
+                        string now = DateTime.Now.ToShortTimeString();
+                        string sessionDate = element.Session.Time.ToShortDateString();
+                        if (Model.DateControl == sessionDate && element.Session.IsSpecial == true && DateTime.Now <= element.Session.Time)
+                        {
+                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                        }
+                        else if (Model.DateControl == sessionDate && element.Session.IsSpecial == true && DateTime.Now >= element.Session.Time)
+                        {
+                            <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                        }
+                        else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false &&
+                        Model.DateControl == DateTime.Now.ToShortDateString())
+                        {
+                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                        }
+                        else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false && Model.DateControl == DateTime.Now.ToShortDateString())
+                        {
+                            <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                        }
+                        else if (Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                        {
+                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+
+                        }
 
                     }
 
                 }
 
-            }
-
-        </ul>
+            </ul>
+        }
     </div>
 }

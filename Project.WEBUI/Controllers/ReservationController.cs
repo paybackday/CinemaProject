@@ -21,12 +21,12 @@ namespace Project.WEBUI.Controllers
         // GET: Reservation
        
         
-        public ActionResult Seat(int MovieID,int SaloonID,int SessionID)
+        public ActionResult Seat(int movieID,int saloonID,int sessionID)
         {
-            Session selectedSession = _sesRep.Find(SessionID);
+            Session selectedSession = _sesRep.Find(sessionID);
             SeatVM svm = new SeatVM
             {
-                Seats = _sRep.Where(x => x.SeatActive == false && x.SaloonID == SaloonID),
+                Seats = _sRep.Where(x => x.SeatActive == false && x.SaloonID == saloonID),
                 Price = selectedSession.Price
             };
 

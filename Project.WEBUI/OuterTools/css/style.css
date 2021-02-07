@@ -7030,7 +7030,7 @@ ul#navigation li.mega-menu__nav-item:hover:before {
   left: 18px;
 }
 .sits .sits__checked:after {
-  content: "=";
+  
   font: 13px;
   color: #ffffff;
   position: absolute;
@@ -7204,7 +7204,7 @@ ul#navigation li.mega-menu__nav-item:hover:before {
   left: 18px;
 }
 .sits-area--mobile .sits__checked:after {
-  content: "=";
+  
   font: 13px;
   color: #ffffff;
   position: absolute;

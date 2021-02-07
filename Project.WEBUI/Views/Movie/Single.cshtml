@@ -77,38 +77,43 @@
                         <div class="col-sm-4">
                             <p class="time-select__place">@item.SaloonNo . Salon</p>
                         </div>
-                        @using (Html.BeginForm("Seat", "Reservation", FormMethod.Post)) { 
-                        <ul class="col-sm-8 items-wrap">
-                            @foreach (MovieSessionSaloon element in Model.MovieSessionSaloons)
-                            {
-                                if (element.SaloonID == item.ID)
-                                {
-                                    string sessionTime = element.Session.Time.ToShortTimeString();
-                                    string now = DateTime.Now.ToShortTimeString();
-                                    string sessionDate = element.Session.Time.ToShortDateString();
-                                    if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime))
-                                    {
-                                        <li onclick="gonder(@Model.Movie.ID,@element.SaloonID,@element.SessionID);" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
-                                    }
-                                    else if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime))
-                                    {
-                                        <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                        @using (Html.BeginForm("Seat", "Reservation", FormMethod.Post, new { id = "seansForm" }))
+                        {
+                            @Html.Hidden("movieID", null, new { id = "movie" })
+                            @Html.Hidden("saloonID", null, new { id = "saloon" })
+                            @Html.Hidden("sessionID", null, new { id = "session" })
 
-                                    }
-                                    else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                            <ul class="col-sm-8 items-wrap">
+                                @foreach (MovieSessionSaloon element in Model.MovieSessionSaloons)
+                                {
+                                    if (element.SaloonID == item.ID)
                                     {
-                                        <li onclick="gonder(@Model.Movie.ID,@element.SaloonID,@element.SessionID);" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
-                                    }
-                                    else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
-                                    {
-                                        <li onclick="gonder(@Model.Movie.ID,@element.SaloonID,@element.SessionID);" class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                                        string sessionTime = element.Session.Time.ToShortTimeString();
+                                        string now = DateTime.Now.ToShortTimeString();
+                                        string sessionDate = element.Session.Time.ToShortDateString();
+                                        if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime))
+                                        {
+                                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+                                        }
+                                        else if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime))
+                                        {
+                                            <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
+
+                                        }
+                                        else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                                        {
+                                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                                        }
+                                        else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
+                                        {
+                                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                                         }
 
                                     }
 
                                 }
 
-                        </ul>
+                            </ul>
                         }
                     </div>
                 }
@@ -179,23 +184,13 @@
 
     });
 
-    function gonder(movieID, saloonID, sessionID) {
+    function submitForm(movieID, saloonID, sessionID) {
 
-        $.post("Reservation/Seat",
-            {
-                MovieID: parseInt(movieID),
-                SaloonID: parseInt(saloonID),
-                SessionID: parseInt(sessionID),
+        $("#movie").val(parseInt(movieID));
+        $("#saloon").val(parseInt(saloonID));
+        $("#session").val(parseInt(sessionID));
+        $("#seansForm").submit();
 
-            }
-        );
-        
     }
-
-
-
-
-        
-
 
 </script>
