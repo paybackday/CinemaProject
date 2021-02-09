@@ -106,7 +106,7 @@
                                         }
                                         else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
                                         {
-                                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
+                                            <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
                                         }
 
                                     }

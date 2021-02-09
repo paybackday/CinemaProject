@@ -54,6 +54,7 @@ namespace Project.WEBUI.Controllers
             return View(svm);
         }
 
+        [HttpPost]
         public ActionResult CheckOutView(string buyedSeats) //toDO: koltuklari incele. Algoritmayi kur.
         {
             

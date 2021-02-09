@@ -6,6 +6,7 @@ using System.Web;
 
 namespace Project.WEBUI.Models.VMClasses
 {
+    
     public class SeatVM
     {
         public List<Seat> Seats { get; set; }
