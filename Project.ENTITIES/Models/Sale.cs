@@ -17,6 +17,14 @@ namespace Project.ENTITIES.Models
         public int? EmployeeID { get; set; }
         public PaymentType Type { get; set; }
         public string SaleNo { get; set; }
+
+        public void CalculateDiscount() { //VIP indirim hesaplamasi
+            if (AppUser.Role==UserRole.Vip)
+            {
+                Session.Price = (Session.Price - (Session.Price * 0.5m));
+            }
+        
+        }
         
 
         //todo:Quantity

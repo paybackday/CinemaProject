@@ -34,7 +34,25 @@ namespace Project.DAL.StrategyPattern
             context.UserProfiles.Add(up);
             context.SaveChanges();
 
-            
+            AppUser vau = new AppUser();//VIP Tanımlama
+            vau.Role = ENTITIES.Enums.UserRole.Vip;
+            vau.Active = true;
+            vau.Email = "emregoren98@yandex.com";
+            vau.Password = DantexCrypt.Crypt("123456");
+            vau.ConfirmPassword = DantexCrypt.Crypt("123456");
+            context.AppUsers.Add(vau);
+
+
+            UserProfile vup = new UserProfile();//VIP Profil Tanımlama
+            vup.ID = vau.ID;
+            vup.FirstName = "Kerem";
+            vup.LastName = "ACAR";
+            vup.MobilePhone = "5124789984";
+            vup.Gender = ENTITIES.Enums.Gender.Erkek;
+            context.UserProfiles.Add(vup);
+            context.SaveChanges();
+
+
             Employee emp = new Employee();
             emp.Email = "ercankarahan@hotmail.de";
             emp.Password =DantexCrypt.Crypt( "123");
@@ -145,19 +163,19 @@ namespace Project.DAL.StrategyPattern
             context.SaveChanges();
 
 
-            DateTime[] sessions = new DateTime[] { Convert.ToDateTime("11:00"), Convert.ToDateTime("12:45"), Convert.ToDateTime("15:00"), Convert.ToDateTime("18:30"), Convert.ToDateTime("21:00") };
+            //DateTime[] sessions = new DateTime[] { Convert.ToDateTime("11:00"), Convert.ToDateTime("12:45"), Convert.ToDateTime("15:00"), Convert.ToDateTime("18:30"), Convert.ToDateTime("21:00") };
 
-            for (int i = 0; i < 5; i++)
-            {
-                Session session = new Session();
-                session.Time = sessions[i];
-                session.SessionActive = true;
-                session.IsSpecial = false;
-                session.Price = Convert.ToDecimal(new Commerce("tr").Price());
-                context.Sessions.Add(session);
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Session session = new Session();
+            //    session.Time = sessions[i];
+            //    session.SessionActive = true;
+            //    session.IsSpecial = false;
+            //    session.Price = Convert.ToDecimal(new Commerce("tr").Price());
+            //    context.Sessions.Add(session);
 
-            }
-            context.SaveChanges();
+            //}
+            //context.SaveChanges();
 
 
             for (int i = 1; i <= 5; i++)

@@ -29,52 +29,90 @@ namespace Project.WEBUI.Controllers
         // GET: Movie
         public ActionResult Single(int id)
         {
-            MovieVM mvm = new MovieVM
+            if (Session["vip"] == null && Session["member"] == null)
+            {
+                TempData["noneLogin"] = "Seans saatlerini gorebilmek ve bilet satin alabilmek icin uye girisi yapiniz";
+            }
+            MovieVM defVM = new MovieVM
             {
                 Movie = _mvRep.FirstOrDefault(x => x.ID == id),
                 /*MovieActor*/
-                MovieActors = _mvaRep.Where(x => x.MovieID == id),
-                MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id),
-                Saloons = _salRep.GetActives()
+                MovieActors = _mvaRep.Where(x => x.MovieID == id)
             };
-            return View(mvm);
+
+            return View(defVM);
         }
 
         //GET: All Movies
-        public ActionResult Movie(int? page,int? genreID) {
+        public ActionResult Movie(int? page, int? genreID)
+        {
             MovieVM mvm = new MovieVM
             {
-                PagedMovies = genreID==null? _mvRep.GetActives().ToPagedList(page??1,10):_mvRep.Where(x=>x.GenreID==genreID).ToPagedList(page??1,10),
-                Genres=_genRep.GetActives(),
-                MovieActors=_mvaRep.GetActives(),
-                
+                PagedMovies = genreID == null ? _mvRep.GetActives().ToPagedList(page ?? 1, 10) : _mvRep.Where(x => x.GenreID == genreID).ToPagedList(page ?? 1, 10),
+                Genres = _genRep.GetActives(),
+                MovieActors = _mvaRep.GetActives(),
+
             };
-            if (mvm.PagedMovies.Count()==0)
+            if (mvm.PagedMovies.Count() == 0)
             {
                 TempData["nullControl"] = "Bu türde film bulunamadı";
             }
             if (genreID != null) TempData["genreID"] = genreID;
-            
+
 
             return View(mvm);
         }
 
         [HttpPost]
-        public ActionResult QueryDate(int id,string date) {
+        public ActionResult QueryDate(int id, string date)
+        {
             //string[] gunAyYil;
             //string sqlGunAyYil;
             //gunAyYil = date.Split('/');
             //sqlGunAyYil = $"{gunAyYil[2]}-{gunAyYil[1]}-{gunAyYil[0]}";
             
-            MovieVM mvm = new MovieVM
-            {
-                Movie = _mvRep.FirstOrDefault(x => x.ID == id),
-                Saloons = _salRep.GetActives(),
-                MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id),
-                DateControl=date
-            };
+            DateTime dateControl = Convert.ToDateTime(date);
 
-            return PartialView(mvm);
+            if (Session["vip"] != null)
+            {
+                DateTime dateVipQuery = DateTime.Now.AddDays(7); //VIP musteriler 7 gun oncesinden alabilir.
+                MovieVM mvm = new MovieVM
+                {
+                    Movie = _mvRep.FirstOrDefault(x => x.ID == id),
+                    Saloons = _salRep.GetActives(),
+                    MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id && dateVipQuery <= x.Session.Time && x.Session.Time.Day == dateControl.Day && x.Session.Time.Month == dateControl.Month && x.Session.Time.Year == dateControl.Year)
+                };
+
+                if (mvm.MovieSessionSaloons.Count==0)
+                {
+                    TempData["noTicket"] = "Uygun bilet bulunamadi. Lutfen tarih bilgisini tekrar kontrol ediniz.";
+                }
+
+                return PartialView(mvm);
+            }
+
+            else if (Session["member"] != null)
+            {
+                DateTime dateMemberQuery = DateTime.Now.AddDays(2); // Member icin bilet opsiyonu 2 gun oncesidir.
+
+                MovieVM mvm = new MovieVM
+                {
+                    Movie = _mvRep.FirstOrDefault(x => x.ID == id),
+                    Saloons = _salRep.GetActives(),
+                    MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id && dateMemberQuery <= x.Session.Time && x.Session.Time.Day == dateControl.Day && x.Session.Time.Month == dateControl.Month && x.Session.Time.Year == dateControl.Year)
+                };
+
+                if (mvm.MovieSessionSaloons.Count==0)
+                {
+                    TempData["noTicket"] = "Uygun bilet bulunamadi. Lutfen tarih bilgisini tekrar kontrol ediniz.";
+                }
+
+                return PartialView(mvm);
+
+            }
+
+            return PartialView();
+
         }
     }
 }

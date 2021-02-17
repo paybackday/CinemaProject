@@ -55,82 +55,45 @@
 
         </div>
 
-        <h2 class="page-heading">Seans Saatleri</h2>
-        <div class="choose-container">
-            <form id='select' class="select" method='get'>
-            </form>
+        @if (TempData["noneLogin"]!=null)
+        {
+            <div class="alert alert-warning">@TempData["noneLogin"]</div>
+        }
+        else
+        {
+            <h2 class="page-heading">Seans Saatleri</h2>
+            <div class="choose-container">
+                <form id='select' class="select" method='get'>
+                </form>
 
-            <div>
-                <span class="datepicker__marker"><i class="fa fa-calendar"></i>Tarih:</span>
-                @Html.TextBoxFor(x => x.DateControl, new { @id = "tarih", @Value = DateTime.Now.ToShortDateString() })
-                @*<input style="width:125px" type="datetime-local" id="datepicker" value='03/10/2014' class="datepicker__input">*@
-            </div>
-
-
-
-            <div class="clearfix"></div>
-
-            <div id="selectTime" class="time-select">
-                @foreach (Saloon item in Model.Saloons)
-                {
-                    <div class="time-select__group group--first">
-                        <div class="col-sm-4">
-                            <p class="time-select__place">@item.SaloonNo . Salon</p>
-                        </div>
-                        @using (Html.BeginForm("Seat", "Reservation", FormMethod.Post, new { id = "seansForm" }))
-                        {
-                            @Html.Hidden("movieID", null, new { id = "movie" })
-                            @Html.Hidden("saloonID", null, new { id = "saloon" })
-                            @Html.Hidden("sessionID", null, new { id = "session" })
-
-                            <ul class="col-sm-8 items-wrap">
-                                @foreach (MovieSessionSaloon element in Model.MovieSessionSaloons)
-                                {
-                                    if (element.SaloonID == item.ID)
-                                    {
-                                        string sessionTime = element.Session.Time.ToShortTimeString();
-                                        string now = DateTime.Now.ToShortTimeString();
-                                        string sessionDate = element.Session.Time.ToShortDateString();
-                                        if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime))
-                                        {
-                                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
-                                        }
-                                        else if (DateTime.Now.ToShortDateString() == sessionDate && element.Session.IsSpecial == true && Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime))
-                                        {
-                                            <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")*</li>
-
-                                        }
-                                        else if (Convert.ToDateTime(now) <= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
-                                        {
-                                            <li onclick="submitForm(@Model.Movie.ID,@element.SaloonID,@element.SessionID)" class="time-select__item" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
-                                        }
-                                        else if (Convert.ToDateTime(now) >= Convert.ToDateTime(sessionTime) && Model.DateControl != sessionDate && element.Session.IsSpecial == false)
-                                        {
-                                            <li class="time-select__item disabled" data-time='@element.Session.Time'>@element.Session.Time.ToString("HH:mm")</li>
-                                        }
-
-                                    }
-
-                                }
-
-                            </ul>
-                        }
-                    </div>
-                }
+                <div>
+                    <span class="datepicker__marker"><i class="fa fa-calendar"></i>Tarih:</span>
+                    @Html.TextBoxFor(x => x.DateControl, new { @id = "tarih", @Value = DateTime.Now.ToShortDateString() })
+                    @*<input style="width:125px" type="datetime-local" id="datepicker" value='03/10/2014' class="datepicker__input">*@
+                </div>
 
 
 
-            </div>
+                <div class="clearfix"></div>
 
-            <!-- hiden maps with multiple locator-->
-            <!--<div class="map">
+                <div id="selectTime">
+                    
+                </div>
+
+                <!-- hiden maps with multiple locator-->
+                <!--<div class="map">
                 <div id='cimenas-map'></div>
             </div>-->
 
 
 
 
-        </div>
+            </div><!--Seans Secim Bitis-->
+        }
+
+
+
+
     </div>
 
 </section>

@@ -71,6 +71,16 @@ namespace Project.WEBUI.Controllers
                 return RedirectToAction("Index", "Home");
             }//If catched user is a member
 
+            else if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Vip)
+            {
+                if (!loginUser.Active)
+                {
+                    return AktifKontrol();
+                }
+                Session["vip"] = loginUser;
+                return RedirectToAction("Index", "Home");
+            }//If catched user is a vip
+
             else
             {
                 ViewBag.Hata = "Email adresi veya şifrenizi hatalı girdiniz.";

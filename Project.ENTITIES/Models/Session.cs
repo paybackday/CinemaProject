@@ -12,7 +12,22 @@ namespace Project.ENTITIES.Models
         public DateTime Time { get; set; }
         public bool SessionActive { get; set; }
 
-        public decimal Price { get; set; }
+        protected decimal _price;
+        public decimal Price { 
+            get
+            {
+                if (Time.DayOfWeek == DayOfWeek.Thursday)
+                {
+                    return (_price - (_price * 0.5m)); //Persembe gunu halk gunu
+                }
+
+                return _price;
+            }
+            set
+            {
+                _price = value;
+            }
+        }
 
         public bool IsSpecial { get; set; }
 
