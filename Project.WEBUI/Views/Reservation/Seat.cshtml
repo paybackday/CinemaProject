@@ -21,14 +21,15 @@
     <div class="choose-sits">
         <div class="choose-sits__info choose-sits__info--first">
             <ul>
-                <li class="sits-price marker--none"><strong>Seans Fiyatı</strong></li><hr />
-                <li>Tam: @Model.Price ₺</li>
+                <li class="sits-price marker--none"><strong>Seans Fiyatı</strong></li>
+                <hr />
+                <li>Tam: @Decimal.Round(Model.Price, 2) ₺</li>
                 @{
                     decimal studentPrice = 0;
-                    studentPrice = Decimal.Round(Model.Price - (Model.Price * 0.4m),2);
+                    studentPrice = Decimal.Round(Model.Price - (Model.Price * 0.4m), 2);
                 }
                 <li>Öğrenci: @studentPrice ₺</li>
-                
+
             </ul>
         </div>
 
@@ -55,19 +56,52 @@
                         <span class="sits__indecator">H</span>
                     </aside>
 
-                    @for (int i = 0; i < Model.SeatLists.Count; i++)
+                    @using (Html.BeginForm("CheckoutView", "Reservation", FormMethod.Post))
                     {
-                        <div class="sits__row">
-                            @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
-                            {
+                        var seatGroupedByCharacter = Model.Seats.GroupBy(x => x.Character);
+                        foreach (var group in seatGroupedByCharacter)
+                        {
+                            <div class="sits__row">
+                                @foreach (var seat in group)
                                 {
-                                    Seat seat = Model.SeatLists[i].Seats[j];
-
-                                    <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
+                                    if (seat.SeatActive == false)
+                                    {
+                                        <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
+                                    }
+                                    else if (seat.SeatActive==true)
+                                    {
+                                        <span class="sits__place sits-price--cheap sits-state--not" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
+                                    }
                                 }
-                            }
-                        </div>
+
+                            </div>
+                        }
+
                     }
+
+
+
+
+
+
+
+
+
+
+
+                    @*@for (int i = 0; i < Model.SeatLists.Count; i++)
+                        {
+                            <div class="sits__row">
+                                @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
+                                {
+                                    {
+                                        Seat seat = Model.SeatLists[i].Seats[j];
+
+                                        <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
+                                    }
+                                }
+                            </div>
+                        }*@
 
                     @*@{Seat lastSeat = Model.Seats.OrderByDescending(X => X.ID).FirstOrDefault();
                             char startSeat = 'A';
@@ -94,8 +128,8 @@
 
                         </div>
                         @*<div class="checked-result">
-                            0 ₺
-                        </div>*@
+                                0 ₺
+                            </div>*@
                     </aside>
                     <footer class="sits__number">
                         <span class="sits__indecator">1</span>
@@ -169,8 +203,8 @@
                         <span class="choosen-place"></span>
                     </div>
                     @*<div class="checked-result">
-                        0₺
-                    </div>*@
+                            0₺
+                        </div>*@
                 </aside>
 
                 <img alt="" src="images/components/sits_mobile.png">
@@ -246,6 +280,6 @@
 
 
     }
-    
+
 
 </script>

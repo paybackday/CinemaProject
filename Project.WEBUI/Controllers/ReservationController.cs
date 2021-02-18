@@ -26,30 +26,31 @@ namespace Project.WEBUI.Controllers
             Session selectedSession = _sesRep.Find(sessionID);
             SeatVM svm = new SeatVM
             {
-                Seats = _sRep.Where(x => x.SeatActive == false && x.SaloonID == saloonID),
+                //Tum koltuklari cek.
+                Seats = _sRep.Where(x => x.SaloonID == saloonID),
                 Price = selectedSession.Price
             };
 
-            svm.SeatLists = new List<SeatListVM>();
+            //svm.SeatLists = new List<SeatListVM>();
 
-            for (int i = 0; i < svm.Seats.Count; i++)
-            {
-                Seat seat = svm.Seats[i];
+            //for (int i = 0; i < svm.Seats.Count; i++)
+            //{
+            //    Seat seat = svm.Seats[i];
 
-                SeatListVM seatList = svm.SeatLists.Find(x => x.Character == seat.Character);
-                if (seatList == null)
-                {
-                    seatList = new SeatListVM()
-                    {
-                        SaloonID = seat.SaloonID,
-                        Seats = new List<Seat>(),
-                        Character = seat.Character
-                    };
-                    svm.SeatLists.Add(seatList);
-                }
+            //    SeatListVM seatList = svm.SeatLists.Find(x => x.Character == seat.Character);
+            //    if (seatList == null)
+            //    {
+            //        seatList = new SeatListVM()
+            //        {
+            //            SaloonID = seat.SaloonID,
+            //            Seats = new List<Seat>(),
+            //            Character = seat.Character
+            //        };
+            //        svm.SeatLists.Add(seatList);
+            //    }
 
-                seatList.Seats.Add(seat);
-            }
+            //    seatList.Seats.Add(seat);
+            //}
 
             return View(svm);
         }
