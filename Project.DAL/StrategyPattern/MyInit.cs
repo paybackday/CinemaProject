@@ -182,7 +182,7 @@ namespace Project.DAL.StrategyPattern
             {
                 Saloon saloon = new Saloon();
                 saloon.SaloonNo = i;
-                saloon.Capacity = 160;
+                //saloon.Capacity = 160;
                 context.Saloons.Add(saloon);
             }
             context.SaveChanges();
