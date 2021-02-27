@@ -10,5 +10,6 @@ namespace Project.BLL.DesignPatterns.GenericRepository.ConcRep
 {
     public class MovieSessionSaloonRepository:BaseRepository<MovieSessionSaloon>
     {
+
     }
 }

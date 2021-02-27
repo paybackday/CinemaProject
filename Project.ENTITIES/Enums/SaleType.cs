@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Enums
 {
-    public enum PaymentType
+    public enum SaleType
     {
-        CreditCard = 1, Balance = 2, CashPayment = 3, JustReservation=4
+        Reservation=1,Sale=2
     }
 }

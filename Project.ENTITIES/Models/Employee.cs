@@ -42,7 +42,6 @@ namespace Project.ENTITIES.Models
 
         
         public virtual List<Sale> Sales { get; set; }
-        public virtual List<Reservation> Reservations { get; set; }
 
     }
 }

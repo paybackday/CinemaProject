@@ -19,8 +19,6 @@ namespace Project.ENTITIES.Models
     
         public virtual List<SaleSeat> SaleSeats { get; set; }
 
-        public virtual List<ReservationSeat> ReservationSeats { get; set; }
-
 
     }
 }

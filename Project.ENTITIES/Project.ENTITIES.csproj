@@ -46,6 +46,7 @@
     <Compile Include="Enums\EmployeeType.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\PaymentType.cs" />
+    <Compile Include="Enums\SaleType.cs" />
     <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Models\Actor.cs" />
     <Compile Include="Models\AppUser.cs" />
@@ -56,8 +57,6 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieActor.cs" />
     <Compile Include="Models\MovieSessionSaloon.cs" />
-    <Compile Include="Models\Reservation.cs" />
-    <Compile Include="Models\ReservationSeat.cs" />
     <Compile Include="Models\Sale.cs" />
     <Compile Include="Models\SaleSeat.cs" />
     <Compile Include="Models\Saloon.cs" />

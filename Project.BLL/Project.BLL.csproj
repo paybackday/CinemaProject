@@ -60,8 +60,6 @@
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\MovieActorRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\MovieRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\MovieSessionSaloonRepository.cs" />
-    <Compile Include="DesignPatterns\GenericRepository\ConcRep\ReservationRepository.cs" />
-    <Compile Include="DesignPatterns\GenericRepository\ConcRep\ReservationSeatRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\SaleRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\SaleSeatRepository.cs" />
     <Compile Include="DesignPatterns\GenericRepository\ConcRep\SaloonRepository.cs" />

@@ -37,6 +37,5 @@ namespace Project.ENTITIES.Models
       
         public virtual UserProfile UserProfile { get; set; }
         public virtual List<Sale> Sales { get; set; }
-        public virtual List<Reservation> Reservations { get; set; }
     }
 }

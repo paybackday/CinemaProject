@@ -60,8 +60,6 @@
     <Compile Include="Options\MovieActorMap.cs" />
     <Compile Include="Options\MovieMap.cs" />
     <Compile Include="Options\MovieSessionSaloonMap.cs" />
-    <Compile Include="Options\ReservationMap.cs" />
-    <Compile Include="Options\ReservationSeatMap.cs" />
     <Compile Include="Options\SaleMap.cs" />
     <Compile Include="Options\SaleSeatMap.cs" />
     <Compile Include="Options\SaloonMap.cs" />

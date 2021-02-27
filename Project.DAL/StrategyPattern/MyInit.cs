@@ -182,28 +182,27 @@ namespace Project.DAL.StrategyPattern
             {
                 Saloon saloon = new Saloon();
                 saloon.SaloonNo = i;
-                //saloon.Capacity = 160;
                 context.Saloons.Add(saloon);
             }
             context.SaveChanges();
 
-            for (int i = 1; i <= 5; i++)
-            {
+            //for (int i = 1; i <= 5; i++)
+            //{
 
-                for (char j = 'A'; j < 'I'; j++)
-                {
-                    for (int k = 1; k <= 14; k++)
-                    {
-                        Seat seat = new Seat();
-                        seat.SeatActive = false;
-                        seat.SaloonID = i;
-                        seat.Character = Convert.ToString(j);
-                        seat.Number = k;
-                        context.Seats.Add(seat);
-                    }
-                }
-            }
-            context.SaveChanges();
+            //    for (char j = 'A'; j < 'I'; j++)
+            //    {
+            //        for (int k = 1; k <= 14; k++)
+            //        {
+            //            Seat seat = new Seat();
+            //            seat.SeatActive = false;
+            //            seat.SaloonID = i;
+            //            seat.Character = Convert.ToString(j);
+            //            seat.Number = k;
+            //            context.Seats.Add(seat);
+            //        }
+            //    }
+            //}
+            //context.SaveChanges();
         }
 
 

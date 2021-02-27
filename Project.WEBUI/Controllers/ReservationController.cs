@@ -13,21 +13,26 @@ namespace Project.WEBUI.Controllers
     {
         SeatRepository _sRep;
         SessionRepository _sesRep;
+        MovieSessionSaloonRepository _mvpRep;
         public ReservationController()
         {
             _sRep = new SeatRepository();
             _sesRep = new SessionRepository();
+            _mvpRep = new MovieSessionSaloonRepository();
         }
         // GET: Reservation
        
         
         public ActionResult Seat(int movieID,int saloonID,int sessionID)
         {
+            MovieSessionSaloon mvp = _mvpRep.FirstOrDefault(x => x.MovieID == movieID && x.SaloonID == saloonID && x.SessionID==sessionID);
+            List<Seat> seats = mvp.Saloon.Seats;
+            
             Session selectedSession = _sesRep.Find(sessionID);
             SeatVM svm = new SeatVM
             {
                 //Tum koltuklari cek.
-                Seats = _sRep.Where(x => x.SaloonID == saloonID),
+                Seats = seats,
                 Price = selectedSession.Price
             };
 

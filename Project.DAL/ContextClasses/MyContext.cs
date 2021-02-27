@@ -33,10 +33,6 @@ namespace Project.DAL.ContextClasses
             modelBuilder.Configurations.Add(new SeatMap());
             modelBuilder.Configurations.Add(new SessionMap());
             modelBuilder.Configurations.Add(new UserProfileMap());
-            modelBuilder.Configurations.Add(new ReservationMap());
-            modelBuilder.Configurations.Add(new ReservationSeatMap());
-
-
         }
 
         public DbSet<Actor> Actors { get; set; }
@@ -53,8 +49,6 @@ namespace Project.DAL.ContextClasses
         public DbSet<Session> Sessions { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Director> Directors { get; set; }
-        public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<ReservationSeat> ReservationSeats { get; set; }
 
     }
 }

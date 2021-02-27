@@ -7,7 +7,7 @@ using Project.ENTITIES.Enums;
 
 namespace Project.ENTITIES.Models
 {
-    public class Sale : BaseEntity
+    public class Sale : BaseEntity //Think Ticket
     {
 
         public int? AppUserID { get; set; }
@@ -16,6 +16,7 @@ namespace Project.ENTITIES.Models
         public int GenreID { get; set; }
         public int? EmployeeID { get; set; }
         public PaymentType Type { get; set; }
+        public SaleType SaleType { get; set; }
         public string SaleNo { get; set; }
 
         public void CalculateDiscount() { //VIP indirim hesaplamasi
