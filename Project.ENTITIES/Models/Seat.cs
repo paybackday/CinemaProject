@@ -10,13 +10,15 @@ namespace Project.ENTITIES.Models
     {
         public bool SeatActive { get; set; }
         public int SaloonID { get; set; }
+        public int? SessionID { get; set; } //Koltugun hangi seans ta bulundugunun ID'si
         public int Number { get; set; } // veri tabanı ushortu kabul etmiyor
         public string Character { get; set; }
 
 
         // Relational Properties
         public virtual Saloon Saloon { get; set; }
-    
+        public virtual Session Session { get; set; }
+
         public virtual List<SaleSeat> SaleSeats { get; set; }
 
 

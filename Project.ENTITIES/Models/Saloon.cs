@@ -9,7 +9,8 @@ namespace Project.ENTITIES.Models
     public class Saloon:BaseEntity
     {
         public int SaloonNo { get; set; }
-        public int Capacity { 
+        public int Capacity 
+        { 
             get 
             {
                 return Seats.Count();
@@ -18,22 +19,11 @@ namespace Project.ENTITIES.Models
 
         public Saloon()
         {
-            Seats = new List<Seat>();
+            //Seats = new List<Seat>();
 
-            for (char j = 'A'; j < 'I'; j++)
-            {
-                for (int k = 1; k <= 14; k++)
-                {
-                    Seat seat = new Seat();
-                    seat.SeatActive = false;
-                    seat.SaloonID = this.ID;
-                    seat.Character = Convert.ToString(j);
-                    seat.Number = k;
-                    Seats.Add(seat);
-                }
-            }
+            
         }
-       
+
 
         // Relational Properties
 

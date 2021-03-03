@@ -25,10 +25,8 @@ namespace Project.WEBUI.Controllers
         
         public ActionResult Seat(int movieID,int saloonID,int sessionID)
         {
-            MovieSessionSaloon mvp = _mvpRep.FirstOrDefault(x => x.MovieID == movieID && x.SaloonID == saloonID && x.SessionID==sessionID);
-            List<Seat> seats = mvp.Saloon.Seats;
-            
             Session selectedSession = _sesRep.Find(sessionID);
+            List<Seat> seats = _sRep.Where(x => x.SessionID == sessionID && x.SaloonID == saloonID);
             SeatVM svm = new SeatVM
             {
                 //Tum koltuklari cek.
