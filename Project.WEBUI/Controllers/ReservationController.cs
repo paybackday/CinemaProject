@@ -59,7 +59,7 @@ namespace Project.WEBUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CheckOutView(string buyedSeats) //toDO: koltuklari incele. Algoritmayi kur.
+        public ActionResult CheckOutView(string selectedChoise, string buyedSeats) //toDO: koltuklari incele. Algoritmayi kur.
         {
             
             string[] seats = buyedSeats.Trim().Split(':');

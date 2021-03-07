@@ -9,8 +9,8 @@
             <img class="order__images" alt='' src="images/tickets.png">
             <p class="order__title">Bilet Ayırt <br><span class="order__descript">Eğlenceye başla</span></p>
             <div class="order__control">
-                <a onclick="choise(sale)" class="order__control-btn">Satın Al</a>
-                <a onclick="choise(reservation)" class="order__control-btn">Rezervasyon</a>
+                <a id="select" onclick="choise('sale')" class="order__control-btn">Satın Al</a>
+                <a id="select" onclick="choise('reservation')" class="order__control-btn">Rezervasyon</a>
             </div>
         </div>
     </div>
@@ -56,8 +56,10 @@
                         <span class="sits__indecator">H</span>
                     </aside>
 
-                    @using (Html.BeginForm("CheckoutView", "Reservation", FormMethod.Post))
+                    @using (Html.BeginForm("CheckOutView", "Reservation", FormMethod.Post, new { id = "checkoutView" }))
                     {
+                        @Html.Hidden("selectedChoise", null, new { id = "choise" })
+                        @Html.Hidden("buyedSeats", null, new { id = "selectedSeats" })
                         var seatGroupedByCharacter = Model.Seats.GroupBy(x => x.Character);
                         foreach (var group in seatGroupedByCharacter)
                         {
@@ -68,7 +70,7 @@
                                     {
                                         <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
                                     }
-                                    else if (seat.SeatActive==true)
+                                    else if (seat.SeatActive == true)
                                     {
                                         <span class="sits__place sits-price--cheap sits-state--not" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
                                     }
@@ -270,13 +272,38 @@
                 dangerMode: true
             });
         }
-        else {
-            $.post("/Reservation/CheckOutView",
-                {
-                    buyedSeats: seats
-                }
-            );
+        else if ($("#choise").val()=="") {
+            swal({
+                title: "Rezervasyon/Satis Seçimi!",
+                text: "Rezervasyon veya satis secimi yapmadınız",
+                icon: "warning",
+                button: "Tamam",
+                dangerMode: true
+            });
         }
+        else {
+            //$.post("/Reservation/CheckOutView",
+            //    {
+            //        buyedSeats: seats
+            //    }
+            //);
+
+            $("#selectedSeats").val(seats);
+            $("#checkoutView").submit();
+        }
+
+
+    }
+
+
+    //Reservation or Sale Select Function
+
+    function choise(selected) {
+        //1 Sale
+        //2 Reservation
+        $("#choise").val(selected);
+
+
 
 
     }

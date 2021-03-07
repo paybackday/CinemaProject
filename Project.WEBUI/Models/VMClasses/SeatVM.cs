@@ -11,7 +11,7 @@ namespace Project.WEBUI.Models.VMClasses
     {
         public List<Seat> Seats { get; set; }
 
-        public List<SeatListVM> SeatLists { get; set; }
+        //public List<SeatListVM> SeatLists { get; set; }
         public decimal Price { get; set; }
     }
 
