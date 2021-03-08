@@ -12,12 +12,16 @@ namespace Project.WEBUI.Controllers
     public class ReservationController : Controller
     {
         SeatRepository _sRep;
+        MovieRepository _mRep;
         SessionRepository _sesRep;
+        SaloonRepository _salRep;
         MovieSessionSaloonRepository _mvpRep;
         public ReservationController()
         {
             _sRep = new SeatRepository();
+            _mRep = new MovieRepository();
             _sesRep = new SessionRepository();
+            _salRep = new SaloonRepository();
             _mvpRep = new MovieSessionSaloonRepository();
         }
         // GET: Reservation
@@ -33,6 +37,11 @@ namespace Project.WEBUI.Controllers
                 Seats = seats,
                 Price = selectedSession.Price
             };
+            
+            TempData["movieID"] = movieID;
+            TempData["saloonID"] = saloonID;
+            TempData["sessionID"] = sessionID;
+
 
             //svm.SeatLists = new List<SeatListVM>();
 
@@ -59,9 +68,23 @@ namespace Project.WEBUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult CheckOutView(string selectedChoise, string buyedSeats) //toDO: koltuklari incele. Algoritmayi kur.
+        public ActionResult CheckOutView(string selectedChoise, string buyedSeats, int movieID, int saloonID, int sessionID) //toDO: koltuklari incele. Algoritmayi kur.
         {
-            
+            if (selectedChoise=="reservation")
+            {
+                string[] reservationSeats = buyedSeats.Trim().Split(':');
+                CheckoutVM cvm = new CheckoutVM()
+                {
+                    Movie=_mRep.FirstOrDefault(x=>x.ID==movieID),
+                    Session=_sesRep.FirstOrDefault(x=>x.ID==sessionID),
+                    Saloon=_salRep.FirstOrDefault(x=>x.ID==saloonID),
+                };
+                
+                TempData["choise"] = "Rezervasyon"; // Bilet turu tercihini kullaniciya gosterilmek icin olusuturulan TempData
+                TempData["reservationSeats"] = buyedSeats.Trim(':'); //Secilen koltuklari kullaniciya gostemek icin olusturulan TempData.
+                
+                return View("CheckOutReservation",cvm);
+            }
             string[] seats = buyedSeats.Trim().Split(':');
             //for (int i = 0; i < seats.Length; i++)
             //{
@@ -69,6 +92,16 @@ namespace Project.WEBUI.Controllers
             //    seat[0] = "Character";
             //    seat[1] = "Numara";
             //}
+            return View();
+        }
+
+        public ActionResult CheckOutReservation() {
+
+            return View();
+        }
+
+        public ActionResult CheckOutSale() {
+
             return View();
         }
     }

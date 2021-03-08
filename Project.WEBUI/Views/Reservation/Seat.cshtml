@@ -60,6 +60,9 @@
                     {
                         @Html.Hidden("selectedChoise", null, new { id = "choise" })
                         @Html.Hidden("buyedSeats", null, new { id = "selectedSeats" })
+                        @Html.Hidden("movieID", TempData["movieID"]);
+                        @Html.Hidden("sessionID", TempData["sessionID"]);
+                        @Html.Hidden("saloonID", TempData["saloonID"]);
                         var seatGroupedByCharacter = Model.Seats.GroupBy(x => x.Character);
                         foreach (var group in seatGroupedByCharacter)
                         {
@@ -92,35 +95,35 @@
 
 
                     @*@for (int i = 0; i < Model.SeatLists.Count; i++)
-                        {
-                            <div class="sits__row">
-                                @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
-                                {
-                                    {
-                                        Seat seat = Model.SeatLists[i].Seats[j];
+        {
+            <div class="sits__row">
+                @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
+                {
+                    {
+                        Seat seat = Model.SeatLists[i].Seats[j];
 
-                                        <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
-                                    }
-                                }
-                            </div>
-                        }*@
+                        <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
+                    }
+                }
+            </div>
+        }*@
 
                     @*@{Seat lastSeat = Model.Seats.OrderByDescending(X => X.ID).FirstOrDefault();
-                            char startSeat = 'A';
-                        }
-                        @foreach (Seat item in Model.Seats)
-                        {
-                            <div class="sits__row">
-                                @if (startSeat != Convert.ToChar(lastSeat.Character))
-                                {
+            char startSeat = 'A';
+        }
+        @foreach (Seat item in Model.Seats)
+        {
+            <div class="sits__row">
+                @if (startSeat != Convert.ToChar(lastSeat.Character))
+                {
 
-                                    <span class="sits__place sits-price--cheap" data-place='@item.Character @item.Number' data-price='10'>@item.Character @item.Number</span>
+                    <span class="sits__place sits-price--cheap" data-place='@item.Character @item.Number' data-price='10'>@item.Character @item.Number</span>
 
-                                }
-                            </div>
+                }
+            </div>
 
-                            startSeat++;
-                        }*@
+            startSeat++;
+        }*@
 
 
 
@@ -130,8 +133,8 @@
 
                         </div>
                         @*<div class="checked-result">
-                                0 ₺
-                            </div>*@
+                0 ₺
+            </div>*@
                     </aside>
                     <footer class="sits__number">
                         <span class="sits__indecator">1</span>

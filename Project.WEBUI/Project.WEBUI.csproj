@@ -617,6 +617,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
+    <Compile Include="Models\VMClasses\CheckoutVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />
@@ -648,6 +649,7 @@
     <Content Include="Views\Movie\QueryDate.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <Content Include="Views\Reservation\Seat.cshtml" />
+    <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
