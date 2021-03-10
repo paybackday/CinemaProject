@@ -85,6 +85,21 @@ namespace Project.WEBUI.Controllers
                 
                 return View("CheckOutReservation",cvm);
             }
+            else if (selectedChoise == "sale")
+            {
+                string[] saleSeats = buyedSeats.Trim().Split(':');
+                CheckoutVM cvm = new CheckoutVM()
+                {
+                    Movie = _mRep.FirstOrDefault(x => x.ID == movieID),
+                    Session = _sesRep.FirstOrDefault(x => x.ID == sessionID),
+                    Saloon = _salRep.FirstOrDefault(x => x.ID == saloonID),
+                };
+
+                TempData["choise"] = "Satış";
+                TempData["saleSeats"] = buyedSeats.Trim(':'); 
+
+                return View("CheckOutSale", cvm);
+            }
             string[] seats = buyedSeats.Trim().Split(':');
             //for (int i = 0; i < seats.Length; i++)
             //{

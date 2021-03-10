@@ -619,6 +619,7 @@
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
     <Compile Include="Models\VMClasses\CheckoutVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
+    <Compile Include="Models\VMClasses\PaymentVM.cs" />
     <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -650,6 +651,7 @@
     <None Include="Views\Movie\Single.cshtml" />
     <Content Include="Views\Reservation\Seat.cshtml" />
     <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
+    <Content Include="Views\Reservation\CheckOutSale.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

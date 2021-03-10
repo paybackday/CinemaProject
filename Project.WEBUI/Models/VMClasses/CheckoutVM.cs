@@ -13,5 +13,6 @@ namespace Project.WEBUI.Models.VMClasses
         public Saloon Saloon { get; set; }
         public Sale Sale { get; set; }
         public List<Seat> SelectedSeats { get; set; }
+        public PaymentVM Payment { get; set; }
     }
 }

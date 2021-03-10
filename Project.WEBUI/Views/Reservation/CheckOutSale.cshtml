@@ -1,0 +1,84 @@
+﻿@model CheckoutVM
+@{
+    ViewBag.Title = "CheckOutSale";
+}
+
+<!-- Main content -->
+<section class="container">
+    <div class="order-container">
+
+    </div>
+    <div class="order-step-area">
+        <div class="order-step first--step order-step--disable ">1. Seans Secimi</div>
+        <div class="order-step second--step order-step--disable">2. Koltuk Secimi</div>
+        <div class="order-step third--step">3. Satın Al</div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="checkout-wrapper">
+            <h2 class="page-heading">Bilet Bilgileri</h2>
+            <ul class="book-result">
+                <li class="book-result__item">Film: <span class="book-result__count booking-ticket">@Model.Movie.MovieName</span></li>
+                <li class="book-result__item">Seans Saati: <span class="book-result__count booking-ticket">@Model.Session.Time</span></li>
+                <li class="book-result__item">Satış Tipi: <span class="book-result__count booking-ticket">@TempData["choise"]</span></li>
+                <li class="book-result__item">Salon No: <span class="book-result__count booking-ticket">@Model.Saloon.SaloonNo</span></li>
+                <li class="book-result__item">Koltuk: <span class="book-result__count booking-ticket">@TempData["saleSeats"]</span></li>
+                <li class="book-result__item">Seans Fiyatı: <span class="book-result__count booking-price">@Model.Session.Price ₺</span></li>
+                <li class="book-result__item">Toplam: <span id="calculateTotal" class="book-result__count booking-cost">$60</span></li>
+            </ul>
+
+            @{
+                int[] months = Enumerable.Range(1, 12).ToArray();
+                int curMonth = DateTime.Today.Month;
+                int[] years = Enumerable.Range(DateTime.Today.Year, 30).ToArray();
+                int curYear = DateTime.Today.Year;
+            }
+            <h2 class="page-heading">Kart Bilgilerinizi Giriniz</h2>
+
+            @using (Html.BeginForm("GetTicket", "Reservation", FormMethod.Post, new { @class = "login" }))
+            {
+
+                <div class="contact-info__field contact-info__field-mail">
+                    @Html.TextBoxFor(x => x.Payment.CardUserName, new { @class = "login__input", @placeholder = "Kart Üzerindeki Ad Soyad" ,@required="required"})
+                </div>
+                <div class="contact-info__field contact-info__field-mail">
+                    @Html.TextBoxFor(x => x.Payment.CardNumber, new { @class = "login__input", @placeholder = "Kart Numarası", @maxlength = 16, @required = "required" })
+                </div><br />
+                @Html.Label("Son Kullanma Tarihi")<br /><br />
+                @Html.Label("Ay:")
+                <div>
+                    @Html.DropDownListFor(x => x.Payment.CardExpiryMonth, months.Select(x =>
+                                                new SelectListItem
+                                                {
+                                                    Text = x.ToString(),
+                                                    Value = x.ToString(),
+                                                    Selected = (x == curMonth)
+                                                }), new { @class = "login__input" })
+                </div>
+                @Html.Label("Yıl:")
+                <div>
+                    @Html.DropDownListFor(x => x.Payment.CardExpiryYear, years.Select(x =>
+                                                new SelectListItem
+                                                {
+                                                    Text = x.ToString(),
+                                                    Value = x.ToString(),
+                                                    Selected = (x == curYear)
+                                                }), new { @class = "login__input" })
+                </div><br />
+                <div class="contact-info__field contact-info__field-tel">
+                    @Html.TextBoxFor(x => x.Payment.CardExpiryYear, new { @class = "login__input", @placeholder = "CVV", @required = "required" })
+                </div> <br />
+                <div class="order">
+                    <button type="submit" class="btn btn-md btn--warning btn--wide">Ödeme Yap</button>
+                </div>
+            }
+
+
+        </div>
+
+        
+
+    </div>
+
+</section>
+

@@ -18,6 +18,7 @@ namespace Project.ENTITIES.Models
         public PaymentType Type { get; set; }
         public SaleType SaleType { get; set; }
         public string SaleNo { get; set; }
+        public decimal? TicketPrice { get; set; }
 
         public void CalculateDiscount() { //VIP indirim hesaplamasi
             if (AppUser.Role==UserRole.Vip)
