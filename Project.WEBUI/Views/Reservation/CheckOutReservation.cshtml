@@ -15,7 +15,7 @@
     </div>
     @{
         int countStudent = (int)ViewBag.maxStudents;
-        int[] students = new int[countStudent+1];
+        int[] students = new int[countStudent + 1];
         for (int i = 0; i <= countStudent; i++)
         {
             students[i] = i;
@@ -40,34 +40,29 @@
                     <li class="book-result__item">Koltuk: <span class="book-result__count booking-ticket">@TempData["reservationSeats"]</span></li>
                     <li class="book-result__item">Seans Fiyatı: <span class="book-result__count booking-price">@Model.Session.Price ₺</span></li>
                     <li class="book-result__item">Toplam: <span id="totalPrice" class="book-result__count booking-cost">@totalPriceDefault ₺</span></li>
-                    <li class="book-result__item">Öğrenci Adedi: <span class="book-result__count booking-cost">@Html.DropDownListFor(x => x.StudentCount, students.Select(x =>
+                    <li class="book-result__item">
+                        Öğrenci Adedi: <span class="book-result__count booking-cost">
+                            @Html.DropDownListFor(x => x.StudentCount, students.Select(x =>
 new SelectListItem
 {
-    Text = x.ToString(),
-    Value = x.ToString(),
-    Selected = (x == students[0])
-}), new { @class = "login__input", @id = "dropMenu"})</span></li>
-                </ul>
-                @*<h2 class="page-heading">İletişim Bilgileri</h2>
+Text = x.ToString(),
+Value = x.ToString(),
+Selected = (x == students[0])
+}), new { @class = "login__input", @id = "dropMenu" })
+                    </span>
+                </li>
+            </ul>
+          
 
-                    <form id='contact-info' method='post' novalidate="" class="form contact-info">
-                        <div class="contact-info__field contact-info__field-mail">
-                            <input type='email' name='user-mail' placeholder='Your email' class="form__mail">
-                        </div>
-                        <div class="contact-info__field contact-info__field-tel">
-                            <input type='tel' name='user-tel' placeholder='Phone number' class="form__mail">
-                        </div>
-                    </form>*@
-
-
-            </div>
-
-            <div class="order">
-                <button type="submit" class="btn btn-md btn--warning btn--wide">Rezerve Et</button>
-            </div>
 
         </div>
-    }
+
+        <div class="order">
+            <button type="submit" class="btn btn-md btn--warning btn--wide">Rezerve Et</button>
+        </div>
+
+    </div>
+}
 </section>
 
 <script>
@@ -89,7 +84,7 @@ new SelectListItem
         var spans = $('#totalPrice');
 
         spans.text(totalPrice +'₺'); // clear the text
-        
+
     })
 });
 

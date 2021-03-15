@@ -34,7 +34,7 @@ namespace Project.WEBUI.Controllers
             SeatVM svm = new SeatVM
             {
                 //Tum koltuklari cek.
-                Seats = seats,
+                Seats = seats,//TODO:2.ci seans icin gelmiyor koltular.
                 Price = selectedSession.Price
             };
             
@@ -67,8 +67,9 @@ namespace Project.WEBUI.Controllers
             return View(svm);
         }
 
+        
         [HttpPost]
-        public ActionResult CheckOutView(string selectedChoise, string buyedSeats, int movieID, int saloonID, int sessionID) //toDO: koltuklari incele. Algoritmayi kur.
+        public ActionResult CheckOutView(string selectedChoise, string buyedSeats, int movieID, int saloonID, int sessionID) 
         {
             if (selectedChoise=="reservation")
             {
@@ -99,7 +100,10 @@ namespace Project.WEBUI.Controllers
                 };
 
                 TempData["choise"] = "Satış";
-                TempData["saleSeats"] = buyedSeats.Trim(':'); 
+                TempData["saleSeats"] = buyedSeats.Trim(':');
+
+                ViewBag.maxStudents = (saleSeats.Count()) - 1;
+
 
                 return View("CheckOutSale", cvm);
             }
