@@ -82,7 +82,10 @@ namespace Project.WEBUI.Controllers
                 
                 TempData["choise"] = "Rezervasyon"; // Bilet turu tercihini kullaniciya gosterilmek icin olusuturulan TempData
                 TempData["reservationSeats"] = buyedSeats.Trim(':'); //Secilen koltuklari kullaniciya gostemek icin olusturulan TempData.
+
                 
+                ViewBag.maxStudents = (reservationSeats.Count()) - 1;
+
                 return View("CheckOutReservation",cvm);
             }
             else if (selectedChoise == "sale")

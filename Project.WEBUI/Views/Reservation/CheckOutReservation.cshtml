@@ -2,75 +2,95 @@
 @{
     ViewBag.Title = "CheckOutReservation";
 }
-
+<div style="margin-top:60px; text-align:center;" class="alert alert-warning">Eğer öğrenci iseniz kimlik kartlarınızı yanınızda getirmeyi unutmayın! Aksi taktirde rezarvasyon işleminiz iptal edilecektir.</div>
 <!-- Main content -->
 <section class="container">
     <div class="order-container">
-        
+
     </div>
     <div class="order-step-area">
         <div class="order-step first--step order-step--disable ">1. Seans Secimi</div>
         <div class="order-step second--step order-step--disable">2. Koltuk Secimi</div>
         <div class="order-step third--step">3. Rezervasyon</div>
     </div>
+    @{
+        int countStudent = (int)ViewBag.maxStudents;
+        int[] students = new int[countStudent+1];
+        for (int i = 0; i <= countStudent; i++)
+        {
+            students[i] = i;
+        }
+        decimal totalPriceDefault = Model.Session.Price * countStudent;
+    }
 
-    <div class="col-sm-12">
-        <div class="checkout-wrapper">
-            <h2 class="page-heading">Rezervasyon Bilgileri</h2>
-            <ul class="book-result">
-                <li class="book-result__item">Film: <span class="book-result__count booking-ticket">@Model.Movie.MovieName</span></li>
-                <li class="book-result__item">Seans Saati: <span class="book-result__count booking-ticket">@Model.Session.Time</span></li>
-                <li class="book-result__item">Satış Tipi: <span class="book-result__count booking-ticket">@TempData["choise"]</span></li>
-                <li class="book-result__item">Salon No: <span class="book-result__count booking-ticket">@Model.Saloon.SaloonNo</span></li>
-                <li class="book-result__item">Koltuk: <span class="book-result__count booking-ticket">@TempData["reservationSeats"]</span></li>
-                <li class="book-result__item">Seans Fiyatı: <span class="book-result__count booking-price">@Model.Session.Price ₺</span></li>
-                <li class="book-result__item">Toplam: <span class="book-result__count booking-cost">$60</span></li>
-            </ul>
+    @using (Html.BeginForm("ConfirmReservation", "Reservation", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.Movie.ID)
+        @Html.HiddenFor(x => x.Session.ID)
+        @Html.HiddenFor(x => x.Saloon.ID)
+        @Html.HiddenFor(x => x.Movie.GenreID)
+        <div class="col-sm-12">
+            <div class="checkout-wrapper">
+                <h2 class="page-heading">Rezervasyon Bilgileri</h2>
+                <ul class="book-result">
+                    <li class="book-result__item">Film: <span class="book-result__count booking-ticket">@Model.Movie.MovieName</span></li>
+                    <li class="book-result__item">Seans Saati: <span class="book-result__count booking-ticket">@Model.Session.Time</span></li>
+                    <li class="book-result__item">Satış Tipi: <span class="book-result__count booking-ticket">@TempData["choise"]</span></li>
+                    <li class="book-result__item">Salon No: <span class="book-result__count booking-ticket">@Model.Saloon.SaloonNo</span></li>
+                    <li class="book-result__item">Koltuk: <span class="book-result__count booking-ticket">@TempData["reservationSeats"]</span></li>
+                    <li class="book-result__item">Seans Fiyatı: <span class="book-result__count booking-price">@Model.Session.Price ₺</span></li>
+                    <li class="book-result__item">Toplam: <span id="totalPrice" class="book-result__count booking-cost">@totalPriceDefault ₺</span></li>
+                    <li class="book-result__item">Öğrenci Adedi: <span class="book-result__count booking-cost">@Html.DropDownListFor(x => x.StudentCount, students.Select(x =>
+new SelectListItem
+{
+    Text = x.ToString(),
+    Value = x.ToString(),
+    Selected = (x == students[0])
+}), new { @class = "login__input", @id = "dropMenu"})</span></li>
+                </ul>
+                @*<h2 class="page-heading">İletişim Bilgileri</h2>
 
-            @*<h2 class="page-heading">Choose payment method</h2>
-            <div class="payment">
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay1.png">
-                </a>
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay2.png">
-                </a>
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay3.png">
-                </a>
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay4.png">
-                </a>
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay5.png">
-                </a>
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay6.png">
-                </a>
-                <a href="#" class="payment__item">
-                    <img alt='' src="images/payment/pay7.png">
-                </a>
-            </div>*@
+                    <form id='contact-info' method='post' novalidate="" class="form contact-info">
+                        <div class="contact-info__field contact-info__field-mail">
+                            <input type='email' name='user-mail' placeholder='Your email' class="form__mail">
+                        </div>
+                        <div class="contact-info__field contact-info__field-tel">
+                            <input type='tel' name='user-tel' placeholder='Phone number' class="form__mail">
+                        </div>
+                    </form>*@
 
-            <h2 class="page-heading">İletişim Bilgileri</h2>
 
-            <form id='contact-info' method='post' novalidate="" class="form contact-info">
-                <div class="contact-info__field contact-info__field-mail">
-                    <input type='email' name='user-mail' placeholder='Your email' class="form__mail">
-                </div>
-                <div class="contact-info__field contact-info__field-tel">
-                    <input type='tel' name='user-tel' placeholder='Phone number' class="form__mail">
-                </div>
-            </form>
+            </div>
 
+            <div class="order">
+                <button type="submit" class="btn btn-md btn--warning btn--wide">Rezerve Et</button>
+            </div>
 
         </div>
-
-        <div class="order">
-            <a href="book-final.html" class="btn btn-md btn--warning btn--wide">Rezerve Et</a>
-        </div>
-
-    </div>
-
+    }
 </section>
 
+<script>
+    $(this.document).ready(function () {
+    $('#dropMenu').change(function () //wire up on change event of the 'country' dropdownlist
+    {
+
+        var selection = $('#dropMenu').val(); //get the selection made in the dropdownlist
+
+        var sessionPrice = @Model.Session.Price;
+        var totalSeat = @countStudent;
+
+        var totalPriceNonDiscount = sessionPrice * totalSeat; //100
+        var discountPrice = (sessionPrice * 0.40) * selection; //20
+
+
+
+        var totalPrice = totalPriceNonDiscount - discountPrice; //80
+        var spans = $('#totalPrice');
+
+        spans.text(totalPrice +'₺'); // clear the text
+        
+    })
+});
+
+</script>

@@ -14,5 +14,6 @@ namespace Project.WEBUI.Models.VMClasses
         public Sale Sale { get; set; }
         public List<Seat> SelectedSeats { get; set; }
         public PaymentVM Payment { get; set; }
+        public int StudentCount { get; set; }
     }
 }
