@@ -27,9 +27,9 @@ namespace Project.WEBUI.Controllers
             _saleRep = new SaleRepository();
         }
         // GET: Reservation
-       
-        
-        public ActionResult Seat(int movieID,int saloonID,int sessionID)
+
+
+        public ActionResult Seat(int movieID, int saloonID, int sessionID)
         {
             Session selectedSession = _sesRep.Find(sessionID);
             List<Seat> seats = _sRep.Where(x => x.SessionID == sessionID && x.SaloonID == saloonID);
@@ -39,7 +39,7 @@ namespace Project.WEBUI.Controllers
                 Seats = seats,//TODO:2.ci seans icin gelmiyor koltular.
                 Price = selectedSession.Price
             };
-            
+
             TempData["movieID"] = movieID;
             TempData["saloonID"] = saloonID;
             TempData["sessionID"] = sessionID;
@@ -69,27 +69,27 @@ namespace Project.WEBUI.Controllers
             return View(svm);
         }
 
-        
+
         [HttpPost]
-        public ActionResult CheckOutView(string selectedChoise, string buyedSeats, int movieID, int saloonID, int sessionID) 
+        public ActionResult CheckOutView(string selectedChoise, string buyedSeats, int movieID, int saloonID, int sessionID)
         {
-            if (selectedChoise=="reservation")
+            if (selectedChoise == "reservation")
             {
                 string[] reservationSeats = buyedSeats.Trim().Split(':');
                 CheckoutVM cvm = new CheckoutVM()
                 {
-                    Movie=_mRep.FirstOrDefault(x=>x.ID==movieID),
-                    Session=_sesRep.FirstOrDefault(x=>x.ID==sessionID),
-                    Saloon=_salRep.FirstOrDefault(x=>x.ID==saloonID),
+                    Movie = _mRep.FirstOrDefault(x => x.ID == movieID),
+                    Session = _sesRep.FirstOrDefault(x => x.ID == sessionID),
+                    Saloon = _salRep.FirstOrDefault(x => x.ID == saloonID),
                 };
-                
+
                 TempData["choise"] = "Rezervasyon"; // Bilet turu tercihini kullaniciya gosterilmek icin olusuturulan TempData
                 TempData["reservationSeats"] = buyedSeats.Trim(':'); //Secilen koltuklari kullaniciya gostemek icin olusturulan TempData.
                 TempData.Keep();
-                
+
                 ViewBag.maxStudents = (reservationSeats.Count()) - 1;
 
-                return View("CheckOutReservation",cvm);
+                return View("CheckOutReservation", cvm);
             }
             else if (selectedChoise == "sale")
             {
@@ -120,24 +120,28 @@ namespace Project.WEBUI.Controllers
             return View();
         }
 
-        public ActionResult CheckOutReservation() {
+        public ActionResult CheckOutReservation()
+        {
 
             return View();
         }
 
-        public ActionResult CheckOutSale() {
+        public ActionResult CheckOutSale()
+        {
 
             return View();
         }
 
-        public ActionResult ConfirmReservation(int movieID, int saloonID, int sessionID, int genreID, string ticketPrice,string seats) {
-            int userID=0;
+
+        public ActionResult ConfirmReservation(int movieID, int saloonID, int sessionID, int genreID, string ticketPrice, string seats)
+        {
+            int userID = 0;
 
             if (Session["member"] != null)
             {
                 userID = (Session["member"] as AppUser).ID;
             }
-            else if (Session["vip"] != null) 
+            else if (Session["vip"] != null)
             {
                 userID = (Session["vip"] as AppUser).ID;
             }
@@ -149,8 +153,8 @@ namespace Project.WEBUI.Controllers
                 SessionID = sessionID,
                 GenreID = genreID,
                 Type = ENTITIES.Enums.PaymentType.JustReservation,
-                SaleType=ENTITIES.Enums.SaleType.Reservation,
-                TicketPrice=Convert.ToDecimal(ticketPrice)
+                SaleType = ENTITIES.Enums.SaleType.Reservation,
+                TicketPrice = Convert.ToDecimal(ticketPrice)
             };
             _saleRep.Add(toBeAdded);
 
@@ -163,16 +167,39 @@ namespace Project.WEBUI.Controllers
                 string[] seat = selectedSeats[i].Split('-');
                 characterNumber.Add(new SeatListVM { Character = seat[0], Number = Convert.ToInt32(seat[1]) });
             }
-            
+
             foreach (SeatListVM item in characterNumber)
             {
                 Seat result = _sRep.FirstOrDefault(x => x.SaloonID == saloonID && x.SessionID == sessionID && x.Character == item.Character && x.Number == item.Number);
                 result.SeatActive = true;
                 _sRep.Update(result);
             }
-            
-            
-            return View();
+
+            SaleResvervationTicketVM srtvm = new SaleResvervationTicketVM()
+            {
+
+                Character = selectedSeats[0],
+                    Number = selectedSeats[1], //TODO
+                    MovieName = toBeAdded.Movie.MovieName,
+                    TicketPrice = Convert.ToDecimal(ticketPrice),
+                    SalonID = saloonID,
+                    SaleNo = toBeAdded.SaleNo//TODO: sayfa yenilendiginde yeni bir Guid ile yeni bir reservasyon olusturuyor... bunu engelle
+
+                    
+            };
+          
+
+
+
+
+
+
+          
+            return View(srtvm);
+
+
+
         }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿@*@model CheckoutVM*@
+﻿@model SaleResvervationTicketVM
 @{
     ViewBag.Title = "ConfirmReservation";
 }
@@ -7,31 +7,49 @@
     <div class="order-container">
         <div class="order">
             <img class="order__images" alt='' src="images/tickets.png">
-            <p class="order__title">Teşekkür Ederiz <br><span class="order__descript">Bilet rezervasyon işleminiz başarı ile gerçekleştirildi. Lütfen filmden en geç 30 dakika öncesinde rezervasyonunuzu bilete çevirtiniz.</span></p>
+          
+            <p class="order__title">
+                Teşekkür Ederiz <br>  <br />
+                <br /><span class="order__descript">Bilet rezervasyon işleminiz başarı ile gerçekleştirildi. Lütfen filmden en geç 30 dakika öncesinde rezervasyonunuzu bilete çevirtiniz.</span>
+            </p>
+
+            <p class="order__title"><br><span class="order__descript">Ögrenci bileti alanlar ögrenci kimlik kartlarınıda yanınızda getirmeyi unutmayın  aksi takdirde rezarvasyonunuz iptal olacaktır..</span></p>
+
+
         </div>
 
         <div class="ticket">
             <div class="ticket-position">
-                <div class="ticket__indecator indecator--pre"><div class="indecator-text pre--text">online ticket</div> </div>
+                <div class="ticket__indecator indecator--pre"><div class="indecator-text pre--text">Sinflex Rezervasyon</div> </div>
                 <div class="ticket__inner">
 
                     <div class="ticket-secondary">
-                        <span class="ticket__item">Ticket number <strong class="ticket__number">a126bym4</strong></span>
-                        <span class="ticket__item ticket__date">25/10/2013</span>
-                        <span class="ticket__item ticket__time">17:45</span>
-                        <span class="ticket__item">Cinema: <span class="ticket__cinema">Cineworld</span></span>
-                        <span class="ticket__item">Hall: <span class="ticket__hall">Visconti</span></span>
-                        <span class="ticket__item ticket__price">price: <strong class="ticket__cost">$60</strong></span>
+                        <span class="ticket__item">Bilet Numarası @Model.SaleNo <strong class="ticket__number"></strong></span>
+                        <span class="ticket__item ticket__date"></span>
+                       
+                        <span class="ticket__item">Cinema: <span class="ticket__cinema">Sinfilex</span></span>
+                        <br />
+                        <br />
+                            <span class="ticket__item">Salon: <span class="ticket__hall">@Model.SalonID nolu salon</span></span>
+
+                       
+                        
+                            <span class="ticket__item ticket__price">Fiyat: <strong class="ticket__place">@Model.TicketPrice ₺</strong></span>
+                        
                     </div>
 
                     <div class="ticket-primery">
-                        <span class="ticket__item ticket__item--primery ticket__film">Film<br><strong class="ticket__movie">The Fifth Estate (2013)</strong></span>
-                        <span class="ticket__item ticket__item--primery">Sits: <span class="ticket__place">11F, 12F, 13F</span></span>
+                        @*<span class="ticket__item ticket__item--primery ticket__film">Film ismi :  <br><strong class="ticket__place"></strong></span>*@
+
+                        <span class="ticket__item ticket__item--primery ticket__film">Film Ismi: <span class="ticket__place">@Model.MovieName</span></span>
+
+
+                        <span class="ticket__item ticket__item--primery">Koltuk: <span class="ticket__place">@Model.Character  @Model.Number</span></span>
                     </div>
 
 
                 </div>
-                <div class="ticket__indecator indecator--post"><div class="indecator-text post--text">online ticket</div></div>
+                <div class="ticket__indecator indecator--post"><div class="indecator-text post--text">Sinflex Rezarvasyon</div></div>
             </div>
         </div>
 

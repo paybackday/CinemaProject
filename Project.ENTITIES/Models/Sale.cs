@@ -27,13 +27,13 @@ namespace Project.ENTITIES.Models
             }
         
         }
-        
+
 
         //todo:Quantity
 
         public Sale()
         {
-             SaleNo = Guid.NewGuid().ToString().Substring(0, Guid.NewGuid().ToString().IndexOf("-")); // 8 Haneli benzersiz Alfa Şifresi Oluşturulacak.
+            SaleNo = Guid.NewGuid().ToString().Substring(0, Guid.NewGuid().ToString().IndexOf("-")); // 8 Haneli benzersiz Alfa Şifresi Oluşturulacak.
         }
 
         // Relational Properties

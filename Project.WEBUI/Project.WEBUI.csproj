@@ -620,6 +620,7 @@
     <Compile Include="Models\VMClasses\CheckoutVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Models\VMClasses\PaymentVM.cs" />
+    <Compile Include="Models\VMClasses\SaleResvervationTicketVM.cs" />
     <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
