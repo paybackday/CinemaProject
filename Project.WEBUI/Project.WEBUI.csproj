@@ -652,6 +652,7 @@
     <Content Include="Views\Reservation\Seat.cshtml" />
     <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
     <Content Include="Views\Reservation\CheckOutSale.cshtml" />
+    <Content Include="Views\Reservation\ConfirmReservation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

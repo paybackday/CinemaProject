@@ -50,7 +50,7 @@ new SelectListItem
 Text = x.ToString(),
 Value = x.ToString(),
 Selected = (x == students[0])
-}), new { @class = "login__input", @id = "dropDownMenu" })
+}), new { @id = "dropDownMenu" })
                         </span>
                     </li>
 
@@ -67,9 +67,6 @@ Selected = (x == students[0])
 
                 }
                 <h2 class="page-heading">Kart Bilgilerinizi Giriniz</h2>
-
-                @using (Html.BeginForm("GetTicket", "Reservation", FormMethod.Post, new { @class = "login" }))
-                {
 
 
 
@@ -125,7 +122,7 @@ Selected = (x == students[0])
                     <div class="order">
                         <button type="submit" class="btn btn-md btn--warning btn--wide">Ödeme Yap</button>
                     </div>
-                }
+                
 
 
             </div>

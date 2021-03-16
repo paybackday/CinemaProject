@@ -15,6 +15,7 @@ namespace Project.WEBUI.Controllers
         MovieRepository _mRep;
         SessionRepository _sesRep;
         SaloonRepository _salRep;
+        SaleRepository _saleRep;
         MovieSessionSaloonRepository _mvpRep;
         public ReservationController()
         {
@@ -23,6 +24,7 @@ namespace Project.WEBUI.Controllers
             _sesRep = new SessionRepository();
             _salRep = new SaloonRepository();
             _mvpRep = new MovieSessionSaloonRepository();
+            _saleRep = new SaleRepository();
         }
         // GET: Reservation
        
@@ -83,7 +85,7 @@ namespace Project.WEBUI.Controllers
                 
                 TempData["choise"] = "Rezervasyon"; // Bilet turu tercihini kullaniciya gosterilmek icin olusuturulan TempData
                 TempData["reservationSeats"] = buyedSeats.Trim(':'); //Secilen koltuklari kullaniciya gostemek icin olusturulan TempData.
-
+                TempData.Keep();
                 
                 ViewBag.maxStudents = (reservationSeats.Count()) - 1;
 
@@ -101,6 +103,7 @@ namespace Project.WEBUI.Controllers
 
                 TempData["choise"] = "Satış";
                 TempData["saleSeats"] = buyedSeats.Trim(':');
+                TempData.Keep();
 
                 ViewBag.maxStudents = (saleSeats.Count()) - 1;
 
@@ -124,6 +127,51 @@ namespace Project.WEBUI.Controllers
 
         public ActionResult CheckOutSale() {
 
+            return View();
+        }
+
+        public ActionResult ConfirmReservation(int movieID, int saloonID, int sessionID, int genreID, string ticketPrice,string seats) {
+            int userID=0;
+
+            if (Session["member"] != null)
+            {
+                userID = (Session["member"] as AppUser).ID;
+            }
+            else if (Session["vip"] != null) 
+            {
+                userID = (Session["vip"] as AppUser).ID;
+            }
+
+            Sale toBeAdded = new Sale()
+            {
+                AppUserID = userID,
+                MovieID = movieID,
+                SessionID = sessionID,
+                GenreID = genreID,
+                Type = ENTITIES.Enums.PaymentType.JustReservation,
+                SaleType=ENTITIES.Enums.SaleType.Reservation,
+                TicketPrice=Convert.ToDecimal(ticketPrice)
+            };
+            _saleRep.Add(toBeAdded);
+
+            string[] selectedSeats = seats.Trim().Split(':');
+
+            List<SeatListVM> characterNumber = new List<SeatListVM>();
+
+            for (int i = 0; i < selectedSeats.Length; i++)
+            {
+                string[] seat = selectedSeats[i].Split('-');
+                characterNumber.Add(new SeatListVM { Character = seat[0], Number = Convert.ToInt32(seat[1]) });
+            }
+            
+            foreach (SeatListVM item in characterNumber)
+            {
+                Seat result = _sRep.FirstOrDefault(x => x.SaloonID == saloonID && x.SessionID == sessionID && x.Character == item.Character && x.Number == item.Number);
+                result.SeatActive = true;
+                _sRep.Update(result);
+            }
+            
+            
             return View();
         }
     }
