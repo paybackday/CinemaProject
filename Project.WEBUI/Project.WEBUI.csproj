@@ -4982,6 +4982,12 @@
     <Content Include="Areas\Panel\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Panel\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Panel\Views\Main\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\User\UserList.cshtml" />
+    <Content Include="Areas\Panel\Views\User\UpdateUser.cshtml" />
+    <Content Include="Areas\Panel\Views\Employee\EmployeeList.cshtml" />
+    <Content Include="Areas\Panel\Views\Employee\UpdateEmployee.cshtml" />
+    <Content Include="Areas\Panel\Views\Employee\AddEmployee.cshtml" />
+    <Content Include="Areas\Panel\Views\Movie\MovieList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4993,7 +4999,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Panel\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Panel\Controllers\MainController.cs" />
+    <Compile Include="Areas\Panel\Controllers\MovieController.cs" />
+    <Compile Include="Areas\Panel\Controllers\UserController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -5004,6 +5013,7 @@
     </Compile>
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
     <Compile Include="Models\VMClasses\CheckoutVM.cs" />
+    <Compile Include="Models\VMClasses\EmployeeVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Models\VMClasses\PaymentVM.cs" />
     <Compile Include="Models\VMClasses\SaleResvervationTicketVM.cs" />

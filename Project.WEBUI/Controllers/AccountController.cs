@@ -19,15 +19,7 @@ namespace Project.WEBUI.Controllers
             apRep = new AppUserRepository();
             apdRep = new UserProfileRepository();
         }
-        /*[HttpPost]
-        public ActionResult GetName(int id) 
-        {
-            AppUserVM apvm = new AppUserVM
-            {
-                UserProfile = apdRep.FirstOrDefault(x => x.ID == id)
-            };
-            return PartialView("GetName",apvm);
-        }*/
+     
         private ActionResult AktifKontrol() {
             ViewBag.Hata = "Hesabınız aktif değildir. Lütfen hesabınızı email adresinize gönderdiğimiz bağlantı ile aktif hale getirin";
             return View("Login");

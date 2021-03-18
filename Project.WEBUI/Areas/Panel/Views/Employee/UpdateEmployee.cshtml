@@ -1,0 +1,148 @@
+﻿@model EmployeeVM
+@{
+    ViewBag.Title = "UpdateEmployee";
+    Layout = "~/Areas/Panel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Çalışan İşlemleri</h3>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Çalışan Bilgileri Düzenle <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("UpdateEmployee", "Employee", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+                            @Html.HiddenFor(x => x.Employee.ID)
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Ad <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Employee.FirstName, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Employee.FirstName)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    Soyad <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Employee.LastName, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Employee.LastName)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    TCKNO <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Employee.TCNO, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Employee.TCNO)
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.BookingClerk, new { @class = "flat" }) &nbsp;@Html.Label("Gişe Memuru")
+                                    &nbsp; @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor, new { @class = "flat" })&nbsp;@Html.Label("Gişe Sorumlusu")
+                                    &nbsp; @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.Management, new { @class = "flat" }) &nbsp; @Html.Label("Yönetim")
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">E-Mail <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Employee.Email, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Password <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.PasswordFor(x => x.Employee.Password, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">ConfirmPasword <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.PasswordFor(x => x.Employee.ConfirmPassword, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Telefon <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Employee.MobilePhone, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-phone form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Employee.MobilePhone)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Maaş <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextAreaFor(x => x.Employee.Sallary, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-home form-control-feedback right"></span>
+                                </div>
+                            </div>
+                          
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Güncelle</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+

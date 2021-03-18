@@ -20,7 +20,7 @@ namespace Project.ENTITIES.Models
         [Required(ErrorMessage ="Şifre alanı boş geçilemez.")]
         public string Password { get; set; }
 
-        
+
         [Required(ErrorMessage = "Şifre tekrar alanı boş geçilemez.")]
         [Compare("Password", ErrorMessage = "Girilen şifreler eşleşmiyor.")]
         public string ConfirmPassword { get; set; }

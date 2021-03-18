@@ -1,0 +1,142 @@
+﻿@model AppUserVM
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Areas/Panel/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Kullanıcı İşlemleri</h3>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Kullanıcı Düzenle <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("UpdateUser", "User", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+                            @Html.HiddenFor(x => x.AppUser.ID)
+                            @Html.HiddenFor(x => x.UserProfile.ID)
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Ad <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.UserProfile.FirstName, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.UserProfile.FirstName)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    Soyad <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.UserProfile.LastName, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.UserProfile.LastName)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Cinsiyet <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.RadioButtonFor(x => x.UserProfile.Gender, Project.ENTITIES.Enums.Gender.Erkek, new { @class = "flat" }) &nbsp;@Html.Label("Erkek")
+                                    &nbsp; @Html.RadioButtonFor(x => x.UserProfile.Gender, Project.ENTITIES.Enums.Gender.Kadın, new { @class = "flat" })&nbsp;@Html.Label("Kadın")
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.RadioButtonFor(x => x.AppUser.Role, Project.ENTITIES.Enums.UserRole.Member, new { @class = "flat" }) &nbsp;@Html.Label("User")
+                                    &nbsp; @Html.RadioButtonFor(x => x.AppUser.Role, Project.ENTITIES.Enums.UserRole.Vip, new { @class = "flat" })&nbsp;@Html.Label("Vip")
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">E-Mail <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.AppUser.Email, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Password <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.PasswordFor(x => x.AppUser.Password, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">ConfirmPasword <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.PasswordFor(x => x.AppUser.ConfirmPassword, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Telefon <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.UserProfile.MobilePhone, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-phone form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.UserProfile.MobilePhone)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Adres <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextAreaFor(x => x.UserProfile.Address, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-home form-control-feedback right"></span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Güncelle</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
