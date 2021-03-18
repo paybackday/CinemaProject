@@ -135,6 +135,7 @@
     <Content Include="Areas\Panel\PanelTools\documentation\js\shBrushXml.js" />
     <Content Include="Areas\Panel\PanelTools\documentation\js\shCore.js" />
     <Content Include="Areas\Panel\PanelTools\gulpfile.js" />
+    <Content Include="Areas\Panel\PanelTools\img\seko.jpg" />
     <Content Include="Areas\Panel\PanelTools\LICENSE.txt" />
     <Content Include="Areas\Panel\PanelTools\production\calendar.html" />
     <Content Include="Areas\Panel\PanelTools\production\chartjs.html" />
@@ -4988,6 +4989,8 @@
     <Content Include="Areas\Panel\Views\Employee\UpdateEmployee.cshtml" />
     <Content Include="Areas\Panel\Views\Employee\AddEmployee.cshtml" />
     <Content Include="Areas\Panel\Views\Movie\MovieList.cshtml" />
+    <Content Include="Areas\Panel\Views\Movie\AddMovie.cshtml" />
+    <Content Include="Areas\Panel\Views\Movie\UpdateMovie.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5060,6 +5063,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Panel\Data\" />
+    <Folder Include="Pictures\" />
     <Folder Include="Views\Panel\" />
   </ItemGroup>
   <ItemGroup>

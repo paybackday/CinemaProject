@@ -18,6 +18,8 @@ namespace Project.WEBUI.Models.VMClasses
         public List<MovieActor> MovieActors { get; set; }
         public List<Movie> Movies { get; set; }
         public List<Genre> Genres { get; set; }
+        public Director Director { get; set; }
+        public List<Director> Directors { get; set; }
 
         public IPagedList<Movie> PagedMovies { get; set; }
     }

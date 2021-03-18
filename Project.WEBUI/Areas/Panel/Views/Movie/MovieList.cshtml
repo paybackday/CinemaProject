@@ -24,6 +24,8 @@
             {
                 <div class="alert alert-success">@TempData["employeeSuccess"]</div>
             }
+
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -44,15 +46,16 @@
                             <thead>
                                 <tr>
                                     <th>Film ismi</th>
-                                    @*<th>Açıklama</th>*@
+
                                     <th>Yönetmen</th>
-                                    <th>Oyuncular</th>
+
                                     <th>Film tarihi</th>
 
                                     <th>Süre</th>
                                     <th>Film türü</th>
 
                                     <th>Fotoğraf</th>
+                                    <th>Tarih</th>
 
                                     <th>İşlemler</th>
                                 </tr>
@@ -62,13 +65,35 @@
                                 {
                                     <tr>
                                         <td>@item.MovieName</td>
-                                        @*<td>@item.Description.Min()</td>*@
-                                        <td>@item.Director.FirstName</td>
-                                        <td>@item.MovieActors</td>
+
+                                        @if (item.Director != null)
+                                        {
+                                            <td>@item.Director.FirstName</td>
+                                        }
                                         <td>@item.MovieYear</td>
-                                        <th>@item.MovieLength</th>
-                                        <th>@item.Genre.GenreName</th>
-                                        <th>@item.MovieImagePath</th>
+                                        <td>@item.MovieLength</td>
+                                        @if (item.Genre != null)
+                                        {
+                                            <td>@item.Genre.GenreName</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Film türü belirtilmemiş</td>
+                                        }
+                                        @if (item.MovieImagePath == null)
+                                        {
+                                            <td>
+                                                <img src="~/Areas/Panel/PanelTools/img/seko.jpg" />
+
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td><img width="150" height="50" title="@item.MovieName" src="@item.MovieImagePath" /></td>
+                                        }
+
+
+
 
 
 
@@ -79,8 +104,10 @@
                                     </tr>
                                 }
 
+
                             </tbody>
                         </table>
+
 
 
                     </div>
