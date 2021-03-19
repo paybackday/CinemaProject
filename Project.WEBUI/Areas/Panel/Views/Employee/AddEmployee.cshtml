@@ -151,27 +151,3 @@
 
 
 
-
-@*@using (Html.BeginForm("AddEmployee", "Employee", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
-    {
-
-
-
-
-
-
-
-        <div class="form-group">
-            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.BookingClerk, new { @class = "flat" }) &nbsp;@Html.Label("Gişe Memuru")
-                &nbsp; @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor, new { @class = "flat" })&nbsp;@Html.Label("Gişe Sorumlusu") &nbsp; @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.Management, new { @class = "flat" })&nbsp;@Html.Label("Yönetim")
-
-            </div>
-        </div>
-
-
-
-    }*@
-
-

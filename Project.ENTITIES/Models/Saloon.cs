@@ -15,6 +15,7 @@ namespace Project.ENTITIES.Models
             {
                 return Seats.Count();
             } 
+            
         }
 
         public Saloon()

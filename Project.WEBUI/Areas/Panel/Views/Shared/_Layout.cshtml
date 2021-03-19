@@ -84,6 +84,22 @@
                                         <li><a href="@Url.Action("AddMovie","Movie", new { Area = "Panel" })">Film Ekleme</a></li>
                                     </ul>
                                 </li>
+                                <li>
+                                    <a><i class="fa fa-user"></i> Salon İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("MovieList","Movie",new { Area="Panel"})">Salon Listesi</a></li>
+                                        <li><a href="@Url.Action("AddMovie","Movie", new { Area = "Panel" })">Salon Ekleme</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-user"></i>Oyuncu İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("ActorList","Actor",new { Area="Panel"})">Oyuncu Listesi</a></li>
+                                        <li><a href="@Url.Action("AddActor","Actor", new { Area = "Panel" })">Oyuncu Ekleme</a></li>
+                                        <li><a href="@Url.Action("MovieActorList","Actor", new { Area = "Panel" })">Film Oyuncuları</a></li>
+
+                                    </ul>
+                                </li>
 
 
                             </ul>

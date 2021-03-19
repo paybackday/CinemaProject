@@ -4988,9 +4988,14 @@
     <Content Include="Areas\Panel\Views\Employee\EmployeeList.cshtml" />
     <Content Include="Areas\Panel\Views\Employee\UpdateEmployee.cshtml" />
     <Content Include="Areas\Panel\Views\Employee\AddEmployee.cshtml" />
-    <Content Include="Areas\Panel\Views\Movie\MovieList.cshtml" />
-    <Content Include="Areas\Panel\Views\Movie\AddMovie.cshtml" />
-    <Content Include="Areas\Panel\Views\Movie\UpdateMovie.cshtml" />
+    <Content Include="Areas\Panel\Views\MovieDash\MovieList.cshtml" />
+    <Content Include="Areas\Panel\Views\MovieDash\AddMovie.cshtml" />
+    <Content Include="Areas\Panel\Views\MovieDash\UpdateMovie.cshtml" />
+    <Content Include="Areas\Panel\Views\Saloon\SaloonList.cshtml" />
+    <Content Include="Areas\Panel\Views\Saloon\UpdateSaloon.cshtml" />
+    <Content Include="Areas\Panel\Views\Actor\ActorList.cshtml" />
+    <Content Include="Areas\Panel\Views\Actor\AddActor.cshtml" />
+    <Content Include="Areas\Panel\Views\Actor\UpdateActor.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5002,9 +5007,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Panel\Controllers\ActorController.cs" />
     <Compile Include="Areas\Panel\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Panel\Controllers\MainController.cs" />
-    <Compile Include="Areas\Panel\Controllers\MovieController.cs" />
+    <Compile Include="Areas\Panel\Controllers\MovieDashController.cs" />
+    <Compile Include="Areas\Panel\Controllers\SaloonController.cs" />
     <Compile Include="Areas\Panel\Controllers\UserController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -5014,12 +5021,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\VMClasses\ActorVM.cs" />
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
     <Compile Include="Models\VMClasses\CheckoutVM.cs" />
     <Compile Include="Models\VMClasses\EmployeeVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Models\VMClasses\PaymentVM.cs" />
     <Compile Include="Models\VMClasses\SaleResvervationTicketVM.cs" />
+    <Compile Include="Models\VMClasses\SaloonVM.cs" />
     <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -5063,6 +5072,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Panel\Data\" />
+    <Folder Include="Areas\Panel\Views\Movie\" />
     <Folder Include="Pictures\" />
     <Folder Include="Views\Panel\" />
   </ItemGroup>

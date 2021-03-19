@@ -149,16 +149,16 @@ namespace Project.DAL.StrategyPattern
             }
             context.SaveChanges();
 
-            for (int i = 1; i <=20; i++)
-            {
-                for (int j = 1; j <=10; j++)
-                {
-                    MovieActor mv = new MovieActor();
-                    mv.MovieID = i;
-                    mv.ActorID = j;
-                    context.MovieActors.Add(mv);
-                }
-            }
+            //for (int i = 1; i <=20; i++)
+            //{
+            //    for (int j = 1; j <=10; j++)
+            //    {
+            //        MovieActor mv = new MovieActor();
+            //        mv.MovieID = i;
+            //        mv.ActorID = j;
+            //        context.MovieActors.Add(mv);
+            //    }
+            //}
 
             context.SaveChanges();
 

@@ -10,14 +10,14 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
-    public class MovieController : Controller
+    public class MovieDashController : Controller
     {
 
         MovieRepository _mvRep;
         MovieActorRepository _maRep;
         GenreRepository _genRep;
   
-        public MovieController()
+        public MovieDashController()
         {
             _mvRep = new MovieRepository();
             _maRep = new MovieActorRepository();

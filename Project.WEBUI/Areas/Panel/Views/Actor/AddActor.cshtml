@@ -1,0 +1,108 @@
+﻿@model ActorVM
+@{
+    ViewBag.Title = "AddActor";
+}
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Oyuncu Ekleme İşlemleri</h3>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Oyuncu Ekleme Sayfası <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("AddActor", "Actor", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Isim <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Actor.FirstName, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Actor.FirstName)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Soyisim <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Actor.LastName, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Actor.LastName)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    Yaş <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Actor.Age, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Actor.Age)
+                                </div>
+                            </div>
+
+
+                            
+
+
+
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ülke <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Actor.Country, new { @class = "form-control col-md-7 col-xs-12" })
+                                    @Html.ValidationMessageFor(x => x.Actor.Country)
+                                    <span class="fa fa-envelope form-control-feedback right"></span>
+                                </div>
+                            </div>
+                            
+                          
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Aktör Ekle</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
