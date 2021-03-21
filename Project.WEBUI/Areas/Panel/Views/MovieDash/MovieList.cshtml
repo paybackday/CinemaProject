@@ -15,16 +15,7 @@
         <div class="clearfix"></div>
 
         <div class="row">
-            @if (TempData["updateEmployee"] != null)
-            {
-                <div class="alert alert-success">@TempData["updateEmployee"]</div>
-            }
-            else if (TempData["employeeSuccess"] != null)
-
-            {
-                <div class="alert alert-success">@TempData["employeeSuccess"]</div>
-            }
-
+            
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -99,8 +90,8 @@
 
 
                                         <td>@item.CreatedDate</td>
-                                        <td><a href="@Url.Action("UpdateMovie","Movie",new { Area="Panel",id=item.ID})" class="btn btn-warning"><i class="fa fa-edit"></i></a><a href="@Url.Action("DeleteMovie","Movie",new { Area="Panel",id=item.ID})" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
-                                        <td><a href="@Url.Action("AddMovie","Movie",new {Area = "Panel",item = item.ID})" class="btn btn-primary"><i class=" fa fa-file"></i></a></td>
+                                        <td><a href="@Url.Action("UpdateMovie","MovieDash",new { Area="Panel",id=item.ID})" class="btn btn-warning"><i class="fa fa-edit"></i></a><a href="@Url.Action("DeleteMovie","MovieDash",new { Area="Panel",id=item.ID})" class="btn btn-danger"><i class="fa fa-trash"></i></a><a href="@Url.Action("AddMovie","MovieDash",new {Area = "Panel",item = item.ID})" class="btn btn-primary"><i class=" fa fa-file"></i></a></td>
+                                       
                                     </tr>
                                 }
 

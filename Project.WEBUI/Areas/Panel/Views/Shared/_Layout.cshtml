@@ -80,15 +80,15 @@
                                 <li>
                                     <a><i class="fa fa-user"></i> Film İşlemleri<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("MovieList","Movie",new { Area="Panel"})">Film Listesi</a></li>
-                                        <li><a href="@Url.Action("AddMovie","Movie", new { Area = "Panel" })">Film Ekleme</a></li>
+                                        <li><a href="@Url.Action("MovieList","MovieDash",new { Area="Panel"})">Film Listesi</a></li>
+                                        <li><a href="@Url.Action("AddMovie","MovieDash", new { Area = "Panel" })">Film Ekleme</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-user"></i> Salon İşlemleri<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="@Url.Action("MovieList","Movie",new { Area="Panel"})">Salon Listesi</a></li>
-                                        <li><a href="@Url.Action("AddMovie","Movie", new { Area = "Panel" })">Salon Ekleme</a></li>
+                                        <li><a href="@Url.Action("SaloonList","Saloon",new { Area="Panel"})">Salon Listesi</a></li>
+                                        <li><a href="@Url.Action("UpdateSaloon","Saloon", new { Area = "Panel" })">Salon Güncelle</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -100,6 +100,20 @@
 
                                     </ul>
                                 </li>
+                                <li>
+                                    <a><i class="fa fa-user"></i>Seans İşlemleri<span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="@Url.Action("SeansList","Seans",new { Area="Panel"})">Seans Listesi</a></li>
+                                        <li><a href="@Url.Action("AddSession","Seans", new { Area = "Panel" })">Seans Ekleme</a></li>
+                                        <li><a href="@Url.Action("AddNotation","Seans", new { Area = "Panel" })">Gosterim</a></li>
+
+
+
+
+                                    </ul>
+                                </li>
+
+
 
 
                             </ul>

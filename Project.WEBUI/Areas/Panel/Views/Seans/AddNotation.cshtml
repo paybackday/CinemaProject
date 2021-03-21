@@ -1,0 +1,102 @@
+﻿@model MovieSessionSaloonVM
+@{
+    ViewBag.Title = "AddNotation";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Film Ekleme İşlemleri</h3>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row form-horizontal form-label-left">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Film Ekleme Sayfası <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("AddNotation", "Seans", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    Film seçiniz <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(x => x.Movie.ID, new SelectList(Model.Movies, "ID", "MovieName"), new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                    SalonNo seçiniz  <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(x => x.Saloon.ID, new SelectList(Model.Saloons, "ID", "SaloonNo"), new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                                  Seans seçiniz  <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(x => x.Session.ID, new SelectList(Model.Sessions, "ID", "Time"), new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user fa fa-user form-control-feedback right"></span>
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Gösterim</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+

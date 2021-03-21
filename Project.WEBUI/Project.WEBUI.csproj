@@ -4996,6 +4996,9 @@
     <Content Include="Areas\Panel\Views\Actor\ActorList.cshtml" />
     <Content Include="Areas\Panel\Views\Actor\AddActor.cshtml" />
     <Content Include="Areas\Panel\Views\Actor\UpdateActor.cshtml" />
+    <Content Include="Areas\Panel\Views\Seans\SeansList.cshtml" />
+    <Content Include="Areas\Panel\Views\Seans\AddSession.cshtml" />
+    <Content Include="Areas\Panel\Views\Seans\AddNotation.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5012,6 +5015,7 @@
     <Compile Include="Areas\Panel\Controllers\MainController.cs" />
     <Compile Include="Areas\Panel\Controllers\MovieDashController.cs" />
     <Compile Include="Areas\Panel\Controllers\SaloonController.cs" />
+    <Compile Include="Areas\Panel\Controllers\SeansController.cs" />
     <Compile Include="Areas\Panel\Controllers\UserController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -5025,12 +5029,14 @@
     <Compile Include="Models\VMClasses\AppUserVM.cs" />
     <Compile Include="Models\VMClasses\CheckoutVM.cs" />
     <Compile Include="Models\VMClasses\EmployeeVM.cs" />
+    <Compile Include="Models\VMClasses\MovieSessionSaloonVM.cs" />
     <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Models\VMClasses\PaymentVM.cs" />
     <Compile Include="Models\VMClasses\SaleResvervationTicketVM.cs" />
     <Compile Include="Models\VMClasses\SaloonVM.cs" />
     <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />
+    <Compile Include="Models\VMClasses\SessionVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -179,7 +179,7 @@ namespace Project.WEBUI.Controllers
             {
 
                 Character = selectedSeats[0],
-                    Number = selectedSeats[1], //TODO
+                    Number = selectedSeats[1], //TODO tek koltukta patlıyor bakılcak.
                     MovieName = toBeAdded.Movie.MovieName,
                     TicketPrice = Convert.ToDecimal(ticketPrice),
                     SalonID = saloonID,

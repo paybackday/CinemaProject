@@ -9,14 +9,9 @@ namespace Project.ENTITIES.Models
     public class Saloon:BaseEntity
     {
         public int SaloonNo { get; set; }
-        public int Capacity 
-        { 
-            get 
-            {
-                return Seats.Count();
-            } 
-            
-        }
+        public int Capacity { get; set; }
+
+        //Seats.Count()
 
         public Saloon()
         {

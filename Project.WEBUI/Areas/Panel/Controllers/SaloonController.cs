@@ -43,13 +43,13 @@ namespace Project.WEBUI.Areas.Panel.Controllers
             return View(svm);
         }
         [HttpPost]
-        public ActionResult UpdateSaloon([Bind(Prefix ="Saloon")] SaloonVM item)
+        public ActionResult UpdateSaloon([Bind(Prefix ="Saloon")] Saloon item)
         {
 
-            Saloon tobeUpdated = _salRep.FirstOrDefault(x => x.ID == item.Saloon.ID);
-            tobeUpdated.SaloonNo = item.Saloon.SaloonNo;
+            //Saloon tobeUpdated = _salRep.FirstOrDefault(x => x.ID == item.Saloon.ID);
+            //tobeUpdated.SaloonNo = item.Saloon.SaloonNo;
             //TODO : tobeUpdated.Capacity = item.Saloon.Capacity;// readonly set'i kapalı..
-            _salRep.Update(tobeUpdated);
+            _salRep.Update(item);
             return RedirectToAction("SaloonList");
 
         }

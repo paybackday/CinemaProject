@@ -1,0 +1,159 @@
+﻿@model SessionVM
+@{
+    ViewBag.Title = "AddSession";
+}
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Seans Ekleme İşlemleri</h3>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Seans Ekleme Sayfası <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("AddSession", "Seans", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+
+                            if (ViewBag.error != null)
+                            {
+                                <div style="margin-top:60px;text-align:center" class="alert alert-warning">@ViewBag.Mevcut</div>
+                            }
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    <label>Lütfen,Gün,ay,yıl,saat şeklinde giriniz</label> <span class="required">*</span>
+                                </label>
+
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(x => x.Session.Time, new { @id = "tarih", @Value = DateTime.Now.ToShortDateString(), @class = "form-control col-md-6 col-xs-12" })
+                                    <span class="fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Session.Time)
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Fiyat <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(x => x.Session.Price, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-user form-control-feedback right"></span>
+                                    @Html.ValidationMessageFor(x => x.Session.Price)
+                                </div>
+                            </div>
+
+
+                            <div class="clearfix"></div>
+
+                            <div id="selectTime">
+
+                            </div>
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Aktör Ekle</button>
+                                </div>
+                            </div>
+
+
+
+
+                            @*</div>*@<!--Seans Secim Bitis-->
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+                    $(function () {
+
+                        $("#tarih").datepicker({
+
+                            dateFormat: "dd/mm/yy",
+                            altFormat: "yy-mm-dd",
+                            altField: "#tarih-db",
+                            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+                            dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+                            firstDay: 1,
+                            minDate: new Date(),
+                            changeMonth: true,
+                            monthNamesShort: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+                            //Tarih secimi degistiginde...
+                            onSelect: function (dateText, inst) {
+
+                                $.ajax({
+                                    url: '@Url.Action("AddSession", "Seans")',
+                                    data: { id: @Model.Session.Time, date: dateText },
+                                    type: "POST",
+                                    cache: false,
+                                    success: function (data) {
+                                        $('#selectTime').empty();
+                                        $('#selectTime').append(data);
+                                        $(document).ajaxComplete(function (event, request, settings) {
+                                            //$('#productsDiv').height(800);
+                                            $('#selectTime').load();
+
+
+                                        });
+
+
+                                    },
+
+                                });
+
+
+
+                            }
+                        });
+
+                    });
+
+                    function submitForm(movieID, saloonID, sessionID) {
+
+
+                        $("#session").val(parseInt(sessionID));
+                        $("#seansForm").submit();
+
+                    }
+
+</script>
+
