@@ -16,23 +16,22 @@ namespace Project.DAL.StrategyPattern
     {
         protected override void Seed(MyContext context)
         {
-            AppUser au = new AppUser();//Boss Tanımlama
-            au.Role = ENTITIES.Enums.UserRole.Boss;
-            au.Active = true;
-            au.Email = "emregorentest@gmail.com";
-            au.Password = DantexCrypt.Crypt("123456");
-            au.ConfirmPassword = DantexCrypt.Crypt("123456");
-            context.AppUsers.Add(au);
+           Employee au = new Employee();//Boss Tanımlama
             
-
-            UserProfile up = new UserProfile();//Boss Profil Tanımlama
-            up.ID = au.ID;
-            up.FirstName = "Emre";
-            up.LastName = "Goren";
-            up.MobilePhone = "5541938161";
-            up.Gender = ENTITIES.Enums.Gender.Erkek;
-            context.UserProfiles.Add(up);
+            au.Email = "Serkan1903@hotmail.de";
+            au.Password = DantexCrypt.Crypt("123");
+            au.ConfirmPassword = DantexCrypt.Crypt("123");
+            au.EmployeeType = ENTITIES.Enums.EmployeeType.BookingClerk;
+            au.FirstName = "Serkan";
+            au.LastName = "Akçay";
+            au.TCNO = "21111111111";
+            au.Sallary = 5300;
+            au.MobilePhone = "5316622582";
+            context.Employees.Add(au);
             context.SaveChanges();
+
+
+
 
             AppUser vau = new AppUser();//VIP Tanımlama
             vau.Role = ENTITIES.Enums.UserRole.Vip;
@@ -45,9 +44,9 @@ namespace Project.DAL.StrategyPattern
 
             UserProfile vup = new UserProfile();//VIP Profil Tanımlama
             vup.ID = vau.ID;
-            vup.FirstName = "Kerem";
-            vup.LastName = "ACAR";
-            vup.MobilePhone = "5124789984";
+            vup.FirstName = "Serkan";
+            vup.LastName = "Akçay";
+            vup.MobilePhone = "5345997081";
             vup.Gender = ENTITIES.Enums.Gender.Erkek;
             context.UserProfiles.Add(vup);
             context.SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
 using Project.ENTITIES.Models;
+using Project.WEBUI.AuthenticationClasses;
 using Project.WEBUI.Models.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.PanelBoss.Controllers
 {
+    [BossAuthentication]
+
     public class EmployeeBossController : Controller
     {
         EmployeeRepository _empRep;

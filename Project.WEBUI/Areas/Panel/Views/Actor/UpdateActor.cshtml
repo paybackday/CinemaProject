@@ -35,6 +35,7 @@
                         <br />
                         @using (Html.BeginForm("UpdateActor", "Actor", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
                         {
+
                             Html.HiddenFor(x => x.Actor.ID);
 
                             <div class="form-group">

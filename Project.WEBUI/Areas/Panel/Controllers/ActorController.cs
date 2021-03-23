@@ -1,5 +1,6 @@
 ﻿using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
 using Project.ENTITIES.Models;
+using Project.WEBUI.AuthenticationClasses;
 using Project.WEBUI.Models.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
+    [BoxOfficeSupervisorAuthentication]
+    [ManagementAuthentication]
+    [BookingClerkAuthentication]
     public class ActorController : Controller
     {
         ActorRepository _acRep;
@@ -35,15 +39,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         }
 
 
-        public ActionResult MovieActorList( int id)//Filmin oyuncuları gelecek.
-        {
-            ActorVM avm = new ActorVM
-            {
-                MovieActors = _mvRep.Where(x => x.ActorID ==id)
-            };
-
-            return View();
-        }
+      
 
         public ActionResult AddActor()
         {
@@ -75,9 +71,16 @@ namespace Project.WEBUI.Areas.Panel.Controllers
             return View(avm);
         }
         [HttpPost]
-        public ActionResult UpdateActor([Bind(Prefix ="Actor")]Actor item)//TODO: AktorID gelmıyor.....
+        public ActionResult UpdateActor(ActorVM item)//TODO: AktorID gelmıyor.....
         {
-            _acRep.Update(item);
+            Actor toBeUpdated = _acRep.FirstOrDefault(x => x.ID == item.Actor.ID);
+            toBeUpdated.FirstName = item.Actor.FirstName;
+            toBeUpdated.LastName = item.Actor.LastName;
+            toBeUpdated.Age = item.Actor.Age;
+            toBeUpdated.Country = item.Actor.Country;
+     
+
+            _acRep.Update(toBeUpdated);
             return RedirectToAction("ActorList");
         }
     }

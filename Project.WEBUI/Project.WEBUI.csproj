@@ -5011,6 +5011,7 @@
     <Content Include="Areas\PanelBoss\Views\SeansBoss\SeansList.cshtml" />
     <Content Include="Areas\PanelBoss\Views\SeansBoss\GetNotation.cshtml" />
     <Content Include="Areas\PanelBoss\Views\UserBoss\UserList.cshtml" />
+    <Content Include="Areas\Panel\Views\PanelAccount\EmployeeLogin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5034,6 +5035,7 @@
     <Compile Include="Areas\Panel\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Panel\Controllers\MainController.cs" />
     <Compile Include="Areas\Panel\Controllers\MovieDashController.cs" />
+    <Compile Include="Areas\Panel\Controllers\PanelAccountController.cs" />
     <Compile Include="Areas\Panel\Controllers\SaloonController.cs" />
     <Compile Include="Areas\Panel\Controllers\SeansController.cs" />
     <Compile Include="Areas\Panel\Controllers\UserController.cs" />

@@ -1,4 +1,5 @@
 ﻿using Project.BLL.DesignPatterns.GenericRepository.ConcRep;
+using Project.WEBUI.AuthenticationClasses;
 using Project.WEBUI.Models.VMClasses;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.PanelBoss.Controllers
 {
+    [BossAuthentication]
+
     public class UserBossController : Controller
     {
         AppUserRepository _apRep;

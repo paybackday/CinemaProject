@@ -37,26 +37,19 @@ namespace Project.WEBUI.Controllers
         public ActionResult Login([Bind(Prefix ="AppUser")] AppUser item) 
         {
             AppUser loginUser = apRep.FirstOrDefault(x => x.Email == item.Email);
-            Employee loginEmployee = _empRep.FirstOrDefault(x => x.Email == item.Email);
-            if (loginUser==null&& loginEmployee == null) //Eğer sorgudan kullanıcı gelmiyorsa
+
+           
+            if (loginUser==null) //Eğer sorgudan kullanıcı gelmiyorsa
             {
                 ViewBag.Hata = "Bu email adresine kayıtlı kullanıcı bulunamadı";
                 return View();
             }
 
-            string decrypted = DantexCrypt.DeCrypt(loginUser.Password);
+            string decrypted = DantexCrypt.DeCrypt(loginUser.Password);//TODO:gelen employee olunca DeCrypt edemiyor patlıyor.
 
-            if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Boss)//TODO:Patronu AppUser'dan cıkarıcaz
-            {
-                if (!loginUser.Active)
-                {
-                    return AktifKontrol();
-                }
-                Session["admin"] = loginUser;
-                return RedirectToAction("Register", "Account");
-            }//If catched user is a admin
+          
 
-            else if (loginUser != null && item.Password==decrypted && loginUser.Role==ENTITIES.Enums.UserRole.Member)
+           if (loginUser != null && item.Password==decrypted && loginUser.Role==ENTITIES.Enums.UserRole.Member)
             {
                 if (!loginUser.Active)
                 {
@@ -75,21 +68,7 @@ namespace Project.WEBUI.Controllers
                 return RedirectToAction("Index", "Home");
             }//If catched user is a vip
 
-            else if (loginEmployee != null && item.Password == decrypted && loginEmployee.EmployeeType == ENTITIES.Enums.EmployeeType.Management)
-            {
-                Session["management"] = loginEmployee;
-                return RedirectToAction("dolacak buralar");
-            }
-            else if (loginEmployee != null && item.Password == decrypted && loginEmployee.EmployeeType == ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor)
-            {
-                Session["boxOfficeSupervisor"] = loginEmployee;
-                return RedirectToAction("dolacak buralar");
-            }
-            else if (loginEmployee != null && item.Password == decrypted && loginEmployee.EmployeeType == ENTITIES.Enums.EmployeeType.BookingClerk)
-            {
-                Session["bookingClerk"] = loginEmployee;
-                return RedirectToAction("dolacak buralar");//TODO: DOlacak buaralar
-            }
+           
 
             else
             {

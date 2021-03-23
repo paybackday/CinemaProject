@@ -8,6 +8,6 @@ namespace Project.ENTITIES.Enums
 {
     public enum EmployeeType
     {
-        BoxOfficeSupervisor = 1, BookingClerk = 2, Management = 3
+        Boss = 0,  BoxOfficeSupervisor = 1, BookingClerk = 2, Management = 3
     }
 }

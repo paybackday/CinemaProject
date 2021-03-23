@@ -13,5 +13,6 @@ namespace Project.WEBUI.Models.VMClasses
 
         public UserProfile UserProfile { get; set; }
         public List<UserProfile> UserProfiles { get; set; }
+       
     }
 }

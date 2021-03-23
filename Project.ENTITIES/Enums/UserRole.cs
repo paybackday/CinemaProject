@@ -8,6 +8,6 @@ namespace Project.ENTITIES.Enums
 {
     public enum UserRole
     {
-        Boss = 1 ,Admin = 2, Member = 3, Vip = 4, Employee = 5
+       Admin = 2, Member = 3, Vip = 4, Employee = 5
     }
 }
