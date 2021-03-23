@@ -3,12 +3,8 @@
     ViewBag.Title = "ActorList";
 }
 
-
 <br />
-@using (Html.BeginForm("ActorList", "Actor", new { Area = "Panel" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
-{
-    @Html.HiddenFor(x => x.Actor.ID);
-}
+
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -21,7 +17,7 @@
 
 
         <div class="row">
-          
+
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
@@ -46,36 +42,35 @@
                                     <th>Yaş</th>
                                     <th>Ulke</th>
 
-                             
-                                   
 
-                                    <th>İşlemler</th>
+
+
+                                   
                                 </tr>
                             </thead>
                             <tbody>
 
 
 
-                            
 
-                            @foreach (Actor item in Model.Actors)
-                            {
-                               
-                                <tr>
-                                    <td>@item.FirstName</td>
-                                    <td>@item.LastName</td>
-                                    <td>@item.Age</td>
-                                    <td>@item.Country</td>
-                                    
 
-                                    
+                                @foreach (Actor item in Model.Actors)
+                                {
 
-                                    @*<td>@item.CreatedDate</td>*@
-                                    <td><a href="@Url.Action("UpdateActor","Actor",new { Area="Panel",id=item.ID})" class="btn btn-warning"><i class="fa fa-edit"></i></a><a href="@Url.Action("DeleteActor","Actor",new { Area="Panel",id=item.ID})" class="btn btn-danger"><i class="fa fa-trash"></i></a><a href="@Url.Action("AddActor","Actor",new {Area = "Panel",item = item.ID})" class="btn btn-primary"><i class=" fa fa-file"></i></a></td>
-                                   
+                                    <tr>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Age</td>
+                                        <td>@item.Country</td>
 
-                                </tr>
-                            }
+
+
+
+                                        @*<td>@item.CreatedDate</td>*@
+                                     
+
+                                    </tr>
+                                }
 
 
                             </tbody>
@@ -88,3 +83,5 @@
         </div>
     </div>
 </div>
+
+

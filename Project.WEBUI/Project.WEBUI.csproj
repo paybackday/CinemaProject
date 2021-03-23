@@ -4999,6 +4999,18 @@
     <Content Include="Areas\Panel\Views\Seans\SeansList.cshtml" />
     <Content Include="Areas\Panel\Views\Seans\AddSession.cshtml" />
     <Content Include="Areas\Panel\Views\Seans\AddNotation.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\web.config" />
+    <Content Include="Areas\PanelBoss\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\MainBoss\Index.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\EmployeeBoss\EmployeeList.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\EmployeeBoss\EmployeeRoleUpdate.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\MovieBoss\MovieList.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\ActorBoss\ActorList.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\SaloonBoss\SaloonList.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\SeansBoss\SeansList.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\SeansBoss\GetNotation.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\UserBoss\UserList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5010,6 +5022,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\ActorBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\EmployeeBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\MainBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\MovieBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\SaloonBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\SeansBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\UserBossController.cs" />
+    <Compile Include="Areas\PanelBoss\PanelBossAreaRegistration.cs" />
     <Compile Include="Areas\Panel\Controllers\ActorController.cs" />
     <Compile Include="Areas\Panel\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Panel\Controllers\MainController.cs" />
@@ -5018,6 +5038,12 @@
     <Compile Include="Areas\Panel\Controllers\SeansController.cs" />
     <Compile Include="Areas\Panel\Controllers\UserController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
+    <Compile Include="AuthenticationClasses\BookingClerkAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\BossAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\BoxOfficeSupervisorAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\ManagementAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\MemberAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\VIPAuthentication.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
@@ -5077,6 +5103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\PanelBoss\Data\" />
     <Folder Include="Areas\Panel\Data\" />
     <Folder Include="Areas\Panel\Views\Movie\" />
     <Folder Include="Pictures\" />

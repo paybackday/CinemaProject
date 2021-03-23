@@ -16,6 +16,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         MovieSessionSaloonRepository _mssRep;
         MovieRepository _mRep;
         SaloonRepository _salRep;
+        SeatRepository _seaRep;
 
         public SeansController()
         {
@@ -23,6 +24,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
             _mssRep = new MovieSessionSaloonRepository();
             _mRep = new MovieRepository();
             _salRep = new SaloonRepository();
+            _seaRep = new SeatRepository();
         }
         public ActionResult SeansList()
         {
@@ -88,6 +90,21 @@ namespace Project.WEBUI.Areas.Panel.Controllers
 
            
             _mssRep.Add(mss);
+
+            for (char j = 'A'; j < 'I'; j++)
+            {
+                for (int k = 1; k <= 14; k++)
+                {
+                    Seat seat = new Seat();
+                    seat.SeatActive = false;
+                    seat.SaloonID = item.Saloon.ID;
+                    seat.SessionID = item.Session.ID;
+                    seat.Character = Convert.ToString(j);
+                    seat.Number = k;
+                    _seaRep.Add(seat);
+                }
+            }
+
             //added.SessionID = item.Session.ID;
             //added.SaloonID = item.Saloon.ID;
 

@@ -36,7 +36,7 @@ namespace Project.WEBUI.Controllers
             SeatVM svm = new SeatVM
             {
                 //Tum koltuklari cek.
-                Seats = seats,//TODO:2.ci seans icin gelmiyor koltular.
+                Seats = seats,
                 Price = selectedSession.Price
             };
 
@@ -45,26 +45,7 @@ namespace Project.WEBUI.Controllers
             TempData["sessionID"] = sessionID;
 
 
-            //svm.SeatLists = new List<SeatListVM>();
-
-            //for (int i = 0; i < svm.Seats.Count; i++)
-            //{
-            //    Seat seat = svm.Seats[i];
-
-            //    SeatListVM seatList = svm.SeatLists.Find(x => x.Character == seat.Character);
-            //    if (seatList == null)
-            //    {
-            //        seatList = new SeatListVM()
-            //        {
-            //            SaloonID = seat.SaloonID,
-            //            Seats = new List<Seat>(),
-            //            Character = seat.Character
-            //        };
-            //        svm.SeatLists.Add(seatList);
-            //    }
-
-            //    seatList.Seats.Add(seat);
-            //}
+            
 
             return View(svm);
         }
@@ -135,67 +116,85 @@ namespace Project.WEBUI.Controllers
 
         public ActionResult ConfirmReservation(int movieID, int saloonID, int sessionID, int genreID, string ticketPrice, string seats)
         {
-            int userID = 0;
+            decimal toBeConverted = Convert.ToDecimal(ticketPrice);
 
-            if (Session["member"] != null)
+            var query = _saleRep.FirstOrDefault(x => x.MovieID == movieID && x.SessionID == sessionID && x.GenreID == genreID && x.TicketPrice == toBeConverted);
+            ViewBag.Seats = seats;
+            if (query ==null)
             {
-                userID = (Session["member"] as AppUser).ID;
-            }
-            else if (Session["vip"] != null)
-            {
-                userID = (Session["vip"] as AppUser).ID;
-            }
+                int userID = 0;
 
-            Sale toBeAdded = new Sale()
-            {
-                AppUserID = userID,
-                MovieID = movieID,
-                SessionID = sessionID,
-                GenreID = genreID,
-                Type = ENTITIES.Enums.PaymentType.JustReservation,
-                SaleType = ENTITIES.Enums.SaleType.Reservation,
-                TicketPrice = Convert.ToDecimal(ticketPrice)
-            };
-            _saleRep.Add(toBeAdded);
+                if (Session["member"] != null)
+                {
+                    userID = (Session["member"] as AppUser).ID;
+                }
+                else if (Session["vip"] != null)
+                {
+                    userID = (Session["vip"] as AppUser).ID;
+                }
 
-            string[] selectedSeats = seats.Trim().Split(':');
+                Sale toBeAdded = new Sale()
+                {
+                    AppUserID = userID,
+                    MovieID = movieID,
+                    SessionID = sessionID,
+                    GenreID = genreID,
+                    Type = ENTITIES.Enums.PaymentType.JustReservation,
+                    SaleType = ENTITIES.Enums.SaleType.Reservation,
+                    TicketPrice = Convert.ToDecimal(ticketPrice)
+                };
+                _saleRep.Add(toBeAdded);
 
-            List<SeatListVM> characterNumber = new List<SeatListVM>();
+                string[] selectedSeats = seats.Trim().Split(':');
 
-            for (int i = 0; i < selectedSeats.Length; i++)
-            {
-                string[] seat = selectedSeats[i].Split('-');
-                characterNumber.Add(new SeatListVM { Character = seat[0], Number = Convert.ToInt32(seat[1]) });
-            }
+                List<SeatListVM> characterNumber = new List<SeatListVM>();
 
-            foreach (SeatListVM item in characterNumber)
-            {
-                Seat result = _sRep.FirstOrDefault(x => x.SaloonID == saloonID && x.SessionID == sessionID && x.Character == item.Character && x.Number == item.Number);
-                result.SeatActive = true;
-                _sRep.Update(result);
-            }
+                for (int i = 0; i < selectedSeats.Length; i++)
+                {
+                    string[] seat = selectedSeats[i].Split('-');
+                    characterNumber.Add(new SeatListVM { Character = seat[0], Number = Convert.ToInt32(seat[1]) });
+                }
 
-            SaleResvervationTicketVM srtvm = new SaleResvervationTicketVM()
-            {
+                foreach (SeatListVM item in characterNumber)
+                {
+                    Seat result = _sRep.FirstOrDefault(x => x.SaloonID == saloonID && x.SessionID == sessionID && x.Character == item.Character && x.Number == item.Number);
+                    result.SeatActive = true;
+                    _sRep.Update(result);
+                }
 
-                Character = selectedSeats[0],
-                    Number = selectedSeats[1], //TODO tek koltukta patlıyor bakılcak.
+                SaleResvervationTicketVM srtvm = new SaleResvervationTicketVM()
+                {
+
+                   
                     MovieName = toBeAdded.Movie.MovieName,
                     TicketPrice = Convert.ToDecimal(ticketPrice),
                     SalonID = saloonID,
-                    SaleNo = toBeAdded.SaleNo//TODO: sayfa yenilendiginde yeni bir Guid ile yeni bir reservasyon olusturuyor... bunu engelle
+                    SaleNo = toBeAdded.SaleNo
+
+
+                };
+                
+
+                return View(srtvm);
+
+            }
+            else
+            {
+                SaleResvervationTicketVM svtvm = new SaleResvervationTicketVM()
+                {
 
                     
-            };
-          
+                    MovieName = query.Movie.MovieName,
+                    TicketPrice = Convert.ToDecimal(ticketPrice),
+                    SalonID = saloonID,
+                    SaleNo = query.SaleNo
 
 
+                };
+              
 
-
-
-
-          
-            return View(srtvm);
+                return View(svtvm);
+            }
 
 
 

@@ -14,10 +14,12 @@ namespace Project.WEBUI.Controllers
     {
         AppUserRepository apRep;
         UserProfileRepository apdRep;
+        EmployeeRepository _empRep;
         public AccountController()
         {
             apRep = new AppUserRepository();
             apdRep = new UserProfileRepository();
+            _empRep = new EmployeeRepository();
         }
      
         private ActionResult AktifKontrol() {
@@ -35,7 +37,8 @@ namespace Project.WEBUI.Controllers
         public ActionResult Login([Bind(Prefix ="AppUser")] AppUser item) 
         {
             AppUser loginUser = apRep.FirstOrDefault(x => x.Email == item.Email);
-            if (loginUser==null) //Eğer sorgudan kullanıcı gelmiyorsa
+            Employee loginEmployee = _empRep.FirstOrDefault(x => x.Email == item.Email);
+            if (loginUser==null&& loginEmployee == null) //Eğer sorgudan kullanıcı gelmiyorsa
             {
                 ViewBag.Hata = "Bu email adresine kayıtlı kullanıcı bulunamadı";
                 return View();
@@ -43,7 +46,7 @@ namespace Project.WEBUI.Controllers
 
             string decrypted = DantexCrypt.DeCrypt(loginUser.Password);
 
-            if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Boss)
+            if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Boss)//TODO:Patronu AppUser'dan cıkarıcaz
             {
                 if (!loginUser.Active)
                 {
@@ -62,7 +65,6 @@ namespace Project.WEBUI.Controllers
                 Session["member"] = loginUser;
                 return RedirectToAction("Index", "Home");
             }//If catched user is a member
-
             else if (loginUser != null && item.Password == decrypted && loginUser.Role == ENTITIES.Enums.UserRole.Vip)
             {
                 if (!loginUser.Active)
@@ -73,11 +75,28 @@ namespace Project.WEBUI.Controllers
                 return RedirectToAction("Index", "Home");
             }//If catched user is a vip
 
+            else if (loginEmployee != null && item.Password == decrypted && loginEmployee.EmployeeType == ENTITIES.Enums.EmployeeType.Management)
+            {
+                Session["management"] = loginEmployee;
+                return RedirectToAction("dolacak buralar");
+            }
+            else if (loginEmployee != null && item.Password == decrypted && loginEmployee.EmployeeType == ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor)
+            {
+                Session["boxOfficeSupervisor"] = loginEmployee;
+                return RedirectToAction("dolacak buralar");
+            }
+            else if (loginEmployee != null && item.Password == decrypted && loginEmployee.EmployeeType == ENTITIES.Enums.EmployeeType.BookingClerk)
+            {
+                Session["bookingClerk"] = loginEmployee;
+                return RedirectToAction("dolacak buralar");//TODO: DOlacak buaralar
+            }
+
             else
             {
                 ViewBag.Hata = "Email adresi veya şifrenizi hatalı girdiniz.";
                 return View();
             }
+
         }
 
 

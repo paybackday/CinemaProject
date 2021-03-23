@@ -9,15 +9,22 @@ namespace Project.ENTITIES.Models
     public class Saloon:BaseEntity
     {
         public int SaloonNo { get; set; }
-        public int Capacity { get; set; }
+        public int Capacity
+        {
+            get
+            {
+                return Seats.Where(x=> x.SaloonID == this.ID).Count();
+            }
+            
+        }
 
         //Seats.Count()
 
         public Saloon()
         {
-            //Seats = new List<Seat>();
+            Seats = new List<Seat>();//TODO:Bakılacak
 
-            
+
         }
 
 
@@ -26,6 +33,7 @@ namespace Project.ENTITIES.Models
         public virtual List<MovieSessionSaloon> MovieSessionSaloons { get; set; }
 
         public virtual List<Seat> Seats { get; set; }
+
 
 
     }

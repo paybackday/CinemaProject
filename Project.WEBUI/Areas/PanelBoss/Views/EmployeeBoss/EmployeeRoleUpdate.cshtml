@@ -1,0 +1,103 @@
+﻿@model EmployeeVM
+@{
+    ViewBag.Title = "EmployeeRoleUpdate";
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Çalışan İşlemleri</h3>
+            </div>
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Çalışan Bilgileri Düzenle <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+
+                            <li>
+                                <a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br />
+                        @using (Html.BeginForm("EmployeeRoleUpdate", "EmployeeBoss", new { Area = "PanelBoss" }, FormMethod.Post, new { @class = "form-horizontal form-label-left" }))
+                        {
+                            @Html.HiddenFor(x => x.Employee.ID)
+
+                    <div class="form-group">
+                        <br />
+                        <br />
+                        <label for="middle-name" class="">@Model.Employee.FirstName @Model.Employee.LastName <span class="required"></span></label>
+                        <br />
+                        <label for="middle-name" class=""> Telefon numarası : @Model.Employee.MobilePhone  <span class="required"></span></label>
+                        <br />
+                        <label for="middle-name" class=""> Tckno : @Model.Employee.TCNO  <span class="required"></span></label>
+                        <br />
+                        <label for="middle-name" class=""> Email : @Model.Employee.Email  <span class="required"></span></label>
+                        <br />
+                        <label for="middle-name" class=""> Çalışan durumu : @Model.Employee.Status  <span class="required"></span></label>
+
+
+
+
+                    </div>
+                            
+                           
+
+                           
+
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Rol <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.BookingClerk, new { @class = "flat" }) &nbsp;@Html.Label("Gişe Memuru")
+                                    &nbsp; @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor, new { @class = "flat" })&nbsp;@Html.Label("Gişe Sorumlusu")
+                                    &nbsp; @Html.RadioButtonFor(x => x.Employee.EmployeeType, Project.ENTITIES.Enums.EmployeeType.Management, new { @class = "flat" }) &nbsp; @Html.Label("Yönetim")
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Maaş <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextAreaFor(x => x.Employee.Sallary, new { @class = "form-control col-md-7 col-xs-12" })
+                                    <span class="fa fa-home form-control-feedback right"></span>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Güncelle</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+

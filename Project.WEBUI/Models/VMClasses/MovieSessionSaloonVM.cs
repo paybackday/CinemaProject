@@ -15,5 +15,7 @@ namespace Project.WEBUI.Models.VMClasses
         public Saloon Saloon { get; set; }
         public Session Session { get; set; }
         public MovieSessionSaloon  MovieSessionSaloon { get; set; }
+        public List<MovieSessionSaloon> MovieSessionSaloons { get; set; }
+
     }
 }

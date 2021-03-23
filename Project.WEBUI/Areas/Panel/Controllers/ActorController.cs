@@ -23,7 +23,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         }
         // GET: Panel/Actor
         public ActionResult ActorList()
-        {//TODO: Foreach'e bakılacak
+        {
             ActorVM acvm = new ActorVM
             {
                 Actors = _acRep.GetActives(),

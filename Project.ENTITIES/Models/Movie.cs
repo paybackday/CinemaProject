@@ -9,7 +9,7 @@ namespace Project.ENTITIES.Models
 {
     public class Movie : BaseEntity
     {
-        //todo:ModelState.Valid kullanılacak.
+  
         [Required(ErrorMessage = "Film isim alanı boş geçilemez.")]
         public string MovieName { get; set; }
         public string Description { get; set; }

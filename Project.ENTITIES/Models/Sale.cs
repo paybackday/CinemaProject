@@ -13,6 +13,7 @@ namespace Project.ENTITIES.Models
         public int? AppUserID { get; set; }
         public int MovieID { get; set; }
         public int SessionID { get; set; }
+       
         public int GenreID { get; set; }
         public int? EmployeeID { get; set; }
         public PaymentType Type { get; set; }
@@ -29,7 +30,7 @@ namespace Project.ENTITIES.Models
         }
 
 
-        //todo:Quantity
+     
 
         public Sale()
         {
