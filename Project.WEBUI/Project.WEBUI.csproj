@@ -5012,6 +5012,7 @@
     <Content Include="Areas\PanelBoss\Views\SeansBoss\GetNotation.cshtml" />
     <Content Include="Areas\PanelBoss\Views\UserBoss\UserList.cshtml" />
     <Content Include="Areas\Panel\Views\PanelAccount\EmployeeLogin.cshtml" />
+    <Content Include="Areas\PanelBoss\Views\SaleBoss\SaleList.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5027,6 +5028,7 @@
     <Compile Include="Areas\PanelBoss\Controllers\EmployeeBossController.cs" />
     <Compile Include="Areas\PanelBoss\Controllers\MainBossController.cs" />
     <Compile Include="Areas\PanelBoss\Controllers\MovieBossController.cs" />
+    <Compile Include="Areas\PanelBoss\Controllers\SaleBossController.cs" />
     <Compile Include="Areas\PanelBoss\Controllers\SaloonBossController.cs" />
     <Compile Include="Areas\PanelBoss\Controllers\SeansBossController.cs" />
     <Compile Include="Areas\PanelBoss\Controllers\UserBossController.cs" />
@@ -5061,6 +5063,7 @@
     <Compile Include="Models\VMClasses\MovieVM.cs" />
     <Compile Include="Models\VMClasses\PaymentVM.cs" />
     <Compile Include="Models\VMClasses\SaleResvervationTicketVM.cs" />
+    <Compile Include="Models\VMClasses\SaleVM.cs" />
     <Compile Include="Models\VMClasses\SaloonVM.cs" />
     <Compile Include="Models\VMClasses\SeatListVM.cs" />
     <Compile Include="Models\VMClasses\SeatVM.cs" />

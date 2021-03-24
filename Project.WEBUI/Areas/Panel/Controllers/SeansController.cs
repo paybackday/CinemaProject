@@ -10,9 +10,9 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
-    [BoxOfficeSupervisorAuthentication]
-    [ManagementAuthentication]
-    [BookingClerkAuthentication]
+    //[BoxOfficeSupervisorAuthentication]
+    //[ManagementAuthentication]
+    //[BookingClerkAuthentication]
     public class SeansController : Controller
     {
         // GET: Panel/Seans

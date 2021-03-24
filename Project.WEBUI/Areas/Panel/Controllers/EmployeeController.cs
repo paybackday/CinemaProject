@@ -110,13 +110,6 @@ namespace Project.WEBUI.Areas.Panel.Controllers
             return RedirectToAction("EmployeeList");
         }
 
-        public ActionResult GetEmployee(int id)//TODO: Bilgi sayfasıdır Employeeler hakkında 
-        {
-            EmployeeVM evm = new EmployeeVM
-            {
-                Employee = _empRep.FirstOrDefault(x => x.ID == id)
-            };
-            return View(evm);
-        }
+       
     }
 }

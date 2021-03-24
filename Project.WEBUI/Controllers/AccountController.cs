@@ -45,7 +45,7 @@ namespace Project.WEBUI.Controllers
                 return View();
             }
 
-            string decrypted = DantexCrypt.DeCrypt(loginUser.Password);//TODO:gelen employee olunca DeCrypt edemiyor patlıyor.
+            string decrypted = DantexCrypt.DeCrypt(loginUser.Password);
 
           
 

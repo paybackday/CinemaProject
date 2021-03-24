@@ -10,7 +10,10 @@
             <div class="title_left">
                 <h3>Seans Ekleme İşlemleri</h3>
             </div>
-
+            @if(ViewBag.error !=null)
+            {
+        <div class="alert alert-success">@ViewBag.error</div>
+            }
 
         </div>
         <div class="clearfix"></div>
