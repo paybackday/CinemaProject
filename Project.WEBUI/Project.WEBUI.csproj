@@ -5042,10 +5042,8 @@
     <Compile Include="Areas\Panel\Controllers\SeansController.cs" />
     <Compile Include="Areas\Panel\Controllers\UserController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
-    <Compile Include="AuthenticationClasses\BookingClerkAuthentication.cs" />
     <Compile Include="AuthenticationClasses\BossAuthentication.cs" />
-    <Compile Include="AuthenticationClasses\BoxOfficeSupervisorAuthentication.cs" />
-    <Compile Include="AuthenticationClasses\ManagementAuthentication.cs" />
+    <Compile Include="AuthenticationClasses\AllRolePassedAuthentication.cs" />
     <Compile Include="AuthenticationClasses\MemberAuthentication.cs" />
     <Compile Include="AuthenticationClasses\VIPAuthentication.cs" />
     <Compile Include="Controllers\AccountController.cs" />

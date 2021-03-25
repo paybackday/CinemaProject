@@ -84,7 +84,7 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button type="submit" class="btn btn-success">Aktör Ekle</button>
+                                    <button type="submit" class="btn btn-success">Seans Ekle</button>
                                 </div>
                             </div>
 
@@ -105,58 +105,5 @@
     </div>
 </div>
 
-<script type="text/javascript">
 
-                    $(function () {
-
-                        $("#tarih").datepicker({
-
-                            dateFormat: "dd/mm/yy",
-                            altFormat: "yy-mm-dd",
-                            altField: "#tarih-db",
-                            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-                            dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
-                            firstDay: 1,
-                            minDate: new Date(),
-                            changeMonth: true,
-                            monthNamesShort: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
-                            //Tarih secimi degistiginde...
-                            onSelect: function (dateText, inst) {
-
-                                $.ajax({
-                                    url: '@Url.Action("AddSession", "Seans")',
-                                    data: { id: @Model.Session.Time, date: dateText },
-                                    type: "POST",
-                                    cache: false,
-                                    success: function (data) {
-                                        $('#selectTime').empty();
-                                        $('#selectTime').append(data);
-                                        $(document).ajaxComplete(function (event, request, settings) {
-                                            //$('#productsDiv').height(800);
-                                            $('#selectTime').load();
-
-
-                                        });
-
-
-                                    },
-
-                                });
-
-
-
-                            }
-                        });
-
-                    });
-
-                    function submitForm(movieID, saloonID, sessionID) {
-
-
-                        $("#session").val(parseInt(sessionID));
-                        $("#seansForm").submit();
-
-                    }
-
-</script>
 

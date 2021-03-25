@@ -14,7 +14,8 @@ namespace Project.WEBUI.AuthenticationClasses
             {
                 return true;
             }
-            httpContext.Response.Redirect("EmployeeLogin/PanelAccount/");
+            httpContext.Session.Clear();
+            httpContext.Response.Redirect("~/Panel/PanelAccount/EmployeeLogin");
             return false;
         }
     }

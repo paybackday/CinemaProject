@@ -10,9 +10,8 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
-    //[BoxOfficeSupervisorAuthentication]
-    //[ManagementAuthentication]
-    //[BookingClerkAuthentication]
+    [AllRolePassedAuthentication]
+  
     public class SeansController : Controller
     {
         // GET: Panel/Seans
@@ -56,7 +55,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
             {
                 return View("AddSession");
             }
-            ViewBag.error = "Seans saati veya tarih eklenmedi lütfen tekrar deneyiniz";//TODO:bakılacak.
+            ViewBag.error = "Seans saati veya tarih eklenmedi lütfen tekrar deneyiniz";
             _sRep.Add(item);
             return RedirectToAction("SeansList");
         }

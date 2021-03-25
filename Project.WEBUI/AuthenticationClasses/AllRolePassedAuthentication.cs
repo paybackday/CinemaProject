@@ -6,15 +6,16 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.AuthenticationClasses
 {
-    public class BookingClerkAuthentication:AuthorizeAttribute
+    public class AllRolePassedAuthentication:AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["bookingClerk"] != null)
+            if(httpContext.Session["boxSupervisor"] !=null || httpContext.Session["management"]!=null || httpContext.Session["bookingClerk"]!=null)
             {
                 return true;
             }
-            httpContext.Response.Redirect("EmployeeLogin/PanelAccount/");
+            httpContext.Session.Clear();
+            httpContext.Response.Redirect("~/Panel/PanelAccount/EmployeeLogin");
             return false;
         }
     }

@@ -10,6 +10,7 @@ namespace Project.WEBUI.Areas.PanelBoss.Controllers
     [BossAuthentication]
     public class MainBossController : Controller
     {
+        [BossAuthentication]
         // GET: PanelBoss/MainBoss
         public ActionResult Index()
         {

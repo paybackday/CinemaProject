@@ -66,8 +66,16 @@
                                     <td>@item.TicketPrice ₺</td>
                                     <td>@item.Session.Time</td>
 
-                                    <td>@item.Employee.FirstName @item.Employee.LastName</td>
-                                  
+                                    @if (item.Employee != null)
+                                    {
+                                        <td>@item.Employee.FirstName @item.Employee.LastName</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>Belitilmemiş</td>
+                                    }
+
 
 
 

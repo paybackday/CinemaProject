@@ -11,9 +11,8 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
-    [BoxOfficeSupervisorAuthentication]
-    [ManagementAuthentication]
-    [BookingClerkAuthentication]
+    [AllRolePassedAuthentication]
+    
     public class MovieDashController : Controller
     {
 
