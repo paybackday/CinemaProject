@@ -1,0 +1,6 @@
+Proje Standartlarý....
+Deðiþken isimleri küçük harfle baþlayarak CamelCase yazýlacak ve anlamlý bir þekilde oluþturulacak.
+Metot isimleri PascalCase olacak ve emir kipin de olacak.
+Türkçe Karakter kullanýlmayacak
+Field isimleri Baþlarýn da  alt tire Bulunarak yazýlacak.
+Class isimleri Tekil olacak.
