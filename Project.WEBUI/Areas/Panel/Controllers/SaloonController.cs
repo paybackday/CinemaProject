@@ -48,12 +48,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         [HttpPost]
         public ActionResult UpdateSaloon([Bind(Prefix ="Saloon")] Saloon item)
         {
-            //TODO : SaleSeat ekleme yapılacak.
-            //TODO : CSS'ler fotolar halledilecek..
-            //TODO : Sevim Update Description
-            //Saloon tobeUpdated = _salRep.FirstOrDefault(x => x.ID == item.Saloon.ID);
-            //tobeUpdated.SaloonNo = item.Saloon.SaloonNo;
-            //TODO : tobeUpdated.Capacity = item.Saloon.Capacity;// readonly set'i kapalı..
+            
             _salRep.Update(item);
             return RedirectToAction("SaloonList");
 

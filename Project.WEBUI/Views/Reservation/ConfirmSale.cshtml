@@ -1,0 +1,48 @@
+﻿@model SaleResvervationTicketVM
+@{
+    ViewBag.Title = "ConfirmSale";
+}
+
+<section class="container">
+    <div class="order-container">
+        <div class="order">
+            <img class="order__images" alt='' src="images/tickets.png">
+            <p class="order__title">
+                Teşekkür Ederiz <br>  <br />
+                <br />
+                @if (TempData["paymentSuccess"] != null)
+                {
+                    <span class="order__descript">@TempData["paymentSuccess"]</span>
+                }
+            </p>
+
+            <p class="order__title"><br><span class="order__descript">Ögrenci bileti alanlar ögrenci kimlik kartlarınıda yanınızda getirmeyi unutmayın  aksi takdirde biletiniz iptal olacaktır..</span></p>
+        </div>
+
+        <div class="ticket">
+            <div class="ticket-position">
+                <div class="ticket__indecator indecator--pre"><div class="indecator-text pre--text">online ticket</div> </div>
+                <div class="ticket__inner">
+
+                    <div class="ticket-secondary">
+                        <span class="ticket__item">Ticket number <strong class="ticket__number">@Model.SaleNo</strong></span>
+                        <span class="ticket__item ticket__date">@Model.TicketDate</span>
+                        <span class="ticket__item">Cinema: <span class="ticket__cinema">Sinfleks</span></span>
+                        <span class="ticket__item">Salon: <span class="ticket__hall">@Model.SalonID nolu salon</span></span>
+                        <span class="ticket__item ticket__price">price: <strong class="ticket__cost">@Model.TicketPrice ₺</strong></span>
+                    </div>
+
+                    <div class="ticket-primery">
+                        <span class="ticket__item ticket__item--primery ticket__film">Film<br><strong class="ticket__movie">@Model.MovieName</strong></span>
+                        <span class="ticket__item ticket__item--primery">Sits: <span class="ticket__place">@ViewBag.Seats</span></span>
+                    </div>
+
+
+                </div>
+                <div class="ticket__indecator indecator--post"><div class="indecator-text post--text">online ticket</div></div>
+            </div>
+        </div>
+
+    </div>
+</section>
+

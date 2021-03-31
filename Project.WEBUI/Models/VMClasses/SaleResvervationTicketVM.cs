@@ -9,6 +9,7 @@ namespace Project.WEBUI.Models.VMClasses
     public class SaleResvervationTicketVM
     {
         public string Character { get; set; }
+        public DateTime TicketDate { get; set; }
         public string Number { get; set; }
         public decimal TicketPrice { get; set; }
         public string   MovieName { get; set; }

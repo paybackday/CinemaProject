@@ -5107,6 +5107,7 @@
     <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
     <Content Include="Views\Reservation\CheckOutSale.cshtml" />
     <Content Include="Views\Reservation\ConfirmReservation.cshtml" />
+    <Content Include="Views\Reservation\ConfirmSale.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

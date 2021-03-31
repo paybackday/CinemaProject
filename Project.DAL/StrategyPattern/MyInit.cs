@@ -162,7 +162,7 @@ namespace Project.DAL.StrategyPattern
             context.SaveChanges();
 
 
-            DateTime[] sessions = new DateTime[] { Convert.ToDateTime("2021-03-11 11:00:00.000"), Convert.ToDateTime("2021-03-12 12:00:00.000"), Convert.ToDateTime("2021-03-12 13:00:00.000"), Convert.ToDateTime("2021-03-13 14:00:00.000"), Convert.ToDateTime("2021-03-13 15:00:00.000") };
+            DateTime[] sessions = new DateTime[] { Convert.ToDateTime("2021-04-17 11:00:00.000"), Convert.ToDateTime("2021-04-22 13:00:00.000"), Convert.ToDateTime("2021-05-27 14:00:00.000"), Convert.ToDateTime("2021-05-29 15:00:00.000"), Convert.ToDateTime("2021-06-12 15:00:00.000") };
 
             for (int i = 0; i < 5; i++)
             {
@@ -176,6 +176,7 @@ namespace Project.DAL.StrategyPattern
 
             }
             context.SaveChanges();
+
 
 
             for (int i = 1; i <= 5; i++)
@@ -204,9 +205,20 @@ namespace Project.DAL.StrategyPattern
                 }
             }
             context.SaveChanges();
+
+
+            for (int l = 1; l <= 5; l++)
+            {
+                MovieSessionSaloon mss = new MovieSessionSaloon();
+                mss.MovieID = l;
+                mss.SessionID = l;
+                mss.SaloonID = l;
+                context.MovieSessionSaloons.Add(mss);
+            }
+            context.SaveChanges();
+        
+        
         }
-
-
 
     }
 }

@@ -175,7 +175,8 @@ namespace Project.WEBUI.Controllers
                     MovieName = toBeAdded.Movie.MovieName,
                     TicketPrice = Convert.ToDecimal(ticketPrice),
                     SalonID = saloonID,
-                    SaleNo = toBeAdded.SaleNo
+                    SaleNo = toBeAdded.SaleNo,
+                    TicketDate = (_sesRep.FirstOrDefault(x => x.ID == sessionID)).Time
 
 
                 };
@@ -193,7 +194,8 @@ namespace Project.WEBUI.Controllers
                     MovieName = query.Movie.MovieName,
                     TicketPrice = Convert.ToDecimal(ticketPrice),
                     SalonID = saloonID,
-                    SaleNo = query.SaleNo
+                    SaleNo = query.SaleNo,
+                    TicketDate = (_sesRep.FirstOrDefault(x => x.ID == sessionID)).Time
 
 
                 };
@@ -211,6 +213,7 @@ namespace Project.WEBUI.Controllers
         {
             bool result;
             decimal toBeConvertedPrice = Convert.ToDecimal(ticketPrice);
+            cvm.Payment.TicketPrice = toBeConvertedPrice;
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44391/api/");
@@ -282,11 +285,21 @@ namespace Project.WEBUI.Controllers
 
                         TempData["paymentSuccess"] = "Bilet satin alma isleminiz basariyla gerceklesmistir. Bizi tercih ettiginiz icin tesekkür ederiz";
 
+                    SaleResvervationTicketVM srvm = new SaleResvervationTicketVM()
+                    {
+                        MovieName = toBeAdded.Movie.MovieName,
+                        TicketPrice = toBeConvertedPrice,
+                        SalonID = saloonID,
+                        SaleNo = toBeAdded.SaleNo,
+                        TicketDate = (_sesRep.FirstOrDefault(x => x.ID == sessionID)).Time
+                    };
 
-                    
+                    return View(srvm);
+
 
                 }
-
+                
+                TempData["paymentFailed"] = "Bilet alma isleminizde bir sorun olustu lutfen daha sonra tekrar deneyiniz.";
                 return RedirectToAction("Index", "Home");
 
 

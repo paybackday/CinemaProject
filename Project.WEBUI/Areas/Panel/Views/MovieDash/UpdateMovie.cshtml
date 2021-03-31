@@ -34,7 +34,7 @@
                         </div>
                         <div class="x_content">
                             <br />
-                            @using (Html.BeginForm("UpdateMovie", "Movie", new { Area = "Panel" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @using (Html.BeginForm("UpdateMovie", "MovieDash", new { Area = "Panel" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.HiddenFor(x => x.Movie.ID)
 

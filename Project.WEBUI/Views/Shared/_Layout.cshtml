@@ -1,4 +1,5 @@
-﻿@{ AppUser user = (AppUser)HttpContext.Current.Session["member"];}
+﻿@{ AppUser user = (AppUser)HttpContext.Current.Session["member"];
+    AppUser userVIP = (AppUser)HttpContext.Current.Session["vip"];}
 <!doctype html>
 <html>
 <head>
@@ -210,14 +211,34 @@
                                             </ul>
 
                                         </div>
-                                    </div> }
-                                                else
-                                                {
+                                    </div>}
+                else if (Session["vip"] != null)
+                {<!-- Additional header buttons / Auth and direct link to booking-->
                                     <div class="control-panel">
-                                        <a href="@Url.Action("Login", "Account")" class="btn btn-warning">GİRİŞ YAP</a>
+                                        <div class="auth auth--home">
+                                            <div class="auth__show">
+                                                <span class="auth__image">
+                                                    <img alt="" src="~/OuterTools/images/client-photo/auth.png">
+                                                </span>
+                                            </div>
+                                            <a href="#" class="btn btn--sign btn--singin">
+                                                @userVIP.UserProfile.FirstName @userVIP.UserProfile.LastName
+                                            </a>
+                                            <ul class="auth__function">
+                                                <li><a href="#" class="auth__function-item">Watchlist</a></li>
+                                                <li><a href="#" class="auth__function-item">Booked tickets</a></li>
+                                                <li><a href="#" class="auth__function-item">Discussion</a></li>
+                                                <li><a href="@Url.Action("Logout", "Account")" class="auth__function-item">Güvenli Çıkış</a></li>
+                                            </ul>
 
-                                    </div>
-                                                }
+                                        </div>
+                                    </div> }
+                                else
+                                {
+                    <div class="control-panel">
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-warning">GİRİŞ YAP</a>
+
+                    </div>}
 
             </div>
         </header>

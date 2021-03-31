@@ -141,7 +141,7 @@ namespace Project.WEBUI.Controllers
 
         public ActionResult Logout()
         {
-            Session.Remove("member");
+            Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

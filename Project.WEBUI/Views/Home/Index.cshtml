@@ -2,6 +2,14 @@
 @{
     ViewBag.Title = "Index";
 }
+@if (TempData["paymentFailed"] != null)
+{
+    <div class="alert alert-danger">@TempData["paymentFailed"]</div>
+}
+@if (TempData["connectionDenial"] != null)
+{
+    <div class="alert alert-danger">@TempData["connectionDenial"]</div>
+}
 <!-- Slider -->
 <div class="bannercontainer rev_slider_wrapper">
 
@@ -390,15 +398,15 @@
             @{int sayac = 1; }
             @foreach (Movie item in Model.Movies)
             {
-                if (sayac==7)
+                if (sayac == 7)
                 {
                     break;
                 }
 
                 <div class="movie-beta__item ">
-                    <img alt='' src="~/OuterTools/images/movie/deneme.jpeg">
+                    <img alt='' src="~@item.MovieImagePath">
                     <span class="best-rate">5.0</span>
-                    
+
                     <ul class="movie-beta__info">
                         <li><span class="best-voted">@item.MovieName</span></li>
                         <li>
@@ -416,6 +424,6 @@
 
 
         </div>
-        <div class="col-sm-10 col-sm-offset-1 movie-best__check">check all movies now playing</div>
+        <div class="col-sm-10 col-sm-offset-1 movie-best__check">@Html.ActionLink("Vizyondaki tum filmleri kontrol edin","Movie","Movie")</div>
     </div>
 </section>
