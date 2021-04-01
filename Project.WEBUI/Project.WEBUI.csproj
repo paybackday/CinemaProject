@@ -4040,6 +4040,9 @@
     <Content Include="OuterTools\video\TravelIs.mp4" />
     <Content Include="OuterTools\video\TravelIs.ogv" />
     <Content Include="OuterTools\video\TravelIs.webm" />
+    <Content Include="Pictures\sliderStar.jpg" />
+    <Content Include="Pictures\sliderStar2.jpg" />
+    <Content Include="Pictures\starWars.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="OuterTools\css\less\base\base.less" />
@@ -5102,6 +5105,7 @@
     <Content Include="Views\Account\LostPassword.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Movie\QueryDate.cshtml" />
+    <Content Include="Views\Account\SetVip.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <Content Include="Views\Reservation\Seat.cshtml" />
     <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
@@ -5120,7 +5124,6 @@
     <Folder Include="Areas\PanelBoss\Data\" />
     <Folder Include="Areas\Panel\Data\" />
     <Folder Include="Areas\Panel\Views\Movie\" />
-    <Folder Include="Pictures\" />
     <Folder Include="Views\Panel\" />
   </ItemGroup>
   <ItemGroup>

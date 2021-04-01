@@ -80,7 +80,7 @@ namespace Project.WEBUI.Controllers
                 {
                     Movie = _mvRep.FirstOrDefault(x => x.ID == id),
                     Saloons = _salRep.GetActives(),
-                    MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id && dateVipQuery <= x.Session.Time && x.Session.Time.Day == dateControl.Day && x.Session.Time.Month == dateControl.Month && x.Session.Time.Year == dateControl.Year)
+                    MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id && ( x.Session.Time<=dateVipQuery || DateTime.Now>=x.Session.Time) && x.Session.Time.Day == dateControl.Day && x.Session.Time.Month == dateControl.Month && x.Session.Time.Year == dateControl.Year)
                 };
 
                 if (mvm.MovieSessionSaloons.Count==0)
@@ -99,7 +99,7 @@ namespace Project.WEBUI.Controllers
                 {
                     Movie = _mvRep.FirstOrDefault(x => x.ID == id),
                     Saloons = _salRep.GetActives(),
-                    MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id && dateMemberQuery <= x.Session.Time && x.Session.Time.Day == dateControl.Day && x.Session.Time.Month == dateControl.Month && x.Session.Time.Year == dateControl.Year)
+                    MovieSessionSaloons = _mssRep.Where(x => x.MovieID == id && (x.Session.Time <= dateMemberQuery || DateTime.Now>=x.Session.Time) && x.Session.Time.Day == dateControl.Day && x.Session.Time.Month == dateControl.Month && x.Session.Time.Year == dateControl.Year)
                 };
 
                 if (mvm.MovieSessionSaloons.Count==0)

@@ -1,0 +1,78 @@
+﻿@model PaymentVM
+@{
+    ViewBag.Title = "SetVip";
+}
+
+<section class="container">
+    @if (TempData["beVIPFailed"]!=null)
+    {
+    <div class="alert alert-danger">@TempData["beVIPFailed"]</div>
+    }
+    <div style="margin-top:60px;" class="alert alert-warning">
+        <p>*VIP Ayricaliklar dunyasina ilk adim atmaya hazir misin?<br />
+        *VIP olarak biletini 7 gun icerisinde alabilir ve indirimlerden yararlanabilirsin.</p><br />
+    </div>
+    <div class="alert alert-success">
+        VIP Ucreti, 100 ₺
+    </div>
+        @using (Html.BeginForm("SetVip", "Account", FormMethod.Post, new { @class = "login" }))
+        {
+            <div class="col-sm-12">
+                <div class="checkout-wrapper">
+                    @{
+                        int[] months = Enumerable.Range(1, 12).ToArray();
+                        int curMonth = DateTime.Today.Month;
+                        int[] years = Enumerable.Range(DateTime.Today.Year, 30).ToArray();
+                        int curYear = DateTime.Today.Year;
+
+                    }
+                    <h2 class="page-heading">Kart Bilgilerinizi Giriniz</h2>
+                    <div class="contact-info__field contact-info__field-mail">
+                        @Html.TextBoxFor(x => x.CardUserName, new { @class = "login__input", @placeholder = "Kart Üzerindeki Ad Soyad", @required = "required" })
+                        @Html.ValidationMessageFor(x => x.CardUserName)
+                    </div>
+                    <div class="contact-info__field contact-info__field-mail">
+                        @Html.TextBoxFor(x => x.CardNumber, new { @class = "login__input", @placeholder = "Kart Numarası", @maxlength = 16, @required = "required" })
+                        @Html.ValidationMessageFor(x => x.CardNumber)
+                    </div><br />
+                    @Html.Label("Son Kullanma Tarihi")<br /><br />
+                    @Html.Label("Ay:")
+                    <div>
+                        @Html.DropDownListFor(x => x.CardExpiryMonth, months.Select(x =>
+                                                    new SelectListItem
+                                                    {
+                                                        Text = x.ToString(),
+                                                        Value = x.ToString(),
+                                                        Selected = (x == curMonth)
+                                                    }), new { @class = "login__input" })
+                    </div>
+                    @Html.ValidationMessageFor(x => x.CardExpiryMonth)
+                    @Html.Label("Yıl:")
+                    <div>
+                        @Html.DropDownListFor(x => x.CardExpiryYear, years.Select(x =>
+                                                    new SelectListItem
+                                                    {
+                                                        Text = x.ToString(),
+                                                        Value = x.ToString(),
+                                                        Selected = (x == curYear)
+                                                    }), new { @class = "login__input" })
+                    </div><br />
+                    @Html.ValidationMessageFor(x => x.CardExpiryYear)
+                <div class="contact-info__field contact-info__field-tel">
+                    @Html.TextBoxFor(x => x.SecurityNumber, new { @class = "login__input", @placeholder = "CVV", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.SecurityNumber)
+                </div> <br />
+                    <div class="order">
+                        <button type="submit" class="btn btn-md btn--warning btn--wide">Ödeme Yap | VIP OL</button>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        }
+
+
+</section>

@@ -70,32 +70,13 @@ Selected = (x == students[0])
                 }
                 <h2 class="page-heading">Kart Bilgilerinizi Giriniz</h2>
 
-
-
-                @*<div>
-                                <ul>
-                                    <li class="book-result__item">
-                                        Öğrenci Adedi: <span class="book-result__count booking-cost">
-                                            @Html.DropDownListFor(x => x.StudentCount, students.Select(x =>
-                    new SelectListItem
-                    {
-                    Text = x.ToString(),
-                    Value = x.ToString(),
-                    Selected = (x == students[0])
-                    }), new { @class = "login__input", @id = "dropMenu" })
-                                        </span>
-                                    </li>
-                                </ul>
-
-                            </div>*@
-
-
-
                 <div class="contact-info__field contact-info__field-mail">
                     @Html.TextBoxFor(x => x.Payment.CardUserName, new { @class = "login__input", @placeholder = "Kart Üzerindeki Ad Soyad", @required = "required" })
+                    @Html.ValidationMessageFor(x => x.Payment.CardUserName)
                 </div>
                 <div class="contact-info__field contact-info__field-mail">
                     @Html.TextBoxFor(x => x.Payment.CardNumber, new { @class = "login__input", @placeholder = "Kart Numarası", @maxlength = 16, @required = "required" })
+                    @Html.ValidationMessageFor(x => x.Payment.CardNumber)
                 </div><br />
                 @Html.Label("Son Kullanma Tarihi")<br /><br />
                 @Html.Label("Ay:")
@@ -108,6 +89,7 @@ Selected = (x == students[0])
                                                     Selected = (x == curMonth)
                                                 }), new { @class = "login__input" })
                 </div>
+                @Html.ValidationMessageFor(x => x.Payment.CardExpiryMonth)
                 @Html.Label("Yıl:")
                 <div>
                     @Html.DropDownListFor(x => x.Payment.CardExpiryYear, years.Select(x =>
@@ -118,9 +100,11 @@ Selected = (x == students[0])
                                                     Selected = (x == curYear)
                                                 }), new { @class = "login__input" })
                 </div><br />
-                <div class="contact-info__field contact-info__field-tel">
-                    @Html.TextBoxFor(x => x.Payment.SecurityNumber, new { @class = "login__input", @placeholder = "CVV", @required = "required" })
-                </div> <br />
+                @Html.ValidationMessageFor(x => x.Payment.CardExpiryYear)
+            <div class="contact-info__field contact-info__field-tel">
+                @Html.TextBoxFor(x => x.Payment.SecurityNumber, new { @class = "login__input", @placeholder = "CVV", @required = "required" })
+                @Html.ValidationMessageFor(x => x.Payment.SecurityNumber)
+            </div> <br />
                 <div class="order">
                     <button type="submit" class="btn btn-md btn--warning btn--wide">Ödeme Yap</button>
                 </div>

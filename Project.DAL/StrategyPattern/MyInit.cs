@@ -142,7 +142,7 @@ namespace Project.DAL.StrategyPattern
                 movie.DirectorID = new Random().Next(1, 6);
                 movie.MovieYear = new Random().Next(2005, 2020).ToString();
                 movie.GenreID = new Random().Next(1, 6);
-                movie.MovieImagePath = new Images().Technics();
+                movie.MovieImagePath = "/Pictures/starWars.jpg";
 
                 context.Movies.Add(movie);
             }

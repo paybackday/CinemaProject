@@ -5,6 +5,8 @@ using Project.WEBUI.Models.VMClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -187,6 +189,56 @@ namespace Project.WEBUI.Controllers
             TempData["ResetInfo"] = "Şifreniz başarılı bir şekilde güncellenmiştir.";
 
             return RedirectToAction("Login");
+        }
+
+        public ActionResult SetVip() {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SetVip(PaymentVM pvm) {
+            bool result;
+            pvm.TicketPrice = 100; //VIP Ucreti
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("https://localhost:44391/api/");
+                Task<HttpResponseMessage> postTask = client.PostAsJsonAsync("Payment/ReceivePayment", pvm);
+
+                HttpResponseMessage sonuc;
+
+                try
+                {
+                    sonuc = postTask.Result;
+                }
+                catch (Exception)
+                {
+                    TempData["connectionDenial"] = "Banka bağlantıyı reddetti";
+                    return RedirectToAction("Index", "Home");
+                }
+
+                if (sonuc.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+                else result = false;
+
+
+                if (result)
+                {
+                    AppUser user = (Session["member"] as AppUser);
+                    user.Role = ENTITIES.Enums.UserRole.Vip;
+                    apRep.Update(user);
+                    Session["vip"] = user;
+                    Session.Remove("member");
+                    TempData["beVIPSuccess"] = "VIP'ye gecis isleminiz basariyla gerceklestirilmistir.";
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["beVIPFailed"] = "VIP'ye gecis isleminizde bir sorun olustu. Lutfen daha sonra tekrar deneyiniz";
+                    return RedirectToAction("SetVip", "Account");
+                }
+            }
         }
     }
 }
