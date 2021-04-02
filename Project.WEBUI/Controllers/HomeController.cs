@@ -27,5 +27,14 @@ namespace Project.WEBUI.Controllers
             return View(mvm);
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
     }
 }

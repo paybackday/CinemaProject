@@ -11,8 +11,8 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
-    //[AllRolePassedAuthentication]
-    
+    [AllRolePassedAuthentication]
+
     public class MovieDashController : Controller
     {
 

@@ -10,8 +10,8 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.Panel.Controllers
 {
-    //[AllRolePassedAuthentication]
-  
+    [AllRolePassedAuthentication]
+
     public class SaloonController : Controller
     {
         SaloonRepository _salRep;

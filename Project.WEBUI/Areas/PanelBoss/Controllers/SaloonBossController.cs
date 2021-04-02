@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Project.WEBUI.Areas.PanelBoss.Controllers
 {
-    //[BossAuthentication]
+    [BossAuthentication]
 
     public class SaloonBossController : Controller
     {

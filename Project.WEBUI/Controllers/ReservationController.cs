@@ -167,7 +167,7 @@ namespace Project.WEBUI.Controllers
                     _sRep.Update(result);
                 }
 
-                //Bak
+              
                 SaleResvervationTicketVM srtvm = new SaleResvervationTicketVM()
                 {
 

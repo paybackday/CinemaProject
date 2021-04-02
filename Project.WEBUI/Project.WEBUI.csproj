@@ -5106,6 +5106,8 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Movie\QueryDate.cshtml" />
     <Content Include="Views\Account\SetVip.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <Content Include="Views\Reservation\Seat.cshtml" />
     <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
