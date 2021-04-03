@@ -66,10 +66,6 @@ namespace Project.WEBUI.Controllers
         [HttpPost]
         public ActionResult QueryDate(int id, string date)
         {
-            //string[] gunAyYil;
-            //string sqlGunAyYil;
-            //gunAyYil = date.Split('/');
-            //sqlGunAyYil = $"{gunAyYil[2]}-{gunAyYil[1]}-{gunAyYil[0]}";
             
             DateTime dateControl = Convert.ToDateTime(date);
 

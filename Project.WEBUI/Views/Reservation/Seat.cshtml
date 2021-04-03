@@ -10,7 +10,17 @@
             <p class="order__title">Bilet Ayırt <br><span class="order__descript">Eğlenceye başla</span></p>
             <div class="order__control">
                 <a id="select" onclick="choise('sale')" class="order__control-btn">Satın Al</a>
-                <a id="select" onclick="choise('reservation')" class="order__control-btn">Rezervasyon</a>
+                @{DateTime sessionTime = Convert.ToDateTime(TempData["sessionTime"]);
+                    if (DateTime.Now <= sessionTime && DateTime.Now.AddMinutes(30) >= sessionTime)
+                    {
+                        <div style="margin-top:10px;" class="alert alert-danger">Seans saatine 30 dakika kaldığından dolayı rezervasyon yapılamaz.</div>
+                    }
+                    else
+                    {
+                        <a id="select" onclick="choise('reservation')" class="order__control-btn">Rezervasyon</a>
+                    }
+                }
+
             </div>
         </div>
     </div>
@@ -95,35 +105,35 @@
 
 
                     @*@for (int i = 0; i < Model.SeatLists.Count; i++)
-        {
-            <div class="sits__row">
-                @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
-                {
-                    {
-                        Seat seat = Model.SeatLists[i].Seats[j];
+                        {
+                            <div class="sits__row">
+                                @for (int j = 0; j < Model.SeatLists[i].Seats.Count; j++)
+                                {
+                                    {
+                                        Seat seat = Model.SeatLists[i].Seats[j];
 
-                        <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
-                    }
-                }
-            </div>
-        }*@
+                                        <span class="sits__place sits-price--cheap" data-place='@seat.Character-@seat.Number' data-price='@Model.Price'>@seat.Character @seat.Number</span>
+                                    }
+                                }
+                            </div>
+                        }*@
 
                     @*@{Seat lastSeat = Model.Seats.OrderByDescending(X => X.ID).FirstOrDefault();
-            char startSeat = 'A';
-        }
-        @foreach (Seat item in Model.Seats)
-        {
-            <div class="sits__row">
-                @if (startSeat != Convert.ToChar(lastSeat.Character))
-                {
+                            char startSeat = 'A';
+                        }
+                        @foreach (Seat item in Model.Seats)
+                        {
+                            <div class="sits__row">
+                                @if (startSeat != Convert.ToChar(lastSeat.Character))
+                                {
 
-                    <span class="sits__place sits-price--cheap" data-place='@item.Character @item.Number' data-price='10'>@item.Character @item.Number</span>
+                                    <span class="sits__place sits-price--cheap" data-place='@item.Character @item.Number' data-price='10'>@item.Character @item.Number</span>
 
-                }
-            </div>
+                                }
+                            </div>
 
-            startSeat++;
-        }*@
+                            startSeat++;
+                        }*@
 
 
 
@@ -133,8 +143,8 @@
 
                         </div>
                         @*<div class="checked-result">
-                0 ₺
-            </div>*@
+                                0 ₺
+                            </div>*@
                     </aside>
                     <footer class="sits__number">
                         <span class="sits__indecator">1</span>
@@ -275,7 +285,7 @@
                 dangerMode: true
             });
         }
-        else if ($("#choise").val()=="") {
+        else if ($("#choise").val() == "") {
             swal({
                 title: "Rezervasyon/Satis Seçimi!",
                 text: "Rezervasyon veya satis secimi yapmadınız",
@@ -285,12 +295,6 @@
             });
         }
         else {
-            //$.post("/Reservation/CheckOutView",
-            //    {
-            //        buyedSeats: seats
-            //    }
-            //);
-
             $("#selectedSeats").val(seats);
             $("#checkoutView").submit();
         }

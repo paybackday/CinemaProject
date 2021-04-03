@@ -35,6 +35,26 @@ namespace Project.WEBUI.Controllers
 
         public ActionResult Seat(int movieID, int saloonID, int sessionID)
         {
+            Session ses = _sesRep.FirstOrDefault(x => x.ID == sessionID);
+            if (DateTime.Now<=ses.Time && DateTime.Now.AddMinutes(30)>=ses.Time)
+            {
+                List<Sale> list = _saleRep.Where(x => x.SaleType == ENTITIES.Enums.SaleType.Reservation && x.SessionID == sessionID);
+                List<int> toBeUpdatedSeatsId;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    int saleId = list[i].ID;
+                    toBeUpdatedSeatsId = _saleSeatRep.Where(x => x.SaleID == saleId).Select(x=>x.SeatID).ToList();
+                    foreach (int id in toBeUpdatedSeatsId)
+                    {
+                        Seat seat=_sRep.FirstOrDefault(x => x.ID == id);
+                        seat.SeatActive = false;
+                        _sRep.Update(seat);
+                    }
+                    _saleSeatRep.DeleteRange(_saleSeatRep.Where(x => x.SaleID == saleId));
+                    _saleRep.Delete(list[i]);
+                }
+            }
+
             Session selectedSession = _sesRep.Find(sessionID);
             List<Seat> seats = _sRep.Where(x => x.SessionID == sessionID && x.SaloonID == saloonID);
             SeatVM svm = new SeatVM
@@ -47,6 +67,7 @@ namespace Project.WEBUI.Controllers
             TempData["movieID"] = movieID;
             TempData["saloonID"] = saloonID;
             TempData["sessionID"] = sessionID;
+            TempData["sessionTime"] = ses.Time;
 
 
 
@@ -164,10 +185,11 @@ namespace Project.WEBUI.Controllers
                 {
                     Seat result = _sRep.FirstOrDefault(x => x.SaloonID == saloonID && x.SessionID == sessionID && x.Character == item.Character && x.Number == item.Number);
                     result.SeatActive = true;
+                    _saleSeatRep.Add(new SaleSeat { SaleID = toBeAdded.ID, SeatID = result.ID });
                     _sRep.Update(result);
                 }
 
-              
+
                 SaleResvervationTicketVM srtvm = new SaleResvervationTicketVM()
                 {
 
