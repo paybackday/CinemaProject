@@ -16,9 +16,9 @@
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
     <title>AMovie</title>
-    <meta name="description" content="A Template by Gozha.net">
+    <meta name="description" content="Ercan Karahan">
     <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="Gozha.net">
+    <meta name="author" content="">
 
     <!-- Mobile Specific Metas-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,8 +62,8 @@
         <header class="header-wrapper header-wrapper--home">
             <div class="container">
                 <!-- Logo link-->
-                <a href='@Url.Action("Index","Home")' class="logo">
-                    <img alt='logo' src="~/OuterTools/images/logo.png">
+                <a href='@Url.Action("Index", "Home")' class="logo">
+                    @*<img alt='logo' src="~/OuterTools/images/logo.png" />*@
                 </a>
 
                 <!-- Main website navigation-->
@@ -81,23 +81,33 @@
                     <ul id="navigation">
                         <li>
                             <span class="sub-nav-toggle plus"></span>
-                            <a href="@Url.Action("Index","Home")">Anasayfa</a>
+                            @Html.ActionLink("Anasayfa", "Index", "Home")
+                        </li>
+
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            @Html.ActionLink("Hakkımızda", "About", "Home")
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            <a href>Developer CV's</a>
+                            <ul>
+                                <li class="menu__nav-item">
+                                    <a href="~/OuterTools/Developer'S CV/Ercan Karahan CV 11.12.2020_2.pdf">Ercan KARAHAN</a>
+                                </li>
+                                <li class="menu__nav-item"><a href="#">Serkan AKÇAY</a></li>
+                                <li class="menu__nav-item"><a href="#">Yusuf Emre ÖZDEMIR</a></li>
+                                <li class="menu__nav-item"><a href="#">Emre Gören</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="sub-nav-toggle plus"></span>
+                            @Html.ActionLink("Filmler", "Movie", "Movie")
 
                         </li>
                         <li>
                             <span class="sub-nav-toggle plus"></span>
-                            <a href="@Url.Action("About","Home")">Hakkımızda</a>
-
-                        </li>
-                        <li>
-                            <span class="sub-nav-toggle plus"></span>
-                            <a href="@Url.Action("Movie","Movie")">Filmler</a>
-
-                        </li>
-                        <li>
-                            <span class="sub-nav-toggle plus"></span>
-                            <a href="@Url.Action("Contact","Home")">Iletişim</a>
-
+                            @Html.ActionLink("Iletişim", "Contact", "Contact")
                         </li>
 
                     </ul>
@@ -148,7 +158,7 @@
                         <a href="@Url.Action("EmployeeLogin","PanelAccount", new {Area = "Panel" })" class="btn btn--info">Çalışan Girişi</a>
 
                     </div>}
-         
+
             </div>
         </header>
 
@@ -158,18 +168,16 @@
 
         <footer class="footer-wrapper">
             <section class="container">
-                
+
                 <div style="padding-left:350px;" class="col-xs-12 col-md-12">
                     <div class="footer-info">
-                        <p class="heading-special--small">A.Movie<br><span class="title-edition">in the social media</span></p>
+                        <p class="heading-special--small">SineFlex<br><span class="title-edition">in the social media</span></p>
 
                         <div class="social">
-                            <a href='#' class="github-btn">git hub</a>
-                            <a href='#' class="social__variant fa fa-twitter"></a>
-                            <a href='#' class="social__variant fa fa-vk"></a>
-                            <a href='#' class="social__variant fa fa-instagram"></a>
-                            <a href='#' class="social__variant fa fa-tumblr"></a>
-                            <a href='#' class="social__variant fa fa-pinterest"></a>
+                            <a href='https://github.com/ErcanKarahan' class="social__variant fa fa-github"></a>
+                            <a href='https://ercan1977-ek.medium.com/' class="social__variant fa fa-medium"></a>
+                            <a href='https://www.facebook.com/ercan.karahan.94695' class="social__variant fa fa-facebook"></a>
+                            <a href='https://www.instagram.com/dekoratif_agac/' class="social__variant fa fa-instagram"></a>
                         </div>
 
                         <div class="clearfix"></div>

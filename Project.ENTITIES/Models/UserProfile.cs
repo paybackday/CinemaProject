@@ -29,6 +29,7 @@ namespace Project.ENTITIES.Models
 
         //[Required(ErrorMessage = "Meslek alanı boş geçilemez.")]
         public string Job { get; set; }
+       
 
 
 

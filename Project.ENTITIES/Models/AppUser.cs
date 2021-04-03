@@ -16,6 +16,7 @@ namespace Project.ENTITIES.Models
         public bool Active { get; set; }
         public string ImagePath { get; set; }
         public string Email { get; set; }
+       
 
         [Required(ErrorMessage ="Şifre alanı boş geçilemez.")]
         public string Password { get; set; }

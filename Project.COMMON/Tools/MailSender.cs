@@ -9,8 +9,8 @@ namespace Project.COMMON.Tools
 {
     public static class MailSender
     {
-      
-        public static void Send(string receiver, string password = "emreemretest", string body = "Deneme", string subject = "Test", string sender = "emregorentest@gmail.com")
+
+        public static void Send(string receiver, string password = "Ak17041971 ", string body = "Müşteri Hizmetleri", string subject = "Hesap Aktivasyon", string sender = "ercankarahan@hotmail.de")
         {
 
             MailAddress senderEmail = new MailAddress(sender);
@@ -20,7 +20,7 @@ namespace Project.COMMON.Tools
 
             SmtpClient smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
+                Host = "smtp-mail.outlook.com",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
@@ -35,19 +35,19 @@ namespace Project.COMMON.Tools
             {
                 //Object initializer
                 Subject = subject,
-                Body =body
+                Body = body
             })
             {
                 //using scope'u
                 smtp.Send(mesaj); //Mail'i gönderdik.
             }
 
-            
 
-       
+
+
         }
 
 
-       
+
     }
 }

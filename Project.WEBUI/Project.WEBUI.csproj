@@ -5026,6 +5026,7 @@
     <Content Include="Areas\PanelBoss\Views\UserBoss\UserList.cshtml" />
     <Content Include="Areas\Panel\Views\PanelAccount\EmployeeLogin.cshtml" />
     <Content Include="Areas\PanelBoss\Views\SaleBoss\SaleList.cshtml" />
+    <Content Include="OuterTools\Developer%27S CV\Ercan Karahan CV 11.12.2020_2.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -5060,6 +5061,7 @@
     <Compile Include="AuthenticationClasses\MemberAuthentication.cs" />
     <Compile Include="AuthenticationClasses\VIPAuthentication.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
@@ -5107,7 +5109,7 @@
     <Content Include="Views\Movie\QueryDate.cshtml" />
     <Content Include="Views\Account\SetVip.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
     <None Include="Views\Movie\Single.cshtml" />
     <Content Include="Views\Reservation\Seat.cshtml" />
     <Content Include="Views\Reservation\CheckOutReservation.cshtml" />
