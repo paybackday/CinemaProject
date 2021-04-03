@@ -47,6 +47,7 @@
                             <tbody>
                                 @foreach (Session item in Model.Sessions)
                                 {
+
                                 <tr>
                                     <td>@item.ID</td>
                                     <td>@item.Time</td>
@@ -60,7 +61,7 @@
 
 
 
-                                    <td><a href="@Url.Action("DeleteSession","Seans",new { Area="Panel",id=item.ID})" class="btn btn-danger"><i class="fa fa-trash"></i><a href="@Url.Action("AddSession","Seans",new {Area = "Panel"})" class="btn btn-primary"><i class=" fa fa-file"></i></a></a></td>
+                                    <td><a href="@Url.Action("AddSession","Seans",new {Area = "Panel"})" class="btn btn-primary"><i class=" fa fa-file"></i></a></td>
 
                                 </tr>
                                 }

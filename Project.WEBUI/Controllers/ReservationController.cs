@@ -118,12 +118,7 @@ namespace Project.WEBUI.Controllers
                 return View("CheckOutSale", cvm);
             }
             string[] seats = buyedSeats.Trim().Split(':');
-            //for (int i = 0; i < seats.Length; i++)
-            //{
-            //    string[] seat = seats[i].Split('-');
-            //    seat[0] = "Character";
-            //    seat[1] = "Numara";
-            //}
+          
             return View();
         }
 

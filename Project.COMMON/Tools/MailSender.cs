@@ -15,7 +15,7 @@ namespace Project.COMMON.Tools
 
             MailAddress senderEmail = new MailAddress(sender);
 
-            MailAddress receiverEmail = new MailAddress(receiver);//burada item.Email kullanılır
+            MailAddress receiverEmail = new MailAddress(receiver);
 
 
             SmtpClient smtp = new SmtpClient
@@ -39,7 +39,7 @@ namespace Project.COMMON.Tools
             })
             {
                 //using scope'u
-                smtp.Send(mesaj); //Mail'i gönderdik.
+                smtp.Send(mesaj); 
             }
 
 

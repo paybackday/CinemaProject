@@ -25,8 +25,8 @@ namespace Project.ENTITIES.Models
         [Required(ErrorMessage = "Şifre tekrar alanı boş geçilemez.")]
         [Compare("Password", ErrorMessage = "Girilen şifreler eşleşmiyor.")]
         public string ConfirmPassword { get; set; }
-        public short Credit { get; set; } // Film Başına gelen Kredi Properties
-        public decimal Balance { get; set; } // Havale ile gelen Bakiye
+        public short Credit { get; set; } 
+        public decimal Balance { get; set; }
 
         public AppUser()
         {

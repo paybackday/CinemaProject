@@ -6,11 +6,7 @@ using System.Web;
 
 namespace Project.COMMON.Tools
 {
-    //Eger bir sınıfın görevi belliyse ve instance'lari sürekli aynı görevi yapacak ise onun instance'inin alınması bos yere ram'de yer kaplamasına neden olur. 
-
-    //Static sınıfların icerisinde kesinlikle static ögeler olmalıdır. Instance ögeler barındıramaz. Static olmayan sınıflar instance ögeler barındırabilir ayrıca static ögeler de barındırabilir. Ancak instance ögelerine nesnelerinden, static ögelerine de sınıfın kendisinden ulasılabilir.
-
-    //HttpPostedFileBase , bize post ile gelen dosyayı tutabilen bir tiptir.
+   
 
     public static class ImageUploader
     {
@@ -19,20 +15,16 @@ namespace Project.COMMON.Tools
             if (file!=null)
             {
                 Guid uniqueName = Guid.NewGuid();
-                //~/ProjectImages/asdsadasdasdsad
-                serverPath = serverPath.Replace("~", string.Empty); //eger gelen serverPath parametresinde ~(tilda) diye bir işaret varsa onu boslukla degiştir.
+             
+                serverPath = serverPath.Replace("~", string.Empty); 
 
-                //Cagri.UzayGemisi.EnSevdigi.IsıkHızı.Png
+            
 
-                //"Cagri","UzayGemisi","EnSevdigi","IsıkHızı","Png"
+                string[] fileArray = file.FileName.Split('.'); 
 
-                string[] fileArray = file.FileName.Split('.'); //burada uzaygemisi.jpg  diye bir veri gelirse Split('.') metodu sayesinde ben bunu ["uzaygemisi"]["jpg"] olarak noktalardan kesip iki elemanlı bir string arraye dönüstürdüm. 
+                string extension = fileArray[fileArray.Length - 1].ToLower(); 
 
-                string extension = fileArray[fileArray.Length - 1].ToLower(); //burada dosya uzantısını yakalayarak onu kücük harflere cevirdik.
-
-                string fileName = $"{uniqueName}.{extension}";//Olusturdugumuz Guid tipinkindeki degişkenimizle yakaladıgımız extension'
-
-                //alt tarafta uzantı kontrolü ile dosyanın bir resim olup olmadıgını anlamaya calısıyoruz
+                string fileName = $"{uniqueName}.{extension}";
                 if (extension=="jpg"||extension=="gif"||extension=="png"||extension=="jpeg")
                 {
                     if (File.Exists(HttpContext.Current.Server.MapPath(serverPath+fileName)))

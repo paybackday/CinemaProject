@@ -75,14 +75,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         {
 
             item.MovieImagePath = ImageUploader.UploadImage("~/Pictures/", resim);
-            //Movie tobeUpdated = _mvRep.FirstOrDefault(x => x.ID == item.ID);
-
-            //tobeUpdated.MovieName = item.MovieName;
-            //tobeUpdated.MovieYear = item.MovieYear;
-            //tobeUpdated.MovieLength = item.MovieLength;
-            //tobeUpdated.Description = item.Description;
-            //tobeUpdated.Director.FirstName = item.Director.FirstName;
-            //tobeUpdated.Genre.GenreName = item.Genre.GenreName;
+         
             _mvRep.Update(item);
             return RedirectToAction("MovieList");
         }

@@ -10,8 +10,8 @@ namespace Project.ENTITIES.Models
     {
         public bool SeatActive { get; set; }
         public int SaloonID { get; set; }
-        public int? SessionID { get; set; } //Koltugun hangi seans ta bulundugunun ID'si
-        public int Number { get; set; } // veri tabanı ushortu kabul etmiyor
+        public int? SessionID { get; set; } 
+        public int Number { get; set; } 
         public string Character { get; set; }
 
 

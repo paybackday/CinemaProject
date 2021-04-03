@@ -21,13 +21,13 @@ namespace Project.ENTITIES.Models
         [Required(ErrorMessage = "Telefon alanı boş geçilemez.")]
         public string MobilePhone { get; set; }
 
-        //[Required(ErrorMessage = "Gelir alanı boş geçilemez.")]
+
         public decimal? Sallary { get; set; }
         [Required(ErrorMessage ="Cinsiyet seçimi yapınız")]
         public Gender Gender { get; set; }
         public string City { get; set; }
 
-        //[Required(ErrorMessage = "Meslek alanı boş geçilemez.")]
+      
         public string Job { get; set; }
        
 

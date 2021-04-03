@@ -33,7 +33,9 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         {
             SessionVM svm = new SessionVM
             {
-                Sessions = _sRep.GetActives()
+                Sessions = _sRep.GetActives(),
+                MovieSessionSaloons = _mssRep.GetActives()
+                
             };
 
             return View(svm);
@@ -59,14 +61,9 @@ namespace Project.WEBUI.Areas.Panel.Controllers
             _sRep.Add(item);
             return RedirectToAction("SeansList");
         }
-        public ActionResult DeleteSession(int id)
-        {
-            _sRep.Destroy(_sRep.Find(id));
-            return RedirectToAction("SeansList");
 
-        }
 
-        public ActionResult AddNotation(/*int movieId, int sessionId, int saloonId*/)
+        public ActionResult AddNotation()
         {
             MovieSessionSaloonVM mss = new MovieSessionSaloonVM
             {
@@ -81,7 +78,7 @@ namespace Project.WEBUI.Areas.Panel.Controllers
         [HttpPost]
         public ActionResult AddNotation(MovieSessionSaloonVM item)
         {
-            //MovieSessionSaloon added = _mssRep.FirstOrDefault(x=> x.MovieID == item.Movie.ID && x.SessionID == item.Session.ID && x.SaloonID == item.Saloon.ID);
+       
 
 
             MovieSessionSaloon mss = new MovieSessionSaloon
@@ -108,8 +105,6 @@ namespace Project.WEBUI.Areas.Panel.Controllers
                 }
             }
 
-            //added.SessionID = item.Session.ID;
-            //added.SaloonID = item.Saloon.ID;
 
 
 

@@ -21,7 +21,7 @@ namespace Project.DAL.StrategyPattern
             au.Email = "Serkan1903@hotmail.de";
             au.Password = DantexCrypt.Crypt("123");
             au.ConfirmPassword = DantexCrypt.Crypt("123");
-            au.EmployeeType = ENTITIES.Enums.EmployeeType.BookingClerk;
+            au.EmployeeType = ENTITIES.Enums.EmployeeType.Boss;
             au.FirstName = "Serkan";
             au.LastName = "Akçay";
             au.TCNO = "21111111111";
@@ -44,15 +44,15 @@ namespace Project.DAL.StrategyPattern
 
             UserProfile vup = new UserProfile();//VIP Profil Tanımlama
             vup.ID = vau.ID;
-            vup.FirstName = "Serkan";
-            vup.LastName = "Akçay";
+            vup.FirstName = "Emre";
+            vup.LastName = "Özdemir";
             vup.MobilePhone = "5345997081";
             vup.Gender = ENTITIES.Enums.Gender.Erkek;
             context.UserProfiles.Add(vup);
             context.SaveChanges();
 
 
-            Employee emp = new Employee();
+            Employee emp = new Employee();//BookingClerk 
             emp.Email = "ercankarahan@hotmail.de";
             emp.Password =DantexCrypt.Crypt( "123");
             emp.ConfirmPassword = DantexCrypt.Crypt("123");
@@ -65,7 +65,7 @@ namespace Project.DAL.StrategyPattern
             context.Employees.Add(emp);
             context.SaveChanges();
 
-            Employee emp2 = new Employee();
+            Employee emp2 = new Employee(); //BoxOfficeSuperVisor
 
             emp2.EmployeeType = ENTITIES.Enums.EmployeeType.BoxOfficeSupervisor;
             emp2.Email = "emredeneme@gmail.com";
@@ -79,7 +79,7 @@ namespace Project.DAL.StrategyPattern
             context.Employees.Add(emp2);
             context.SaveChanges();
 
-            Employee emp3 = new Employee();
+            Employee emp3 = new Employee(); //Management
             emp3.EmployeeType = ENTITIES.Enums.EmployeeType.Management;
             emp3.Email = "Sakcay415@gmail.com";
             emp3.Password = DantexCrypt.Crypt("serkan1903");
@@ -148,16 +148,7 @@ namespace Project.DAL.StrategyPattern
             }
             context.SaveChanges();
 
-            //for (int i = 1; i <=20; i++)
-            //{
-            //    for (int j = 1; j <=10; j++)
-            //    {
-            //        MovieActor mv = new MovieActor();
-            //        mv.MovieID = i;
-            //        mv.ActorID = j;
-            //        context.MovieActors.Add(mv);
-            //    }
-            //}
+           
 
             context.SaveChanges();
 
